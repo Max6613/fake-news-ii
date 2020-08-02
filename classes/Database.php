@@ -18,10 +18,10 @@ class Database
 
     public function getConnection()
     {
-        $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name;
+        $dsn = 'mysql:host=' . $this->_host . ';dbname=' . $this->_db_name;
 
         try{
-            $pdo = new PDO($dsn, $this->user, $this->password);
+            $pdo = new PDO($dsn, $this->_user, $this->_password);
             return $pdo;
         }catch (PDOException $ex){
             var_dump($ex);

@@ -1,4 +1,7 @@
 <?php
+require_once 'Database.php';
+require_once 'Article.php';
+
 //TODO PHPdocs, type de retour
 
 class PDOArticle
@@ -47,20 +50,33 @@ class PDOArticle
     }
 
 
-    public function Get3LatestArticles() : array
+    public function Get3LatestArticles()
     {
         $connection = $this->GetConnection();
         if (!$connection){
+            //TODO delete
+            var_dump($connection);
             return false;
         }
 
         $sql = 'SELECT * FROM `posts` ORDER BY `date_creation` ASC LIMIT 3';
-        $stmt = $connection->prepare($sql);
-        $stmt->execute();
-        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+//        $stmt = $connection->prepare($sql);
+//        $stmt->execute();
+//        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        $res = $connection->query($sql);
 
         if (!empty($res) && $res != false){
-            return $res;
+            $articles = [];
+            while ($row = $res->fetch(PDO::FETCH_ASSOC)){
+                $articles[] = new Article($row['id'],
+                                            $row['date_creation'],
+                                            $row['title'],
+                                            $row['chapo'],
+                                            $row['content'],
+                                            $row['image']);
+            }
+//            var_dump($articles);
+            return $articles;
         }
         return false;
     }

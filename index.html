@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&family=Source+Sans+Pro:wght@300;400;600&display=swap">
-    <link rel="stylesheet" href="CSS/reset.css">
-    <link rel="stylesheet" href="CSS/style.css">
-
+    <link rel="stylesheet" href="css/reset.css">
+    <!--    <link rel="stylesheet" href="css/style.css">-->
+    <link rel="stylesheet" href="css/styleV2.css">
+    
     <script src="https://kit.fontawesome.com/fda18f4986.js" crossorigin="anonymous"></script>
     <script type="application/javascript" src="Vendor/Jquery/jquery-3.5.1.min.js"></script>
-
+    
     <title>FAKE NEWS II, Reloaded</title>
 </head>
 <body>
@@ -32,7 +33,8 @@
                         <a href="#"><i class="menu-icon fas fa-tape"></i> Rembobiner</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fas fa-chart-bar menu-icon"></i> Trucs en toc</a>
+                        <a href="trucs_en_toc.php"><i class="fas fa-chart-bar menu-icon"></i> Trucs en toc</a>
+                        <!--TODO sup/garder sous-menu, ?:bonus:? ajouter des tags aux articles pour afficher par catégorie-->
                         <ul>
                             <li>
                                 <a href="#">Faux</a>
@@ -63,17 +65,13 @@
                         </ul>
                     </li>
                     <li>
+                        <!--TODO href-->
                         <a href="#"><i class="fas fa-cog menu-icon"></i> Rouages</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-retweet menu-icon"></i> Boucle infini</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-road menu-icon"></i> Fausse route</a>
                     </li>
                 </ul>
             </nav>
 
+            
             <!--titre + phrase-->
             <div class="title">
                 <h1>FAKE NEWS II</h1>
@@ -93,7 +91,9 @@
 
                 <div class="flex-fakenews">
                     <div class="fake-news">
-                        <img src="Img/pic01.jpg" alt="livres">
+                        <div>
+                            <img src="imgs/pic01.jpg" alt="livres">
+                        </div>
                         <div class="date">28/07/2020 08:57</div>
                         <h3>COMMENT RANGER UN LIVRE ?</h3>
                         <p>
@@ -105,7 +105,7 @@
                         </p>
                     </div>
                     <div class="fake-news">
-                        <img src="Img/pic02.jpg" alt="tartines">
+                        <img src="imgs/pic02.jpg" alt="tartines">
                         <h3>HUILE DE PALMIPÈDE</h3>
                         <p>
                             Des chercheurs ont découverts qu'à cause de l'huile de palme quelle contient, une consommation
@@ -114,7 +114,7 @@
                         </p>
                     </div>
                     <div class="fake-news">
-                    <img src="Img/pic03.jpg" alt="cerisier">
+                    <img src="imgs/pic03.jpg" alt="cerisier">
                     <h3>CERISIER ALIEN</h3>
                     <p>
                         <strong>EXCLUSIF!</strong> Les aliens sont parmis nous! Ils se cachent dans les cerisiers
@@ -132,7 +132,7 @@
                 <div class="separator">
                     <span></span>
                 </div>
-                <IMG src="Img/banner.jpg" align="banniere">
+                <IMG src="imgs/banner.jpg" align="banniere">
                 <div class="center container">
                     "ON PEUT TROMPER UNE FOIS MILLE PERSONNES, MAIS ON NE PEUT PAS TROMPER MILLE FOIS UNE PERSONNE."
                     - ÉMILE
@@ -151,21 +151,8 @@
             </div>
 
             <div class="footer-contacts">
-                <form id="contact" method="post">
-                    <span class="inputs">
-                        <div class="div-errors">
-                            <input type="text" name="name" id="name" placeholder="Nom">
-                        </div>
-                        <div class="div-errors">
-                            <input type="text" name="email" id="email" placeholder="Email">
-                        </div>
-                    </span>
-                    <textarea name="mess" id="mess" placeholder="Message"></textarea>
-                    <button type="button" onclick="formVerif()"><i class="far fa-envelope"></i> IL VA FAIRE TOUT NOIR !</button>
-                </form>
-
                 <div class="contact-div">
-                    <p>Nous vous répondrons uniquement par pigeon voyageur.</p>
+                    <div>Nous vous répondrons uniquement par pigeon voyageur.</div>
                     <address>
                         <div class="contact-links">
                             <ul>
@@ -217,6 +204,6 @@
             </div>
         </footer>
     </div>
-    <script type="application/javascript" src="scripts/JS/script.js"></script>
+    <script type="application/javascript" src="scripts/js/script.js"></script>
 </body>
 </html>

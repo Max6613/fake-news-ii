@@ -35,50 +35,48 @@ class Article
     }
 
 
-    public function __toString(int $type) : string
-    {
-        switch ($type){
-            //preview on 'accueil'
-            case 1:
-                echo
-                '<div class="fake-news">
+    public function ToStrHomePreview(){
+        echo
+            '<div class="fake-news">
+                <div>
                     <img src="' . $this->_img . '" alt="">
-                    <div class="date">' . $this->_date . '</div>
-                    <h3>' . $this->_title . '</h3>
-                    <p>' . $this->_chapo . '</p>    
-                </div>';
-                break;
-
-            //preview on 'trucs en toc'
-            case 2:
-                echo
-                '<div class="fake-news">
-                    <div class="date">' . $this->_date . '</div>
-                    <img src="' . $this->_img . '" alt="">
-                    <h3>' . $this->_title . '</h3>
-                    <p>' . $this->_chapo . '</p>    
-                    <button>
-                        <a href="trucs_en_toc?art=' . $this->_id . '"><i class="far fa-file" aria-hidden="true"></i> JE VEUX LA SUITE !</a>
-                    </button>
-                </div>';
-                break;
-
-            //full article
-            case 3:
-                echo
-                '<h3>' . $this->_title . '</h3>
-                <div class="separator-double">
-                    <span></span>
-                    <span></span>
                 </div>
-                <div class="article">
-                    <div class="date">' . $this->_date . '</div>
+                <div class="date">' . $this->_date . '</div>
+                <h3>' . $this->_title . '</h3>
+                <p>' . $this->_chapo . '</p>
+            </div>';
+    }
+
+
+    public function ToStrTrucsPreview(){
+        echo
+            '<div class="fake-news">
+                <div class="date">' . $this->_date . '</div>
+                <div>
                     <img src="' . $this->_img . '" alt="">
-                    <p>' . $this->_chapo . '</p>    
-                    <p>' . $this->_content . '</p>
-                </div>';
-                break;
-        }
+                </div>
+                <h3>' . $this->_title . '</h3>
+                <p>' . $this->_chapo . '</p>
+                <button>
+                    <a href="trucs_en_toc?art=' . $this->_id . '"><i class="far fa-file" aria-hidden="true"></i> JE VEUX LA SUITE !</a>
+                </button>
+            </div>';
+    }
+
+
+    public function ToStrFullArt(){
+        echo
+            '<h3>' . $this->_title . '</h3>
+            <div class="separator-double">
+                <span></span>
+                <span></span>
+            </div>
+            <div class="article">
+                <div class="date">' . $this->_date . '</div>
+                <img src="' . $this->_img . '" alt="">
+                <p>' . $this->_chapo . '</p>
+                <p>' . $this->_content . '</p>
+            </div>';
     }
 
 

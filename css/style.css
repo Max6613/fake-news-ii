@@ -171,13 +171,13 @@ h3 {
 
 /*----Menu nav----*/
 .open {
-    /* la classe s'ajoute au body via JS */
+    /* la classe s'ajoute au body via js */
     overflow: hidden;
     transform: translateX(234px);
 }
 
 #main-menu {
-    /* <nav> taille 0 et contenu masqué, affiché via JS */
+    /* <nav> taille 0 et contenu masqué, affiché via js */
     background: var(--dark-bckgnd);
     color: var(--light-bckgnd);
     height: 100vh;
@@ -339,66 +339,15 @@ footer {
 /*----Footer contacts----*/
 .footer-contacts {
     text-align: left;
-}
-
-
-/*--Form contact--*/
-#contact {
-    display: flex;
-    flex-direction: column;
-}
-
-    #contact input {
-        display: inline-block; /* permet le retour à la ligne entre les <input> */
-        width: 100%;
-    }
-
-    #contact input, #contact textarea {
-        border: none;
-        border-radius: 4px;
-        box-shadow: inset 3px 3px 3px -3px var(--light-grey);
-        margin-bottom: 15px;
-        padding: 15px;
-    }
-
-        /* Meme style de police que le reste du document */
-        #contact input::placeholder, #contact textarea::placeholder {
-            font-family: var(--font-text), 'sans-serif';
-            font-size: 16px;
-            font-weight: 300;
-        }
-
-    #contact textarea {
-        resize: none; /* Empeche le redimensionnement (en plus les traits dans le coin sont moches) */
-        height: 250px;
-    }
-
-
-/*--Messages d'erreurs--*/
-.error {
-    color: var(--red);
-    display: inherit;
-    padding-left: 10px;
-    padding-top: 5px;
-    position: relative;
-    text-align: left;
-    top: -15px;
-}
-
-.div-errors {
-    margin-bottom: 0;
-}
-
-
-/*--Liens de contact--*/
-.contact-div {
     margin-bottom: 60px;
 }
 
- .contact-div > p {
-     margin-bottom: 15px;
- }
+    .footer-contacts > p {
+        margin-bottom: 15px;
+    }
 
+
+/*--Liens de contact--*/
 address li {
     display: flex;
     padding-left: 15px;
@@ -422,44 +371,10 @@ address li {
 }
 
 
-/*----Footer botom----*/
+/*----Footer bottom----*/
 .footer-bottom {
     margin-bottom: 0;
     padding-bottom: 30px;
-}
-
-
-/*------Modal------*/
-.modal {
-    background: var(--light-bckgnd);
-    border-radius: 4px;
-    color: var(--light-bckgnd);
-    display: flex;
-    flex-direction: column;
-    left: 50%;
-    padding: 30px 30px 0 30px;
-    position: fixed;
-    text-align: left;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    width: 75%;
-    z-index: 30;
-}
-
-    .modal p {
-        color: var(--mid-grey);
-        margin-bottom: 30px;
-    }
-
-.layer {
-    background: #000000;
-    display: block;
-    height: 100vh;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    z-index: 20;
 }
 
 
@@ -471,7 +386,6 @@ address li {
     .citation img {
         max-width: 200%;
     }
-
 }
 
 @media (max-width: 350px){
