@@ -37,6 +37,11 @@ a {
         color: var(--hover-orange);
     }
 
+/* Liens soulignés */
+.a-underline {
+    text-decoration: underline var(--lighter-grey);
+}
+
 /* les boutons s'adapte à la taille de leurs conteneurs */
 button {
     background: var(--orange);
@@ -272,19 +277,6 @@ div, section, aside {
     margin-bottom: 30px;
 }
 
-/* Contour gris clair des photos */
-.latest-news img,
-.flex-articles img {
-    background: var(--grey-bckgnd);
-    margin-bottom: 30px;
-    padding: 7px;
-}
-
-/* Liens soulignés */
-.a-underline {
-    text-decoration: underline var(--lighter-grey);
-}
-
 
 /*----Citations----*/
 .citation {
@@ -312,32 +304,15 @@ div, section, aside {
     }
 
 
-/*----Articles----*/
-.articles img {
-    max-width: 100%;
-}
 
-.articles p,
-.posts p,
-.random-news p{
-    margin-bottom: 30px;
-}
-
-
-/*----Posts----*/
-.posts .date {
+/*----Date----*/
+.date {
     background: var(--light-grey);
     border-radius: 4px;
     color: var(--light-bckgnd);
-    display: inline-block;
+    /*display: inline-block;*/
     padding: 3px 10px;
-}
-
-
-/*----Random news----*/
-.random-news p > img {
-    float: left;
-    margin-right: 15px;
+    width: auto;
 }
 
 
