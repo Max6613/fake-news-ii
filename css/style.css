@@ -412,18 +412,18 @@ address li {
         padding-right: 8%;
     }
 
-    .fake-news img,
+    .article img,
     .articles img {
         width: 100%; /* adapte l'img à la taille du conteneur */
     }
 
     /*----Fake news----*/
-    .flex-fakenews {
+    .flex-article {
         display: flex;
         justify-content: space-between;
     }
 
-    .fake-news {
+    .article {
         flex-basis: 30%;
     }
 

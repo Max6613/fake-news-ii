@@ -4,10 +4,15 @@
 
 <body>
     <div class="wrapper">
-        <?php
-        require_once 'inc/html_burger_btn.php';
-        require_once 'inc/html_header.php';
-        ?>
+        <?php require_once 'inc/html_burger_btn.php'; ?>
+        <header class="container">
+            <?php require_once 'inc/html_nav.php'; ?>
+            <div class="title">
+                <h1 class="fake-logo">FAKE NEWS II</h1>
+                <div id="phrase">IL REVIENT ET IL EST PAS CONTENT ! MYTHONÉ EN PHP ET MYSQL.</div>
+            </div>
+            <?php require_once 'inc/html_double_sep.php'?>
+        </header>
         <main>
             <section class="latest-new container">
                 <h2>LES DERNIÈRES <strong>FAKE NEWS</strong>!</h2>
@@ -29,13 +34,16 @@
                         <p>Impossible d'afficher les derniers articles, veuillez réessayer ulterieurement.</p>
                     </div>
                 <?php endif; ?>
+                <button>
+                    <a href="trucs_en_toc.php"><i class="far fa-file"></i> J'EN VEUX ENCORE !</a>
+                </button>
             </section>
 
             <aside class="citation">
                 <div class="separator">
                     <span></span>
                 </div>
-                <IMG src="imgs/banner.jpg" align="banniere">
+                <IMG src="imgs/banner.jpg" alt="banniere">
                 <div class="center container">
                     "ON PEUT TROMPER UNE FOIS MILLE PERSONNES, MAIS ON NE PEUT PAS TROMPER MILLE FOIS UNE PERSONNE."
                     - ÉMILE
@@ -51,4 +59,3 @@
     <script type="application/javascript" src="scripts/js/script.js"></script>
 </body>
 </html>
-Sensorems peregrinationes in camerarius antverpia! Nunquam imperium xiphias. Galataes prarere, tanquam alter adgium.

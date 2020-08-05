@@ -37,7 +37,7 @@ class Article
 
     public function ToStrHomePreview(){
         echo
-            '<div class="fake-news">
+            '<div class="article">
                 <div>
                     <img src="' . $this->_img . '" alt="">
                 </div>
@@ -50,12 +50,12 @@ class Article
 
     public function ToStrTrucsPreview(){
         echo
-            '<div class="fake-news">
+            '<div class="article">
                 <div class="date">' . $this->_date . '</div>
+                <h3>' . $this->_title . '</h3>
                 <div>
                     <img src="' . $this->_img . '" alt="">
                 </div>
-                <h3>' . $this->_title . '</h3>
                 <p>' . $this->_chapo . '</p>
                 <button>
                     <a href="trucs_en_toc?art=' . $this->_id . '"><i class="far fa-file" aria-hidden="true"></i> JE VEUX LA SUITE !</a>

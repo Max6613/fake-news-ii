@@ -1,5 +1,7 @@
 @import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
 
+/* TODO: appliquer style titre sur une classe pour Fake News II */
+
 /*----------Généralités----------*/
 :root {
     --light-bckgnd: #FFFFFF;
@@ -74,12 +76,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-family: var(--font-title);
     font-size: 45px;
-    font-weight: 700;
     letter-spacing: 10px;
     margin-bottom: 30px;
-    color: var(--orange);
 }
 
 h2 {
@@ -120,6 +119,13 @@ h3 {
 
 
 /*--------Page--------*/
+.fake-logo {
+    color: var(--orange);
+    font-family: var(--font-title);
+    font-weight: 700;
+}
+
+
 /*------Menu------*/
 /*----Btn burger----*/
 #burger-btn {
@@ -241,28 +247,30 @@ header,
 
 
 /*------Séparateurs------*/
+.separator,
 .separator-double {
     display: flex;
     flex-direction: column;
+}
+
+.separator-double {
     height: 15px;
     justify-content: space-between;
     margin-bottom: 30px;
 }
 
-.separator-double span{
+    .separator-double span{
     background: var(--grey-bckgnd);
     height: 3px;
 }
 
 .separator {
-    display: flex;
     height: 13px;
-    flex-direction: column;
     margin-bottom: 5px;
     padding: 5px 0;
 }
 
-.separator span{
+    .separator span{
     background: var(--grey-bckgnd);
     flex-basis: 3px;
 }
@@ -271,52 +279,10 @@ header,
 main p {
     /* display permet de centrer le texte si moins d'une
        ligne puisque les autres p sont en justify */
-    display: inline-block;
+    /*TODO*/
+    /*display: inline-block;*/
     line-height: 1.4;
     text-align: justify;
-}
-
-/*----Fake news----*/
-.fake-news .date {
-    display: inline-block;
-}
-
-
-/*----Citations----*/
-.citation {
-    position: relative;
-    text-align: center;
-}
-
-.citation .center {
-    color: var(--light-bckgnd);
-    font-size: 20px;
-    left: 50%; /* positionnement au centre horizontal */
-    letter-spacing: 4px;
-    margin-bottom: 0;
-    overflow: hidden;
-    position: absolute;
-    top: 50%; /* positionnement au centre vertical */
-    transform: translate(-50%, -50%); /* origine de la div au centre */
-    width: 100%;
-    z-index: 10;
-}
-
-.citation img {
-    max-width: 100%;
-    height: auto;
-}
-
-
-
-/*----Date----*/
-.date {
-    background: var(--light-grey);
-    border-radius: 4px;
-    color: var(--light-bckgnd);
-    /*display: inline-block;*/
-    padding: 3px 10px;
-    width: auto;
 }
 
 
@@ -398,17 +364,17 @@ address li {
         padding-right: 8%;
     }
 
-    .fake-news img {
+    .article img {
         width: 100%; /* adapte l'img à la taille du conteneur */
     }
 
     /*----Fake news----*/
-    .flex-fakenews {
+    .flex-article {
         display: flex;
         justify-content: space-between;
     }
 
-    .fake-news {
+    .article {
         flex-basis: 30%;
     }
 

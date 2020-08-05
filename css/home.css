@@ -1,0 +1,41 @@
+/*----*----*/
+
+/*----Article----*/
+.article .date {
+    display: inline-block;
+}
+
+.date {
+    background: var(--light-grey);
+    border-radius: 4px;
+    color: var(--light-bckgnd);
+    /*display: inline-block;*/
+    padding: 3px 10px;
+    width: auto;
+}
+
+
+/*----Citations----*/
+.citation {
+    position: relative;
+    text-align: center;
+}
+
+.citation .center {
+    color: var(--light-bckgnd);
+    font-size: 20px;
+    left: 50%; /* positionnement au centre horizontal */
+    letter-spacing: 4px;
+    margin-bottom: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 50%; /* positionnement au centre vertical */
+    transform: translate(-50%, -50%); /* origine de la div au centre */
+    width: 100%;
+    z-index: 10;
+}
+
+.citation img {
+    max-width: 100%;
+    height: auto;
+}

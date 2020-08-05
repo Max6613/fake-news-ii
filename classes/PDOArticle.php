@@ -22,10 +22,32 @@ class PDOArticle
     }
 
 
-    /**
-     * @param int $article_id
-     * @return Article|bool
-     */
+    public function GetAllArticle(){
+        $connection = $this->GetConnection();
+        if (!$connection){
+            return false;
+        }
+
+        $sql = 'SELECT * FROM `posts` ORDER BY `date_creation` ASC';
+        $res = $connection->query($sql);
+
+        //TODO function commune pour all & 3article
+        if (!empty($res) && $res != false){
+            $articles = [];
+            while ($row = $res->fetch(PDO::FETCH_ASSOC)){
+                $articles[] = new Article($row['id'],
+                    $row['date_creation'],
+                    $row['title'],
+                    $row['chapo'],
+                    $row['content'],
+                    $row['image']);
+            }
+            return $articles;
+        }
+        return false;
+    }
+
+
     public function GetArticle(int $article_id)
     {
         $connection = $this->GetConnection();
@@ -54,15 +76,10 @@ class PDOArticle
     {
         $connection = $this->GetConnection();
         if (!$connection){
-            //TODO delete
-            var_dump($connection);
             return false;
         }
 
         $sql = 'SELECT * FROM `posts` ORDER BY `date_creation` ASC LIMIT 3';
-//        $stmt = $connection->prepare($sql);
-//        $stmt->execute();
-//        $res = $stmt->fetch(PDO::FETCH_ASSOC);
         $res = $connection->query($sql);
 
         if (!empty($res) && $res != false){
