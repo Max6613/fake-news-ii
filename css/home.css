@@ -39,3 +39,26 @@
     max-width: 100%;
     height: auto;
 }
+
+@media (min-width: 768px) {
+    /*----Fake news----*/
+    .flex-article {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .article {
+        flex-basis: 45%;
+    }
+
+        .article img {
+            width: 100%; /* adapte l'img à la taille du conteneur */
+        }
+}
+
+@media (min-width: 992px){
+    .article {
+        flex-basis: 30%;
+    }
+}

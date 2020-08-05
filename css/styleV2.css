@@ -126,6 +126,12 @@ h3 {
 }
 
 
+.article img {
+    background: var(--grey-bckgnd);
+    margin-bottom: 30px;
+    padding: 7px;
+}
+
 /*------Menu------*/
 /*----Btn burger----*/
 #burger-btn {
@@ -364,19 +370,9 @@ address li {
         padding-right: 8%;
     }
 
-    .article img {
-        width: 100%; /* adapte l'img à la taille du conteneur */
-    }
 
-    /*----Fake news----*/
-    .flex-article {
-        display: flex;
-        justify-content: space-between;
-    }
 
-    .article {
-        flex-basis: 30%;
-    }
+
 
 
     /*----Footer----*/

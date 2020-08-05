@@ -16,24 +16,27 @@
         <main>
             <section class="latest-new container">
                 <h2>LES DERNIÈRES <strong>FAKE NEWS</strong>!</h2>
-                <?php
-                require_once 'inc/global.php';
-                require_once 'classes/PDOArticle.php';
+                <div class="flex-article">
+                    <?php
+                    require_once 'inc/global.php';
+                    require_once 'classes/PDOArticle.php';
 
-                //Recuperation des 3 derniers articles
-                $pdoArticle = new PDOArticle();
-                $res = $pdoArticle->Get3LatestArticles();
-                if ($res != false){
-                    foreach ($res as $article){
-                        $article->ToStrHomePreview();
+                    //Recuperation des 3 derniers articles
+                    $pdoArticle = new PDOArticle();
+                    $res = $pdoArticle->Get3LatestArticles();
+                    if ($res != false){
+                        foreach ($res as $article){
+                            $article->ToStrHomePreview();
+                        }
                     }
-                }
 
-                if (!$res): ?>
-                    <div class="error">
-                        <p>Impossible d'afficher les derniers articles, veuillez réessayer ulterieurement.</p>
-                    </div>
-                <?php endif; ?>
+                    if (!$res): ?>
+                        <div class="error">
+                            <p>Impossible d'afficher les derniers articles, veuillez réessayer ulterieurement.</p>
+                        </div>
+                    <?php endif; ?>
+
+                </div>
                 <button>
                     <a href="trucs_en_toc.php"><i class="far fa-file"></i> J'EN VEUX ENCORE !</a>
                 </button>
