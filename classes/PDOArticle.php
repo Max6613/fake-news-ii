@@ -28,7 +28,7 @@ class PDOArticle
             return false;
         }
 
-        $sql = 'SELECT * FROM `posts` ORDER BY `date_creation` ASC';
+        $sql = 'SELECT * FROM `posts` ORDER BY `date_creation` DESC';
         $res = $connection->query($sql);
 
         //TODO function commune pour all & 3article
@@ -79,7 +79,7 @@ class PDOArticle
             return false;
         }
 
-        $sql = 'SELECT * FROM `posts` ORDER BY `date_creation` ASC LIMIT 3';
+        $sql = 'SELECT * FROM `posts` ORDER BY `date_creation` DESC LIMIT 3';
         $res = $connection->query($sql);
 
         if (!empty($res) && $res != false){

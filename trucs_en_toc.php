@@ -28,10 +28,15 @@
 
                 $pdoArticle = new PDOArticle();
                 $res = $pdoArticle->GetAllArticle();
-                if ($res != false){
-                    foreach ($res as $article){
+                if (get_class($res[0]) == 'Article'){
+                    foreach ($res as $index => $article){
                         $article->ToStrTrucsPreview();
                         //TODO ajouter separator
+                        if ($index < count($res) - 1){
+                            echo '<div>';
+                            include 'inc/html_simple_sep.php';
+                            echo '</div>';
+                        }
                     }
                 }
 
@@ -41,20 +46,6 @@
                     </div>
                 <?php endif; ?>
             </section>
-
-            <aside class="citation">
-                <div class="separator">
-                    <span></span>
-                </div>
-                <IMG src="imgs/banner.jpg" alt="banniere">
-                <div class="center container">
-                    "ON PEUT TROMPER UNE FOIS MILLE PERSONNES, MAIS ON NE PEUT PAS TROMPER MILLE FOIS UNE PERSONNE."
-                    - ÉMILE
-                </div>
-                <div class="separator">
-                    <span></span>
-                </div>
-            </aside>
         </main>
         <?php require_once 'inc/html_footer.php'; ?>
 

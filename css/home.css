@@ -1,18 +1,6 @@
 /*----*----*/
 
 /*----Article----*/
-.article .date {
-    display: inline-block;
-}
-
-.date {
-    background: var(--light-grey);
-    border-radius: 4px;
-    color: var(--light-bckgnd);
-    /*display: inline-block;*/
-    padding: 3px 10px;
-    width: auto;
-}
 
 
 /*----Citations----*/

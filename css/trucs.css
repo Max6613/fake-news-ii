@@ -1,0 +1,34 @@
+.article > button {
+    margin-bottom: 0;
+}
+
+.art-desc {
+    display: flex;
+    margin-bottom: 0;
+}
+
+.article img {
+    /*float: left;*/
+    /*margin-right: 15px;*/
+    margin-bottom: 10px;
+    width: 35%;
+}
+
+.art-desc > p {
+    flex-basis: 70%;
+}
+
+.left {
+    text-align: left;
+}
+
+@media (min-width: 768px) {
+    .article {
+        text-align: initial;
+    }
+
+        .article img {
+            width: 60%;
+        }
+}
+

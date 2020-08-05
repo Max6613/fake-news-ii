@@ -24,7 +24,7 @@
                     //Recuperation des 3 derniers articles
                     $pdoArticle = new PDOArticle();
                     $res = $pdoArticle->Get3LatestArticles();
-                    if ($res != false){
+                    if (get_class($res[0]) == 'Article'){
                         foreach ($res as $article){
                             $article->ToStrHomePreview();
                         }

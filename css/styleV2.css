@@ -125,11 +125,19 @@ h3 {
     font-weight: 700;
 }
 
-
 .article img {
     background: var(--grey-bckgnd);
-    margin-bottom: 30px;
+    /*margin-bottom: 30px;*/
     padding: 7px;
+}
+
+.date {
+    background: var(--light-grey);
+    border-radius: 4px;
+    color: var(--light-bckgnd);
+    font-weight: 400;
+    /*margin-bottom: 30px;*/
+    padding: 3px 10px;
 }
 
 /*------Menu------*/

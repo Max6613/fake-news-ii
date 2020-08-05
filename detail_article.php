@@ -1,1 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
 <?php
+require_once 'inc/html_head.php';
+require_once 'classes/PDOArticle.php';
+
+if (isset($_GET['id']) && !empty($_GET['id'])){
+    $pdoArticle = new PDOArticle();
+    $art = $pdoArticle->GetArticle($_GET['id']);
+}
+?>
+
+<body>
+    <div class="wrapper">
+        <?php require_once 'inc/html_burger_btn.php'; ?>
+        <header class="container">
+            <?php require_once 'inc/html_nav.php'; ?>
+            <div class="title">
+                <div class="fake-logo">
+                    <a href="index.php">Fake News II</a>
+                </div>
+                <h1><?php echo $art->getTitle() ?></h1>
+            </div>
+            <?php require_once 'inc/html_double_sep.php'?>
+        </header>
+
+
+
+
+
+
+<?php
+
+
+
+    if (get_class($art) == 'Article'){
+        $art->ToStrFullArt();
+    }
+

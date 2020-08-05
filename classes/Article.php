@@ -41,7 +41,7 @@ class Article
                 <div>
                     <img src="' . $this->_img . '" alt="">
                 </div>
-                <div class="date">' . $this->_date . '</div>
+                <span class="date">' . $this->_date . '</span>
                 <h3>' . $this->_title . '</h3>
                 <p>' . $this->_chapo . '</p>
             </div>';
@@ -51,14 +51,16 @@ class Article
     public function ToStrTrucsPreview(){
         echo
             '<div class="article">
-                <div class="date">' . $this->_date . '</div>
-                <h3>' . $this->_title . '</h3>
-                <div>
-                    <img src="' . $this->_img . '" alt="">
+                <div class="left">
+                    <span class="date">' . $this->_date . '</span>
                 </div>
-                <p>' . $this->_chapo . '</p>
+                <h3>' . $this->_title . '</h3>
+                <div class="art-desc">
+                    <img src="' . $this->_img . '" alt="">
+                    <p>' . $this->_chapo . '</p>    
+                </div>
                 <button>
-                    <a href="trucs_en_toc?art=' . $this->_id . '"><i class="far fa-file" aria-hidden="true"></i> JE VEUX LA SUITE !</a>
+                    <a href="detail_article.php?id=' . $this->_id . '"><i class="far fa-file" aria-hidden="true"></i> JE VEUX LA SUITE !</a>
                 </button>
             </div>';
     }
