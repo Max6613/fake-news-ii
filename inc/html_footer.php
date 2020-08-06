@@ -19,30 +19,30 @@
                             </p>
                         </li>
                         <li>
-                            <i class="fas fa-phone-square footer-icon"></i>
+                            <i class="fas fa-phone footer-icon"></i>
                             <a href="tel:+33400000000">(0_O)\0_\0/_0/(T_T)</a>
                         </li>
                         <li>
-                            <i class="fas fa-envelope-square footer-icon"></i>
+                            <i class="fas fa-envelope footer-icon"></i>
                             <a href="mailto:ne-pas-repondre@fake-news.info" class="a-underline">ne-pas-repondre@fake-news.info</a>
                         </li>
                     </ul>
 
                     <ul>
                         <li>
-                            <i class="fab fa-twitter-square footer-icon"></i>
+                            <i class="fab fa-twitter fa-align-center footer-icon"></i>
                             <a href="https://twitter.com/Fakenews" class="a-underline">@Fakenews</a>
                         </li>
                         <li>
-                            <i class="fab fa-instagram-square footer-icon"></i>
+                            <i class="fab fa-instagram footer-icon"></i>
                             <a href="https://instagram.com/fake-news" class="a-underline">instagram.com/fake-news</a>
                         </li>
                         <li>
-                            <i class="fab fa-dribbble-square footer-icon"></i>
+                            <i class="fab fa-dribbble footer-icon"></i>
                             <a href="https://dribbble.com/fake-news" class="a-underline">dribbble.com/fake-news</a>
                         </li>
                         <li>
-                            <i class="fab fa-facebook-square footer-icon"></i>
+                            <i class="fab fa-facebook-f footer-icon"></i>
                             <a href="https://facebook.com/fake-news" class="a-underline">facebook.com/fake-news</a>
                         </li>
                     </ul>

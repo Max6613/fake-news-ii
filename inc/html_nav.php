@@ -1,7 +1,7 @@
 <nav id="main-menu">
     <ul>
         <li>
-            <a href="#"><i class="menu-icon fas fa-tape"></i> Rembobiner</a>
+            <a href="#"><i class="fas fa-home menu-icon"></i> Rembobiner</a>
         </li>
         <li>
             <a href="trucs_en_toc.php"><i class="fas fa-chart-bar menu-icon"></i> Trucs en toc</a>

@@ -10,8 +10,7 @@ define('PAGE_EN_COURS', $_SERVER['PHP_SELF']);
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&family=Source+Sans+Pro:wght@300;400;600&display=swap">
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/styleV2.css">
-    <!--    <link rel="stylesheet" href="css/style.css">-->
+    <link rel="stylesheet" href="css/style.css">
 
     <?php
     $style = '';

@@ -23,17 +23,15 @@ if (isset($_GET['id']) && !empty($_GET['id'])){
             </div>
             <?php require_once 'inc/html_double_sep.php'?>
         </header>
-
-
-
-
-
-
-<?php
-
-
-
-    if (get_class($art) == 'Article'){
-        $art->ToStrFullArt();
-    }
-
+        <main>
+        <?php
+            if (get_class($art) == 'Article'){
+                $art->ToStrFullArt();
+            }
+        ?>
+        </main>
+        <?php require_once 'inc/html_footer.php'; ?>
+    </div>
+    <script type="application/javascript" src="scripts/js/script.js"></script>
+</body>
+</html>

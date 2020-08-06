@@ -1,18 +1,19 @@
 @import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
 
+
 /*----------Généralités----------*/
 :root {
     --light-bckgnd: #FFFFFF;
-    --grey-bckgnd: #F0F0F0;
+    --grey-bckgnd: #f0f0f0;
     --dark-bckgnd: #444444;
     --orange: #ED786A;
-    --hover-orange: #FD887A;
+    --hover-orange: #fd887a;
     --red: #CC0000;
     --lighter-grey: #e1e1e1;
     --light-grey: #888888;
     --mid-grey: #777777;
     --grey: #666666;
-    --dark-grey: #3C3C3C;
+    --dark-grey: #3c3c3c;
     --font-title: 'Arvo', serif;
     --font-text: 'Source Sans Pro', sans-serif;
 }
@@ -33,9 +34,9 @@ a {
     text-decoration: none;
 }
 
-    a:hover, a:active {
-        color: var(--hover-orange);
-    }
+a:hover, a:active {
+    color: var(--hover-orange);
+}
 
 /* Liens soulignés */
 .a-underline {
@@ -55,13 +56,17 @@ button {
     width: 100%;
 }
 
-    button:active, button:hover{
-        background: var(--hover-orange);
-    }
+button:active, button:hover{
+    background: var(--hover-orange);
+}
 
-    button > a:hover, button > a:active {
-        color: var(--light-bckgnd);
-    }
+button > a:hover, button > a:active {
+    color: var(--light-bckgnd);
+}
+
+div, section, aside {
+    margin-bottom: 30px;
+}
 
 
 /*----------titres----------*/
@@ -70,12 +75,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-family: var(--font-title);
     font-size: 45px;
-    font-weight: 700;
     letter-spacing: 10px;
     margin-bottom: 30px;
-    color: var(--orange);
 }
 
 h2 {
@@ -92,6 +94,13 @@ h3 {
     margin-bottom: 20px;
 }
 
+/* Logo fake-news */
+.fake-logo {
+    color: var(--orange);
+    font-family: var(--font-title);
+    font-weight: 700;
+}
+
 
 /*----------Framework----------*/
 /*--------Layout--------*/
@@ -100,7 +109,6 @@ h3 {
        sauf menu nav, btn burger et img .citation */
     padding-left: 5%;
     padding-right: 5%;
-
 }
 
 .wrapper {
@@ -111,7 +119,50 @@ h3 {
     flex-basis: 100%;
     /* annule le margin-b global des div */
     margin-bottom: 0;
-    overflow-x: hidden;
+    /*TODO garder overflow?*/
+    /*overflow-x: hidden;*/
+}
+
+
+/*------Séparateurs------*/
+.separator,
+.separator-double {
+    display: flex;
+    flex-direction: column;
+}
+
+.separator-double {
+    height: 15px;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.separator-double span{
+    background: var(--grey-bckgnd);
+    height: 3px;
+}
+
+.separator {
+    height: 13px;
+    margin-bottom: 5px;
+    padding: 5px 0;
+}
+
+.separator span{
+    background: var(--grey-bckgnd);
+    flex-basis: 3px;
+}
+
+
+/*------Icones------*/
+.footer-icon,
+.menu-icon {
+    align-self: baseline;
+    background: var(--light-grey);
+    border-radius: 50%;
+    color: var(--light-bckgnd);
+    margin-right: 5px;
+    padding: 7px;
 }
 
 
@@ -134,12 +185,12 @@ h3 {
     width: 60px;
 }
 
-    #burger-btn span{
-        background: var(--light-grey);
-        flex-basis: 2px;
-        opacity: 1;
-        transition: opacity 300ms, background 500ms, transform 600ms;
-    }
+#burger-btn span{
+    background: var(--light-grey);
+    flex-basis: 2px;
+    opacity: 1;
+    transition: opacity 300ms, background 500ms, transform 600ms;
+}
 
 #burger-cmd {
     /*masquer la checkbox*/
@@ -151,33 +202,34 @@ h3 {
     background: var(--mid-grey);
 }
 
-    #burger-cmd:checked + #burger-btn span{
-        background: var(--grey-bckgnd);
-    }
+#burger-cmd:checked + #burger-btn span{
+    background: var(--grey-bckgnd);
+}
 
-    /*rotation/deplacement des span 1 et 3 et masquage span 2*/
-    #burger-cmd:checked + #burger-btn span:nth-child(1){
-        transform:  translateX(0px) translateY(7px) rotate(-45deg);
-    }
+/* rotation/deplacement des span 1 et 3 et masquage span 2*/
+#burger-cmd:checked + #burger-btn span:nth-child(1){
+    transform:  translateX(0px) translateY(7px) rotate(-45deg);
+}
 
-    #burger-cmd:checked + #burger-btn span:nth-child(2){
-        opacity: 0;
-    }
+#burger-cmd:checked + #burger-btn span:nth-child(2){
+    opacity: 0;
+}
 
-    #burger-cmd:checked + #burger-btn span:nth-child(3){
-        transform:  translateX(0px) translateY(-7px) rotate(45deg);
-    }
+#burger-cmd:checked + #burger-btn span:nth-child(3){
+    transform:  translateX(0px) translateY(-7px) rotate(45deg);
+}
 
 
 /*----Menu nav----*/
 .open {
-    /* la classe s'ajoute au body via js */
+    /* Classe ajouté au body via JS, permet de décalé la page vers
+     * la droite pour afficher le menu et désactive le scroll */
     overflow: hidden;
     transform: translateX(234px);
 }
 
 #main-menu {
-    /* <nav> taille 0 et contenu masqué, affiché via js */
+    /* Déplace le menu de navigation hors ecran du coté gauche */
     background: var(--dark-bckgnd);
     color: var(--light-bckgnd);
     height: 100vh;
@@ -189,29 +241,28 @@ h3 {
     top: 0;
 }
 
-
-    #main-menu li > a {
+#main-menu li > a {
     border-bottom: 1px solid var(--dark-grey); /* trait de séparation sous chaque case */
     display: inline-block;
     /* Le <a> occupe tout l'espace du parent <li> */
     padding: 10px 20px;
     width: 100%;
-    }
+}
 
-        #main-menu li:hover > a {
-            /* change de couleur lors du hover sur un <li> */
-            color: var(--hover-orange);
-        }
+#main-menu li:hover > a {
+    /* change de couleur lors du hover sur un <li> */
+    color: var(--hover-orange);
+}
 
-    #main-menu li ul a {
-        /* Décalage de 2eme niveau */
-        padding-left: 40px;
-    }
+#main-menu li ul a {
+    /* Décalage de 2eme niveau */
+    padding-left: 40px;
+}
 
-    #main-menu li ul li ul a {
-        /* Décalage de 3eme niveau */
-        padding-left: 60px;
-    }
+#main-menu li ul li ul a {
+    /* Décalage de 3eme niveau */
+    padding-left: 60px;
+}
 
 .menu-icon {
     /* cache les icones du menu en mobile,
@@ -237,82 +288,25 @@ header,
 }
 
 
-/*------Séparateurs------*/
-.separator-double {
-    display: flex;
-    flex-direction: column;
-    height: 15px;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-
-    .separator-double span{
-        background: var(--grey-bckgnd);
-        height: 3px;
-    }
-
-.separator {
-    display: flex;
-    height: 13px;
-    flex-direction: column;
-    margin-bottom: 5px;
-    padding: 5px 0;
-}
-
-    .separator span{
-        background: var(--grey-bckgnd);
-        flex-basis: 3px;
-    }
-
 /*------Main------*/
 main p {
-    /* display permet de centrer le texte si moins d'une
-       ligne puisque les autres p sont en justify */
-    display: inline-block;
     line-height: 1.4;
     text-align: justify;
 }
 
-div, section, aside {
-    margin-bottom: 30px;
+
+/*----Article----*/
+.article img {
+    background: var(--grey-bckgnd);
+    padding: 7px;
 }
 
-
-/*----Citations----*/
-.citation {
-    position: relative;
-    text-align: center;
-}
-
-    .citation .center {
-        color: var(--light-bckgnd);
-        font-size: 20px;
-        left: 50%; /* positionnement au centre horizontal */
-        letter-spacing: 4px;
-        margin-bottom: 0;
-        overflow: hidden;
-        position: absolute;
-        top: 50%; /* positionnement au centre vertical */
-        transform: translate(-50%, -50%); /* origine de la div au centre */
-        width: 100%;
-        z-index: 10;
-    }
-
-    .citation img {
-        max-width: 100%;
-        height: auto;
-    }
-
-
-
-/*----Date----*/
 .date {
     background: var(--light-grey);
     border-radius: 4px;
     color: var(--light-bckgnd);
-    /*display: inline-block;*/
+    font-weight: 400;
     padding: 3px 10px;
-    width: auto;
 }
 
 
@@ -342,32 +336,40 @@ footer {
     margin-bottom: 60px;
 }
 
-    .footer-contacts > p {
-        margin-bottom: 15px;
-    }
+.footer-contacts > p {
+    margin-bottom: 15px;
+}
 
 
 /*--Liens de contact--*/
+address {
+    margin-bottom: 100px;
+}
+
 address li {
     display: flex;
+}
+
+.contact-div li {
     padding-left: 15px;
 }
 
-    address li > i {
-        margin-right: 15px;
-    }
+.contact-div li > i {
+    /*margin-right: 15px;*/
+}
 
 .contact-links li{
     margin-bottom: 15px;
 }
 
-
-/*--Icones--*/
+/*----Icones----*/
 .footer-icon {
-    /* CA MARCHE PAS */
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
+    margin-right: 15px;
+}
+
+/* icone facebook, avait une forme ovale*/
+.fa-facebook-f {
+    padding: 7px 10px;
 }
 
 
@@ -379,28 +381,6 @@ address li {
 
 
 /*--------Media queries--------*/
-/*------mode petit ecran------*/
-@media (max-width: 495px){
-    /* agrandissement de l'image sous la citation pour pouvoir
-       contenir le texte */
-    .citation img {
-        max-width: 200%;
-    }
-}
-
-@media (max-width: 350px){
-    /* agrandissement de l'image et reduction du texte pour
-       pouvoir contenir le texte */
-    .citation img {
-        max-width: 300%;
-    }
-
-    .citation .center {
-        font-size: 18px;
-    }
-}
-
-
 /*------mode tablette------*/
 @media (min-width: 768px){
     button {
@@ -412,44 +392,11 @@ address li {
         padding-right: 8%;
     }
 
-    .article img,
-    .articles img {
-        width: 100%; /* adapte l'img à la taille du conteneur */
-    }
-
-    /*----Fake news----*/
-    .flex-article {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .article {
-        flex-basis: 30%;
-    }
-
-
-    /*----Articles + posts + random----*/
-    .flex-articles {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        text-align: left;
-    }
-
-    .articles {
-        flex-basis: 60%;
-    }
-
-    .flex-posts { /* posts + random */
-        flex-basis: 35%;
-        padding-top: 60px;
-    }
-
 
     /*----Footer----*/
     footer {
-        padding-bottom: 100px ;
-        padding-top: 100px ;
+        padding-bottom: 100px;
+        padding-top: 100px;
     }
 
     .footer-top {
@@ -457,50 +404,19 @@ address li {
         justify-content: center;
     }
 
-        /* Espace entre les p */
-        .footer-top > p:first-child {
-            padding-right: 10px;
-        }
+    /* Espace entre les p */
+    .footer-top > p:first-child {
+        padding-right: 10px;
+    }
 
     .footer-contacts {
-        display: flex;
-        justify-content: space-between;
         margin-bottom: 100px;
         text-align: left;
     }
 
-    /* passage du formulaire en flex pour pouvoir modifier la taille
-       du bouton qui sinon prend la largeur du conteneur*/
-    #contact {
-        display: flex;
-        flex-basis: 48%;
-        flex-direction: column;
+    .contact-div > p {
+        padding-left: 15px;
     }
-
-        #contact button {
-            align-self: flex-start;
-        }
-
-        #contact .inputs {
-            display: flex;
-            justify-content: space-between;
-        }
-
-            #contact .inputs .div-errors:first-child {
-                margin-right: 15px;
-            }
-
-            #contact .inputs .div-errors {
-                flex-basis: 50%;
-            }
-
-    .contact-div {
-        flex-basis: 48%;
-    }
-
-        .contact-div > p {
-            padding-left: 15px;
-        }
 
     .contact-links {
         display: flex;
@@ -508,27 +424,21 @@ address li {
         justify-content: space-between;
     }
 
-        .contact-links > ul {
-            flex-basis: 50%;
-        }
+    .contact-links > ul {
+        flex-basis: 50%;
+    }
 
     .footer-bottom {
         display: flex;
         justify-content: center;
     }
 
-        .footer-bottom p {
-            padding: 0 15px;
-        }
+    .footer-bottom p {
+        padding: 0 15px;
+    }
 
-        .footer-bottom p:first-child {
-            border-right: 1px solid var(--light-grey);
-        }
-
-
-    /*----Modal----*/
-    .modal {
-        width: auto;
+    .footer-bottom p:first-child {
+        border-right: 1px solid var(--light-grey);
     }
 }
 
@@ -537,8 +447,6 @@ address li {
 @media (min-width: 992px){
     body {
         flex-direction: column; /* affiche le menu en haut de la page */
-        /* Pose probleme pour la modal */
-        /*transform: translateX(0) !important; !* En cas de redimenssionnement menu ouvett *!*/
     }
 
     .container {
@@ -563,81 +471,81 @@ address li {
         top: inherit;
     }
 
-        #main-menu .menu-icon {
-            /* affiche les icones du menu */
-            display: inherit !important;
-        }
+    #main-menu .menu-icon {
+        /* affiche les icones du menu */
+        display: inherit !important;
+    }
 
-        #main-menu li > a {
-            border-bottom: 1px solid var(--lighter-grey);
-            white-space: nowrap;
-            padding: 10px 20px;
-        }
+    #main-menu li > a {
+        border-bottom: 1px solid var(--lighter-grey);
+        white-space: nowrap;
+        padding: 10px 20px;
+    }
 
-        #main-menu > ul {
-            display: flex;
-            justify-content: center;
-        }
+    #main-menu > ul {
+        display: flex;
+        justify-content: center;
+    }
 
-            /* Flèche en haut des sous menu de 1er niveau
-           ::after triangle blanc
-           ::before triangle noir, en dessous du blanc et décalé
-                qui donne l'impression d'une bordure */
-            #main-menu > ul > li > ul:after,
-            #main-menu > ul > li > ul:before {
-                border-bottom: 10px solid var(--light-bckgnd); /* bord inferieur meme couleur que contenu */
-                border-left: 10px solid transparent;
-                border-right: 10px solid transparent;
-                content: ''; /* contenu vide, sinon n'apparait pas */
-                left: 10%; /* position par rapport à la gauche du ul */
-                position: absolute;
-                /* on réduit le bord haut de 10px, sur un carré
-                   de 10px de coté, le bord haut disparait et
-                   donne un triangle */
-                top: -10px; /* position par rapport au haut du ul */
-            }
+    /* Flèche en haut des sous menu de 1er niveau
+     * ::after triangle blanc
+     * ::before triangle noir, en dessous du blanc et décalé
+     * qui donne l'impression d'une bordure */
+    #main-menu > ul > li > ul:after,
+    #main-menu > ul > li > ul:before {
+        border-bottom: 10px solid var(--light-bckgnd); /* bord inferieur meme couleur que contenu */
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        content: ''; /* contenu vide, sinon n'apparait pas */
+        left: 10%;   /* position par rapport à la gauche du ul */
+        position: absolute;
+        /* on réduit le bord haut de 10px, sur un carré
+           de 10px de coté, le bord haut disparait et
+           donne un triangle */
+        top: -10px; /* position par rapport au haut du ul */
+    }
 
-            #main-menu > ul > li > ul:before {
-                /* carré de 12px de coté, couleur hérité de la fonction
-                   border du ul */
-                border-left: 12px solid transparent;
-                border-right: 12px solid transparent;
-                border-bottom: 12px solid;
-                border-bottom-color: inherit; /* ne fonctionne pas dans la fonction border-bottom */
-                margin-left: -2px; /* décalage de 2px par rapport au triangle blanc */
-                top: -12px;
-            }
+    #main-menu > ul > li > ul:before {
+        /* carré de 12px de coté, couleur hérité de la fonction
+           border du ul */
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-bottom: 12px solid;
+        border-bottom-color: inherit; /* ne fonctionne pas dans la fonction border-bottom */
+        margin-left: -2px; /* décalage de 2px par rapport au triangle blanc */
+        top: -12px;
+    }
 
-            #main-menu > ul > li > a {
-                /* supprime les traits de séparations sous les <a> de premier niveau*/
-                border-bottom: none;
-            }
+    #main-menu > ul > li > a {
+        /* supprime les traits de séparations sous les <a> de premier niveau*/
+        border-bottom: none;
+    }
 
-        /* Masque les sous menus */
-        #main-menu li ul {
-            display: none;
-            position: absolute;
-            text-transform: initial;
-            z-index: 10;
-        }
+    /* Masque les sous menus */
+    #main-menu li ul {
+        display: none;
+        position: absolute;
+        text-transform: initial;
+        z-index: 10;
+    }
 
-            #main-menu li ul a,
-            #main-menu li ul li ul a {
-                padding-left: 20px; /* supprime l'indentation des sous menus en mobile */
-            }
+    #main-menu li ul a,
+    #main-menu li ul li ul a {
+        padding-left: 20px; /* supprime l'indentation des sous menus en mobile */
+    }
 
-            #main-menu li ul li ul {
-                left: 100%;
-                margin-top: -44px;
-                /* hauteur du parent + 1px du border bottom du <li> précédent le parent */
-            }
+    #main-menu li ul li ul {
+        left: 100%;
+        margin-top: -44px;
+        /* hauteur du parent + 1px du border bottom du <li> précédent le parent */
+    }
 
 
-        /* affiche le sous menu lorsque l'element parent est ciblé */
-        #main-menu li:hover > ul {
-            background: var(--light-bckgnd);
-            border: 1px solid var(--lighter-grey);
-            border-radius: 4px;
-            display: block;
-        }
+    /* affiche le sous menu lorsque l'element parent est ciblé */
+    #main-menu li:hover > ul {
+        background: var(--light-bckgnd);
+        border: 1px solid var(--lighter-grey);
+        border-radius: 4px;
+        display: block;
+    }
 }

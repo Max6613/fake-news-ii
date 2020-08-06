@@ -41,7 +41,9 @@ class Article
                 <div>
                     <img src="' . $this->_img . '" alt="">
                 </div>
-                <span class="date">' . $this->_date . '</span>
+                <div>
+                    <span class="date">' . $this->_date . '</span>
+                </div>
                 <h3>' . $this->_title . '</h3>
                 <p>' . $this->_chapo . '</p>
             </div>';
@@ -67,17 +69,23 @@ class Article
 
 
     public function ToStrFullArt(){
+//        TODO refaire images pour responsive avec <picture>
         echo
-            '<h3>' . $this->_title . '</h3>
-            <div class="separator-double">
-                <span></span>
-                <span></span>
-            </div>
-            <div class="article">
-                <div class="date">' . $this->_date . '</div>
-                <img src="' . $this->_img . '" alt="">
+            '<div class="article container">
+                <div>
+                    <span class="date">' . $this->_date . '</span>                
+                </div>
+               
+                <div>
+                    <picture>
+                        <source srcset="/imgs/pic03-1280.jpg" media="(min-width: 993)">
+                        <source srcset="/imgs/pic03-640.jpg" media="(min-width: 768)">
+                        <img src="' . $this->_img . '" alt="">
+                    </picture>
+                </div>
                 <p>' . $this->_chapo . '</p>
                 <p>' . $this->_content . '</p>
+                
             </div>';
     }
 
