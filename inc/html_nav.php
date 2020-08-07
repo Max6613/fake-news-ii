@@ -37,7 +37,7 @@
         </li>
         <li>
             <!--TODO href-->
-            <a href="#"><i class="fas fa-cog menu-icon"></i> Rouages</a>
+            <a href="connexion.php"><i class="fas fa-cog menu-icon"></i> Rouages</a>
         </li>
     </ul>
 </nav>

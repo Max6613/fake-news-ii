@@ -1,6 +1,10 @@
 <?php
-define('PAGE_EN_COURS', $_SERVER['PHP_SELF']);
-//echo PAGE_EN_COURS;
+define('PAGE_EN_COURS', $_SERVER['HTTP_REFERER']);
+define('DOMAIN', 'http://fake-news-php.laragon:88/');
+echo PAGE_EN_COURS;
+
+$tmp = str_ireplace(DOMAIN, '', PAGE_EN_COURS);
+var_dump($tmp);
 ?>
 
 
@@ -15,22 +19,30 @@ define('PAGE_EN_COURS', $_SERVER['PHP_SELF']);
     <?php
     $style = '';
     $title = 'FAKE NEWS II, Reloaded';
+
     switch (PAGE_EN_COURS){
-        case '/fake-news-php/index.php':
+        case '/fake-news-php/home':
             $style = 'home';
             break;
+
         case '/fake-news-php/trucs_en_toc.php':
             $style = 'trucs';
             $title = 'Trucs en Toc - Fake News II';
             break;
+
         case '/fake-news-php/detail_article.php':
             $style = 'detail';
             if (isset($_GET['id']) && !empty($_GET['id'])){
                 $title = 'Article - Fake News II';
                 //TODO récuperer titre article
             }
-
             break;
+
+        case '/fake-news-php/connexion.php':
+            $style = 'connexion';
+            $title = 'Connexion - Fake News II';
+            break;
+
     }
     if (!empty($style)) {
         echo '<link rel="stylesheet" href="css/' . $style . '.css">';

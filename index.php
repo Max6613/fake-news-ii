@@ -8,7 +8,7 @@
         <header class="container">
             <?php require_once 'inc/html_nav.php'; ?>
             <div class="title">
-                <h1 class="fake-logo">FAKE NEWS II</h1>
+                <h1 class="fake-logo"><a href="/">FAKE NEWS II</a></h1>
                 <div id="phrase">IL REVIENT ET IL EST PAS CONTENT ! MYTHONÉ EN PHP ET MYSQL.</div>
             </div>
             <?php require_once 'inc/html_double_sep.php'?>
@@ -38,7 +38,7 @@
 
                 </div>
                 <button>
-                    <a href="trucs_en_toc.php"><i class="far fa-file"></i> J'EN VEUX ENCORE !</a>
+                    <a href="/trucs_en_toc.php"><i class="far fa-file"></i> J'EN VEUX ENCORE !</a>
                 </button>
             </section>
 
