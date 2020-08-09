@@ -1,10 +1,6 @@
 <?php
-define('PAGE_EN_COURS', $_SERVER['HTTP_REFERER']);
-define('DOMAIN', 'http://fake-news-php.laragon:88/');
-echo PAGE_EN_COURS;
-
-$tmp = str_ireplace(DOMAIN, '', PAGE_EN_COURS);
-var_dump($tmp);
+//Séparation du nom de la page et des attributs GET
+define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
 ?>
 
 
@@ -16,21 +12,23 @@ var_dump($tmp);
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- AJout du CSS spécifique à chaque page -->
     <?php
     $style = '';
     $title = 'FAKE NEWS II, Reloaded';
 
-    switch (PAGE_EN_COURS){
-        case '/fake-news-php/home':
+    switch (PAGE_EN_COURS[0]){
+        case '/':
+        case '/index.php':
             $style = 'home';
             break;
 
-        case '/fake-news-php/trucs_en_toc.php':
+        case '/trucs_en_toc.php':
             $style = 'trucs';
             $title = 'Trucs en Toc - Fake News II';
             break;
 
-        case '/fake-news-php/detail_article.php':
+        case '/detail_article.php':
             $style = 'detail';
             if (isset($_GET['id']) && !empty($_GET['id'])){
                 $title = 'Article - Fake News II';
@@ -38,12 +36,12 @@ var_dump($tmp);
             }
             break;
 
-        case '/fake-news-php/connexion.php':
+        case '/connexion.php':
             $style = 'connexion';
             $title = 'Connexion - Fake News II';
             break;
-
     }
+
     if (!empty($style)) {
         echo '<link rel="stylesheet" href="css/' . $style . '.css">';
     }

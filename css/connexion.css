@@ -5,3 +5,21 @@ header {
 body {
     flex-direction: column;
 }
+
+#login-form {
+    background: var(--light-grey);
+
+}
+
+    #login-form .input {
+        display: flex;
+        flex-direction: column;
+    }
+
+        #login-form label {
+            color: var(--light-bckgnd);
+        }
+
+        #login-fom input {
+            border: none;
+        }

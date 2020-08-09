@@ -4,14 +4,14 @@
 
 <body>
     <div class="wrapper">
-        <?php require_once 'inc/html_burger_btn.php'; ?>
+        <?php require_once 'inc/burger_btn.php'; ?>
         <header class="container">
-            <?php require_once 'inc/html_nav.php'; ?>
+            <?php require_once 'inc/nav.php'; ?>
             <div class="title">
                 <h1 class="fake-logo"><a href="/">FAKE NEWS II</a></h1>
                 <div id="phrase">IL REVIENT ET IL EST PAS CONTENT ! MYTHONÉ EN PHP ET MYSQL.</div>
             </div>
-            <?php require_once 'inc/html_double_sep.php'?>
+            <?php require_once 'inc/double_sep.php' ?>
         </header>
         <main>
             <section class="latest-new container">
@@ -56,7 +56,7 @@
                 </div>
             </aside>
         </main>
-        <?php require_once 'inc/html_footer.php'; ?>
+        <?php require_once 'inc/footer.php'; ?>
 
     </div>
     <script type="application/javascript" src="scripts/js/script.js"></script>

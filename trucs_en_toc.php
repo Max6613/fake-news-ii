@@ -4,9 +4,9 @@
 
 <body>
     <div class="wrapper">
-        <?php require_once 'inc/html_burger_btn.php'; ?>
+        <?php require_once 'inc/burger_btn.php'; ?>
         <header class="container">
-            <?php require_once 'inc/html_nav.php'; ?>
+            <?php require_once 'inc/nav.php'; ?>
             <div class="title">
                 <div class="fake-logo">
                     <a href="index.php">Fake News II</a>
@@ -14,7 +14,7 @@
                 <h1>TRUCS EN TOC</h1>
                 <div id="phrase" >MAIS PUISQU'ON VOUS DIT QUE C'EST VRAI !</div>
             </div>
-            <?php require_once 'inc/html_double_sep.php'?>
+            <?php require_once 'inc/double_sep.php' ?>
         </header>
         <main>
             <section class="latest-news container">
@@ -34,7 +34,7 @@
                         //TODO ajouter separator
                         if ($index < count($res) - 1){
                             echo '<div>';
-                            include 'inc/html_simple_sep.php';
+                            include 'inc/simple_sep.php';
                             echo '</div>';
                         }
                     }
@@ -47,7 +47,7 @@
                 <?php endif; ?>
             </section>
         </main>
-        <?php require_once 'inc/html_footer.php'; ?>
+        <?php require_once 'inc/footer.php'; ?>
 
     </div>
     <script type="application/javascript" src="scripts/js/script.js"></script>

@@ -8,7 +8,7 @@
             <h1 class="fake-logo"><a href="/">FAKE NEWS II</a></h1>
             <div id="phrase">IL REVIENT ET IL EST PAS CONTENT ! MYTHONÉ EN PHP ET MYSQL.</div>
         </div>
-        <?php require_once 'inc/html_double_sep.php'?>
+        <?php require_once 'inc/double_sep.php' ?>
     </header>
 
     <main>
