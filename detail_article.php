@@ -32,6 +32,6 @@ if (isset($_GET['id']) && !empty($_GET['id'])){
         </main>
         <?php require_once 'inc/footer.php'; ?>
     </div>
-    <script type="application/javascript" src="scripts/js/script.js"></script>
+    <script type="application/javascript" src="scripts/js/menu_deployment.js"></script>
 </body>
 </html>

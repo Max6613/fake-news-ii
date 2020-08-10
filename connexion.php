@@ -12,27 +12,34 @@
     </header>
 
     <main>
-        <?php
-        if (isset($_GET['err'])){
-            switch ($_GET['err']){
-                case 1:
-                    echo '<div class="error">Erreur d\'identification</div>';
-            }
-        }
-        ?>
+
         <form method="post" action="/scripts/php/login.php" id="login-form">
+
+            <?php
+            if (isset($_GET['err'])){
+                switch ($_GET['err']){
+                    case 1:
+                        echo '<div class="error">Erreur d\'identification</div>';
+                }
+            }
+            ?>
+
             <div class="input">
-                <label for="login">Identifiant</label>
+<!--                <label for="login">Identifiant</label>-->
+                <span class="floating-label">Utilisateur</span>
                 <input type="text" name="login" id="login">
             </div>
 
             <div class="input">
-                <label for="passwd">Mot de passe</label>
+<!--                <label for="passwd">Mot de passe</label>-->
+                <span class="floating-label">Mot de passe</span>
                 <input type="password" name="passwd" id="passwd">
             </div>
 
-            <input type="submit">
+            <!--TODO ajouter icone dans button-->
+            <button type="button" onclick="formValidation()">Se connecter</button>
         </form>
     </main>
+    <script type="application/javascript" src="scripts/js/login_validation.js"></script>
 </body>
 </html>

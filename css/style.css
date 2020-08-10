@@ -249,7 +249,8 @@ h3 {
     width: 100%;
 }
 
-#main-menu li:hover > a {
+#main-menu li:hover > a,
+#main-menu li:active > a{
     /* change de couleur lors du hover sur un <li> */
     color: var(--hover-orange);
 }
