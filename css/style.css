@@ -161,7 +161,8 @@ h3 {
 
 /*------Icones------*/
 .footer-icon,
-.menu-icon {
+.menu-icon,
+.mod-icon {
   align-self: baseline;
   background: var(--light-grey);
   border-radius: 50%;

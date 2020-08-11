@@ -15,6 +15,12 @@ if (isset($_POST['login']) && isset($_POST['passwd'])){
         $_SESSION['loggedin'] = true;
         $_SESSION['id'] = $user->getId();
         $_SESSION['user'] = $user->getLogin();
+        if ($user->getRole() == 'administrator'){
+            $_SESSION['admin'] = true;
+        }
+        else {
+            $_SESSION['admin'] = false;
+        }
         $_SESSION['role'] = $user->getRole();
         header('Location: /');
     }

@@ -5,8 +5,6 @@ require_once 'classes/User.php';
 
 session_start();
 
-var_dump($_SESSION);
-
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
     header('Location: /');
 }

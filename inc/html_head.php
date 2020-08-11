@@ -14,6 +14,8 @@ define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
 
     <!-- AJout du CSS spécifique à chaque page -->
     <?php
+    require_once 'classes/PDOArticle.php';
+
     $style = '';
     $title = 'FAKE NEWS II, Reloaded';
 
@@ -31,8 +33,14 @@ define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
         case '/detail_article.php':
             $style = 'detail';
             if (isset($_GET['id']) && !empty($_GET['id'])){
-                $title = 'Article - Fake News II';
-                //TODO récuperer titre article
+                $pdoArticle = new PDOArticle();
+                $art = $pdoArticle->GetArticle($_GET['id']);
+
+                $art_title = 'Article';
+                if (get_class($art) == 'Article'){
+                    $art_title = $art->getTitle();
+                }
+                $title = $art_title . ' - Fake News II';
             }
             break;
 

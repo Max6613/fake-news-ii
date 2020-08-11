@@ -13,7 +13,15 @@ session_start();
             <?php require_once 'inc/nav.php'; ?>
             <div class="title">
                 <h1 class="fake-logo"><a href="/">FAKE NEWS II</a></h1>
-                <div id="phrase">IL REVIENT ET IL EST PAS CONTENT ! MYTHONÉ EN PHP ET MYSQL.</div>
+                <div id="phrase">
+                    IL REVIENT ET IL EST PAS CONTENT ! MYTHONÉ EN PHP ET MYSQL.
+                    <?php
+                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
+                        echo '<span><i class="fas fa-edit mod-icon"></i></span>';
+                    }
+                    ?>
+                </div>
+
             </div>
             <?php require_once 'inc/double_sep.php' ?>
         </header>
@@ -64,5 +72,6 @@ session_start();
 
     </div>
     <script type="application/javascript" src="scripts/js/menu_deployment.js"></script>
+    <script type="application/javascript" src="scripts/js/administration.js"></script>
 </body>
 </html>

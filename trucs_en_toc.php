@@ -12,7 +12,7 @@
                     <a href="index.php">Fake News II</a>
                 </div>
                 <h1>TRUCS EN TOC</h1>
-                <div id="phrase" >MAIS PUISQU'ON VOUS DIT QUE C'EST VRAI !</div>
+                <div id="phrase">MAIS PUISQU'ON VOUS DIT QUE C'EST VRAI !</div>
             </div>
             <?php require_once 'inc/double_sep.php' ?>
         </header>
