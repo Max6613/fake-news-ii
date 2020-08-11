@@ -2,6 +2,10 @@
 <html lang="fr">
 <?php require_once 'inc/html_head.php'; ?>
 
+<?php
+session_start();
+?>
+
 <body>
     <div class="wrapper">
         <?php require_once 'inc/burger_btn.php'; ?>

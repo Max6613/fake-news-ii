@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
-<?php require_once 'inc/html_head.php'; ?>
+<?php
+require_once 'classes/User.php';
+
+session_start();
+
+var_dump($_SESSION);
+
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
+    header('Location: /');
+}
+
+require_once 'inc/html_head.php'; ?>
 
 <body>
     <header class="container">
@@ -26,14 +37,14 @@
 
             <div class="input">
 <!--                <label for="login">Identifiant</label>-->
-                <span class="floating-label">Utilisateur</span>
                 <input type="text" name="login" id="login">
+                <span class="floating-label">Utilisateur</span>
             </div>
 
             <div class="input">
 <!--                <label for="passwd">Mot de passe</label>-->
-                <span class="floating-label">Mot de passe</span>
                 <input type="password" name="passwd" id="passwd">
+                <span class="floating-label">Mot de passe</span>
             </div>
 
             <!--TODO ajouter icone dans button-->

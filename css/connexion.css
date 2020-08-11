@@ -1,89 +1,75 @@
 header {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
 body {
-    flex-direction: column;
-    align-content: center;
+  flex-direction: column;
+  align-content: center;
 }
 
 main {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 #login-form {
-    background: var(--light-grey);
-    border-radius: 4px;
-    color: var(--light-bckgnd);
-    padding: 30px;
-    width: 40%;
+  background: var(--light-grey);
+  border-radius: 4px;
+  color: var(--light-bckgnd);
+  padding: 30px;
+  width: 40%;
 }
 
-    #login-form label,
-    #login-form button {
-
-    }
-
-    #login-form .input {
-        display: flex;
-        flex-direction: column;
-
-    }
-
-        #login-form .input > * {
-            border: none;
-        }
-
-        #login-form .input > label {
-            text-align: left;
-            margin-bottom: 5px;
-        }
-
-            #login-form .input:hover > label,
-            #login-form .input:active > label
-            {
-                /*color: var(--hover-orange);*/
-                text-shadow: var(--dark-grey) 0 0 5px;
-            }
-
-
-
-        #login-form .input > input {
-            border-radius: 4px;
-            flex-basis: 30px;
-            padding: 5px;
-        }
-
-    #login-form .error {
-        /*TODO changer style, peu lisible*/
-        color: var(--red);
-        font-weight: 600;
-        letter-spacing: 2px;
-    }
-
-
-
-input:focus ~ .floating-label,
-input:not(:focus):valid ~ .floating-label{
-    top: 8px;
-    bottom: 10px;
-    left: 20px;
-    font-size: 11px;
-    opacity: 1;
+#login-form label,
+#login-form button {
 }
 
-.input input {
-    font-size: 14px;
-    width: 200px;
-    height: 35px;
+#login-form .input {
+  display: flex;
+  flex-direction: column;
 }
 
-.floating-label {
-    color: var(--red);
-    position: relative;
-    pointer-events: none;
-    left: 20px;
-    top: 25px;
-    transition: 0.2s ease all;
+#login-form .input > * {
+  border: none;
+}
+
+#login-form .input > label {
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+#login-form .input:hover > label,
+#login-form .input:active > label {
+  /*color: var(--hover-orange);*/
+  text-shadow: var(--dark-grey) 0 0 5px;
+}
+
+#login-form .input > input {
+  border-radius: 4px;
+  flex-basis: 30px;
+  padding: 5px;
+}
+
+#login-form .error {
+  /*TODO changer style, peu lisible*/
+  color: var(--red);
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+#login-form .floating-label {
+  /*  TODO changer style */
+  color: var(--red);
+  left: 5px;
+  pointer-events: none;
+  position: relative;
+  text-align: left;
+  top: -26px;
+  transition: 200ms ease top;
+}
+
+#login-form input:focus ~ .floating-label
+/*#login-form input.active ~ .floating-label*/ {
+  /*  TODO garder le label decaler quand l'input contient du texte */
+  top: -55px;
 }

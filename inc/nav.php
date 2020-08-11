@@ -36,8 +36,27 @@
             </ul>
         </li>
         <li>
-            <!--TODO href-->
-            <a href="connexion.php"><i class="fas fa-cog menu-icon"></i> Rouages</a>
+            <?php
+            $link = 'connexion.php';
+            $text = 'Rouages';
+            $sub_ul = '';
+
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
+                $link = '/';
+                $text = 'Bienvue ';
+                $sub_ul = '<ul><li><a href="scripts/php/logout.php"> Se déconnecter</a></li>';
+
+                if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
+                    $text .= strtoupper($_SESSION['user']);
+                }
+                else {
+                    $text .= 'Unknow';
+                }
+            }
+
+            echo '<a href="' . $link . '"><i class="fas fa-cog menu-icon"></i> ' . $text . '</a>' . $sub_ul
+            ?>
+
         </li>
     </ul>
 </nav>

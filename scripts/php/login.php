@@ -1,15 +1,9 @@
 <?php
-if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
-    header('Location: /');
-}
-
 require_once '../../classes/PDOLogin.php';
 
 if (isset($_POST['login']) && isset($_POST['passwd'])){
     $PDOlogin = new PDOLogin();
     $user = $PDOlogin->Authenticate($_POST['login'], $_POST['passwd']);
-
-    var_dump($user);
 
     if (!$user){
         //Erreur d'identification ou erreur de connexion a la BDD
@@ -18,7 +12,10 @@ if (isset($_POST['login']) && isset($_POST['passwd'])){
 
     else{
         session_start();
-        $_SESSION['use'] = $user;
+        $_SESSION['loggedin'] = true;
+        $_SESSION['id'] = $user->getId();
+        $_SESSION['user'] = $user->getLogin();
+        $_SESSION['role'] = $user->getRole();
         header('Location: /');
     }
 }
