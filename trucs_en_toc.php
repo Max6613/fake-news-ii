@@ -12,7 +12,21 @@
                     <a href="index.php">Fake News II</a>
                 </div>
                 <h1>TRUCS EN TOC</h1>
-                <div id="phrase">MAIS PUISQU'ON VOUS DIT QUE C'EST VRAI !</div>
+                <div id="truc-phrase" class="phrase">
+                    <?php
+                    require_once 'classes/PDOSetting.php';
+
+                    $pdo_sett = new PDOSetting();
+                    $setting = $pdo_sett->GetSetting(2);
+                    echo $setting->getValue();
+
+                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
+                        isset($_SESSION['role']) &&
+                        ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+                        echo '<span class="mod-logo"><i class="fas fa-edit mod-icon"></i></span>';
+                    }
+                    ?>
+                </div>
             </div>
             <?php require_once 'inc/double_sep.php' ?>
         </header>
@@ -51,5 +65,12 @@
 
     </div>
     <script type="application/javascript" src="scripts/js/menu_deployment.js"></script>
+    <?php
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
+        isset($_SESSION['role']) &&
+        ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+        echo '<script type="application/javascript" src="scripts/js/administration.js"></script>';
+    }
+    ?>
 </body>
 </html>

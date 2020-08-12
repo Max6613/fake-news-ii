@@ -3,13 +3,13 @@
 <?php
 require_once 'classes/User.php';
 
-session_start();
+require_once 'inc/html_head.php';
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
     header('Location: /');
 }
 
-require_once 'inc/html_head.php'; ?>
+?>
 
 <body>
     <header class="container">

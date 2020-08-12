@@ -171,6 +171,10 @@ h3 {
   padding: 7px;
 }
 
+.mod-icon {
+  background: var(--orange);
+}
+
 /*--------Page--------*/
 /*------Menu------*/
 /*----Btn burger----*/
@@ -286,7 +290,7 @@ header,
   text-align: center;
 }
 
-#phrase {
+.phrase {
   font-size: 22px;
 }
 

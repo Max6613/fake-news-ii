@@ -191,7 +191,7 @@ VALUES ('2020-07-28 19:04:07', 'CERISIER ALIEN',
         'imgs/pic02.jpg');
 
 
-CREATE TABLE IF NOT EXISTS `users`
+CREATE TABLE IF NOT EXISTS `settings`
 (
     `id`       int(10) unsigned NOT NULL AUTO_INCREMENT,
     `name`    varchar(50)      NOT NULL,
@@ -199,3 +199,7 @@ CREATE TABLE IF NOT EXISTS `users`
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 11
   DEFAULT CHARSET = utf8_unicode_ci;
+
+INSERT INTO `settings` (`name`, `value`)
+VALUES ('#index-phrase', 'IL REVIENT ET IL EST PAS CONTENT ! MYTHONÉ EN PHP ET MYSQL.'),
+       ('#truc-phrase', 'MAIS PUISQU''ON VOUS DIT QUE C''EST VRAI !');

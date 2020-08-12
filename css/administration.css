@@ -1,0 +1,17 @@
+#form-mod input {
+  width: 100%;
+}
+
+#form-mod button {
+  display: inline;
+  width: 45%;
+}
+
+#form-mod .button-div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.mod-logo {
+  /*  TODO modifier pointeur */
+}

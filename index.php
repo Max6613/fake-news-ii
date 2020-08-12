@@ -2,10 +2,6 @@
 <html lang="fr">
 <?php require_once 'inc/html_head.php'; ?>
 
-<?php
-session_start();
-?>
-
 <body>
     <div class="wrapper">
         <?php require_once 'inc/burger_btn.php'; ?>
@@ -13,11 +9,18 @@ session_start();
             <?php require_once 'inc/nav.php'; ?>
             <div class="title">
                 <h1 class="fake-logo"><a href="/">FAKE NEWS II</a></h1>
-                <div id="phrase">
-                    IL REVIENT ET IL EST PAS CONTENT ! MYTHONÉ EN PHP ET MYSQL.
+                <div id="index-phrase" class="phrase">
                     <?php
-                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
-                        echo '<span><i class="fas fa-edit mod-icon"></i></span>';
+                    require_once 'classes/PDOSetting.php';
+
+                    $pdo_sett = new PDOSetting();
+                    $setting = $pdo_sett->GetSetting(1);
+                    echo $setting->getValue();
+
+                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
+                        isset($_SESSION['role']) &&
+                        ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+                        echo '<span class="mod-logo"><i class="fas fa-edit mod-icon"></i></span>';
                     }
                     ?>
                 </div>
@@ -30,7 +33,7 @@ session_start();
                 <h2>LES DERNIÈRES <strong>FAKE NEWS</strong>!</h2>
                 <div class="flex-article">
                     <?php
-                    require_once 'inc/global.php';
+//                    require_once 'inc/global.php';
                     require_once 'classes/PDOArticle.php';
 
                     //Recuperation des 3 derniers articles
@@ -72,6 +75,12 @@ session_start();
 
     </div>
     <script type="application/javascript" src="scripts/js/menu_deployment.js"></script>
-    <script type="application/javascript" src="scripts/js/administration.js"></script>
+    <?php
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
+        isset($_SESSION['role']) &&
+        ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+        echo '<script type="application/javascript" src="scripts/js/administration.js"></script>';
+    }
+    ?>
 </body>
 </html>
