@@ -1,0 +1,23 @@
+main {
+  text-align: left;
+}
+
+.content > textarea,
+.chapo > textarea {
+  width: 100%;
+  height: 150px;
+}
+
+.content > textarea {
+  height: 300px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons > button {
+  display: inline;
+  flex-basis: 48%;
+}

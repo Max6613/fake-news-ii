@@ -1,15 +1,16 @@
 #form-mod input {
+  margin-bottom: 15px;
   width: 100%;
 }
 
 #form-mod button {
   display: inline;
-  width: 45%;
+  flex-basis: 48%;
 }
 
 #form-mod .button-div {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .mod-logo {

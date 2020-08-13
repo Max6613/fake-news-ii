@@ -41,11 +41,14 @@ class Article
                 <div>
                     <img src="' . $this->_img . '" alt="">
                 </div>
+                
                 <div>
                     <span class="date">' . $this->_date . '</span>
                 </div>
+                
                 <h3>' . $this->_title . '</h3>
                 <p>' . $this->_chapo . '</p>
+                <a  href="article_mod.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit mod-icon"></i></a>
             </div>';
     }
 
@@ -87,6 +90,52 @@ class Article
                 <p>' . $this->_content . '</p>
                 
             </div>';
+    }
+
+
+    public function ToModifForm(){
+        //TODO modifier input type date en fonction du resultat
+        //TODO ajouter un apercu de l'image actuel/selectionné
+
+        $date = explode(' ', $this->_date);
+
+        echo
+        '<div class="article container">
+            <form action="scripts/php/mod_article.php" method="POST">
+                <input type="hidden" name="id" value="' . $this->_id . '">
+                <div class="art_title">
+                    <input type="text" name="title" value="' . $this->_title . '">                
+                </div>
+            
+                <div class="datetime">
+                    <label for="date">Date et heure: </label>
+                    <input type="date" name="date" id="date" value="' . $date[0] . '">
+                    <input type="time" name="time" id="time" value="' . $date[1] . '">
+                </div>
+                
+                <div class="image">
+                    <label for="image">Image: </label>
+                    <input type="file" name="image" id="image" accept="image/jpeg">
+                    <img src="' . $this->_img . '" alt="">
+                </div>
+                
+                <div class="chapo">
+                    <label for="chapo">Chapo de l\'article: </label>
+                    <textarea name="chapo" id="chapo">' . str_replace('"', '\'', $this->_chapo) . '</textarea>
+                </div>
+                
+                <div class="content">
+                    <label for="content">Contenu de l\'article: </label>
+                    <textarea name="content" id="content">' . str_replace('"', '\'', $this->_content) . '</textarea>
+                </div>
+                
+                <div class="buttons">
+                    <button type="submit">Modifier l\'article</button>
+                    <button>Annuler</button>
+                </div>
+                                                
+            </form>
+        </div>';
     }
 
 

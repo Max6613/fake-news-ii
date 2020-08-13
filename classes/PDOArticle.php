@@ -15,9 +15,16 @@ class PDOArticle
 
     private function ModList(array $list){
         $columns = '';
+        $cnt = 0;
         foreach ($list as $key => $val) {
-            $columns .= $key . ' = ' . $val . ' ' ;
+            $columns .= '`' .$key . '` = \'' . str_replace('\'', '\'\'', $val) . '\'';
+
+            if ($cnt < count($list) - 1){
+                $columns .= ', ';
+            }
+            $cnt++;
         }
+
         return $columns;
     }
 
@@ -122,6 +129,7 @@ class PDOArticle
 
     public function ModArticle(int $article_id, array $mods) : bool
     {
+        //mods = { 'column' => 'value' }
         $connection = $this->GetConnection();
         if (!$connection){
             return false;
@@ -131,11 +139,20 @@ class PDOArticle
                 SET :columns
                 WHERE id = :article_id';
         $stmt = $connection->prepare($sql);
+
+        echo $sql . '<br>';
+        echo $this->ModList($mods);
+
         $res = $stmt->execute([':columns' => $this->ModList($mods),
                                 ':article_id' => $article_id]);
 
+        if (!$res){
+            var_dump($stmt->errorInfo());
+        }
+
         //TODO gerer erreur, return
         var_dump($res);
+        return $res;
     }
 
 

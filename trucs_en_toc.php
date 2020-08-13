@@ -33,7 +33,6 @@
         <main>
             <section class="latest-news container">
                 <?php
-                require_once 'inc/global.php';
                 require_once 'classes/PDOArticle.php';
 
                 //Recuperation de tous les articles

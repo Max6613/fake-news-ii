@@ -13,10 +13,13 @@
                     <?php
                     require_once 'classes/PDOSetting.php';
 
+                    //Récuperation et affichage du sous titre
                     $pdo_sett = new PDOSetting();
                     $setting = $pdo_sett->GetSetting(1);
                     echo $setting->getValue();
 
+                    //Affichage d'un bouton de modification pour le sous-titre
+                    // si l'utilisateur est redac. ou admin.
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
                         isset($_SESSION['role']) &&
                         ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
@@ -33,7 +36,6 @@
                 <h2>LES DERNIÈRES <strong>FAKE NEWS</strong>!</h2>
                 <div class="flex-article">
                     <?php
-//                    require_once 'inc/global.php';
                     require_once 'classes/PDOArticle.php';
 
                     //Recuperation des 3 derniers articles
@@ -45,6 +47,8 @@
                         }
                     }
 
+                    //Si erreur de connexion a la BDD ou de recuperation de resultats
+                    // affichage d'un message d'erreur
                     if (!$res): ?>
                         <div class="error">
                             <p>Impossible d'afficher les derniers articles, veuillez réessayer ulterieurement.</p>

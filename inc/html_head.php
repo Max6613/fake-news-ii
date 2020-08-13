@@ -18,6 +18,17 @@ define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
 
     session_start();
 
+    function GetTitleByID(int $id){
+        $pdoArticle = new PDOArticle();
+        $art = $pdoArticle->GetArticle($id);
+
+        $art_title = 'Article';
+        if (get_class($art) == 'Article'){
+            return $art->getTitle();
+        }
+        return false;
+    }
+
     $style = '';
     $title = 'FAKE NEWS II, Reloaded';
 
@@ -35,14 +46,10 @@ define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
         case '/detail_article.php':
             $style = 'detail';
             if (isset($_GET['id']) && !empty($_GET['id'])){
-                $pdoArticle = new PDOArticle();
-                $art = $pdoArticle->GetArticle($_GET['id']);
-
-                $art_title = 'Article';
-                if (get_class($art) == 'Article'){
-                    $art_title = $art->getTitle();
+                $tmp = GetTitleByID($_GET['id']);
+                if ($tmp != false){
+                    $title = $tmp . ' - Fake News II';
                 }
-                $title = $art_title . ' - Fake News II';
             }
             break;
 
@@ -50,6 +57,15 @@ define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
             $style = 'connexion';
             $title = 'Connexion - Fake News II';
             break;
+
+        case '/article_mod.php':
+            $style = 'article_mod';
+            if (isset($_GET['id']) && !empty($_GET['id'])){
+                $tmp = GetTitleByID($_GET['id']);
+                if ($tmp != false){
+                    $title = $tmp . ' - Fake News II';
+                }
+            }
     }
 
     if (!empty($style)) {
