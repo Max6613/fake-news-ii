@@ -33,10 +33,8 @@ if (isset($_POST['id']) && !empty($_POST['id'])){
     }
     $mods['date_creation'] = $datetime;
 
-
-
     $pdo_art = new PDOArticle();
     $pdo_art->ModArticle($_POST['id'], $mods);
 }
 
-//header('Location: ' . $_SERVER['HTTP_REFERER']);
+header('Location: ../../detail_article.php?id=' . $_POST['id']);

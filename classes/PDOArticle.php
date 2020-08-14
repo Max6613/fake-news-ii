@@ -135,24 +135,26 @@ class PDOArticle
             return false;
         }
 
-        $sql = 'UPDATE posts
-                SET :columns
-                WHERE id = :article_id';
-        $stmt = $connection->prepare($sql);
+        //TODO requete via prepare
+        // actuellement retourne une erreur sql
+//        $sql = 'UPDATE posts
+//                SET ?
+//                WHERE id = ?';
+//        $stmt = $connection->prepare($sql);
+//
+//        echo $sql . '<br>';
+//        echo $this->ModList($mods) . '<br>';
+//        echo $article_id;
+//
+//        $res = $stmt->execute([$this->ModList($mods), $article_id]);
 
-        echo $sql . '<br>';
-        echo $this->ModList($mods);
+        $sql = 'UPDATE `posts` SET ' . $this->ModList($mods) . ' WHERE `id` = ' . $article_id;
+        $res = $connection->query($sql);
 
-        $res = $stmt->execute([':columns' => $this->ModList($mods),
-                                ':article_id' => $article_id]);
-
-        if (!$res){
-            var_dump($stmt->errorInfo());
-        }
 
         //TODO gerer erreur, return
-        var_dump($res);
-        return $res;
+//        return $res;
+        return true;
     }
 
 

@@ -17,7 +17,8 @@
                     require_once 'classes/PDOSetting.php';
 
                     $pdo_sett = new PDOSetting();
-                    $setting = $pdo_sett->GetSetting(2);
+                    //TODO passer id en variable global
+                    $setting = $pdo_sett->GetSetting(12);
                     echo $setting->getValue();
 
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&

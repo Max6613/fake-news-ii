@@ -15,7 +15,7 @@
 
                     //Récuperation et affichage du sous titre
                     $pdo_sett = new PDOSetting();
-                    $setting = $pdo_sett->GetSetting(1);
+                    $setting = $pdo_sett->GetSetting(11);
                     echo $setting->getValue();
 
                     //Affichage d'un bouton de modification pour le sous-titre

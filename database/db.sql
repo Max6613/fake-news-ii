@@ -1,14 +1,16 @@
 CREATE DATABASE IF NOT EXISTS `fakenewsii`;
 USE `fakenewsii`;
 
+
 CREATE TABLE IF NOT EXISTS `users`
 (
     `id`       int(10) unsigned NOT NULL AUTO_INCREMENT,
     `login`    varchar(50)      NOT NULL,
-    `password` varchar(255)     NOT NULL
+    `password` varchar(255)     NOT NULL,
+    PRIMARY KEY (id)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 11
-  DEFAULT CHARSET = utf8_unicode_ci;
+  DEFAULT CHARSET = utf8;
 
 INSERT INTO `users` (`login`, `password`)
 VALUES ('admin',
@@ -22,15 +24,16 @@ CREATE TABLE IF NOT EXISTS `posts`
     `id`            int(10) unsigned NOT NULL AUTO_INCREMENT,
     `date_creation` DATETIME         NOT NULL,
     `title`         varchar(100)     NOT NULL,
-    `chapo`         varchar(255)     NOT NULL,
+    `chapo`         varchar(300)     NOT NULL,
     `content`       text             NOT NULL,
-    `image`         varchar(255)     NOT NULL
+    `image`         varchar(255)     NOT NULL,
+    PRIMARY KEY (id)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 11
-  DEFAULT CHARSET = utf8_unicode_ci;
+  DEFAULT CHARSET = utf8;
 
 INSERT INTO `posts` (date_creation, title, chapo, content, image)
-VALUES ('2020-07-28 19:04:07', 'CERISIER ALIEN',
+VALUES ('2020-07-14 17:18:18', 'CERISIER ALIEN',
         '<strong>EXCLUSIF!</strong> Les aliens sont parmis nous! Ils se cachent dans
         les cerisiers déguisés en fleurs. L''interview exclusive de <a href="#"
         class="a-underline">Bob l''extraterrestre</a>.',
@@ -83,7 +86,7 @@ VALUES ('2020-07-28 19:04:07', 'CERISIER ALIEN',
         porta lorem mollis aliquam ut. Proin sed libero enim sed faucibus turpis in. Sed vulputate
         odio ut enim blandit. Ultricies mi quis hendrerit dolor magna eget est lorem.',
         'imgs/pic03.jpg'),
-       ('2020-08-02 20:32:47', 'COMMENT RANGER UN LIVRE ?',
+       ('2020-07-28 08:57:30', 'COMMENT RANGER UN LIVRE ?',
         'On vous ment <strong>depuis le début</strong>, il faut ranger les livres sur la
         tranche, c\'est meilleur pour leur santé mentale. Le témoignage exclusif de <a
         href="#" class="a-underline">Robert, dictionnaire de français</a>.',
@@ -136,7 +139,7 @@ VALUES ('2020-07-28 19:04:07', 'CERISIER ALIEN',
         porta lorem mollis aliquam ut. Proin sed libero enim sed faucibus turpis in. Sed vulputate
         odio ut enim blandit. Ultricies mi quis hendrerit dolor magna eget est lorem.',
         'imgs/pic01.jpg'),
-       ('2020-08-01 15:16:17', 'HUILE DE PALMIPEDE',
+       ('2020-08-01 20:04:04', 'HUILE DE PALMIPEDE',
         'Des chercheurs ont découverts qu''à cause de l''huile de palme quelle contient, une
         consommation  excessive de pâte à tartiner provoquerait une mutation du pied en pâte
         de canard. <a href="#" class="a-underline">Les photos exclusives ici!</a>.',
@@ -195,10 +198,11 @@ CREATE TABLE IF NOT EXISTS `settings`
 (
     `id`       int(10) unsigned NOT NULL AUTO_INCREMENT,
     `name`    varchar(50)      NOT NULL,
-    `value` varchar(255)     NOT NULL
+    `value` varchar(255)     NOT NULL,
+    primary key (id)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 11
-  DEFAULT CHARSET = utf8_unicode_ci;
+  DEFAULT CHARSET = utf8;
 
 INSERT INTO `settings` (`name`, `value`)
 VALUES ('#index-phrase', 'IL REVIENT ET IL EST PAS CONTENT ! MYTHONÉ EN PHP ET MYSQL.'),
