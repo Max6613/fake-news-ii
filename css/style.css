@@ -175,6 +175,11 @@ h3 {
   background: var(--orange);
 }
 
+.mod-icon:hover,
+.mod-icon:active {
+  background: var(--hover-orange);
+}
+
 /*--------Page--------*/
 /*------Menu------*/
 /*----Btn burger----*/
@@ -301,6 +306,10 @@ main p {
 }
 
 /*----Article----*/
+.article {
+  padding: 15px;
+}
+
 .article img {
   background: var(--grey-bckgnd);
   padding: 7px;

@@ -9,7 +9,7 @@
             <?php require_once 'inc/nav.php'; ?>
             <div class="title">
                 <div class="fake-logo">
-                    <a href="index.php">Fake News II</a>
+                    <a href="/">Fake News II</a>
                 </div>
                 <h1>TRUCS EN TOC</h1>
                 <div id="truc-phrase" class="phrase">
@@ -24,6 +24,7 @@
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
                         isset($_SESSION['role']) &&
                         ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+                        //TODO mettre icone modif en var global
                         echo '<span class="mod-logo"><i class="fas fa-edit mod-icon"></i></span>';
                     }
                     ?>

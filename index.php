@@ -79,6 +79,7 @@
 
     </div>
     <script type="application/javascript" src="scripts/js/menu_deployment.js"></script>
+    <script type="application/javascript" src="scripts/js/article_link.js"></script>
     <?php
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
         isset($_SESSION['role']) &&

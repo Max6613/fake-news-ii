@@ -99,3 +99,5 @@ mod_logo.addEventListener("click", function () {
 // + un bouton pour valider et un pour annuler
 // le bouton valider modifiera en BDD ??????
 //          il faut enregistrer le sous titre en bdd ????????
+
+//TODO convertir en jquery

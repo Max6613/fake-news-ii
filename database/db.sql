@@ -7,16 +7,20 @@ CREATE TABLE IF NOT EXISTS `users`
     `id`       int(10) unsigned NOT NULL AUTO_INCREMENT,
     `login`    varchar(50)      NOT NULL,
     `password` varchar(255)     NOT NULL,
+    `role`     varchar(50)      DEFAULT 'reader' NOT NULL ,
     PRIMARY KEY (id)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 11
-  DEFAULT CHARSET = utf8;
+  CHARACTER SET utf8
+  COLLATE utf8_bin;
 
-INSERT INTO `users` (`login`, `password`)
+INSERT INTO `users` (`login`, `password`, `role`)
 VALUES ('admin',
-        'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec'),
+        'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec',
+        'administrator'),
        ('max',
-        'df6b9fb15cfdbb7527be5a8a6e39f39e572c8ddb943fbc79a943438e9d3d85ebfc2ccf9e0eccd9346026c0b6876e0e01556fe56f135582c05fbdbb505d46755a');
+        'df6b9fb15cfdbb7527be5a8a6e39f39e572c8ddb943fbc79a943438e9d3d85ebfc2ccf9e0eccd9346026c0b6876e0e01556fe56f135582c05fbdbb505d46755a',
+        'redactor');
 
 
 CREATE TABLE IF NOT EXISTS `posts`
@@ -30,7 +34,8 @@ CREATE TABLE IF NOT EXISTS `posts`
     PRIMARY KEY (id)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 11
-  DEFAULT CHARSET = utf8;
+  CHARACTER SET utf8
+  COLLATE utf8_bin;
 
 INSERT INTO `posts` (date_creation, title, chapo, content, image)
 VALUES ('2020-07-14 17:18:18', 'CERISIER ALIEN',

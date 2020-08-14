@@ -72,8 +72,10 @@ define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
         echo '<link rel="stylesheet" href="css/' . $style . '.css">';
     }
 
-    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']
-        && isset($_SESSION['admin']) && $_SESSION['admin']){
+    //TODO mettre condition dans variable bool global isAbleToModify/isRedactor, et créer isAdmin
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
+        isset($_SESSION['role']) &&
+        ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
         echo '<link rel="stylesheet" href="css/administration.css">';
     }
     ?>

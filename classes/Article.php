@@ -34,27 +34,42 @@ class Article
         $this->_img = $img;
     }
 
+    private function IsRedactor() : bool
+    {
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
+            isset($_SESSION['role']) &&
+            ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+            return true;
+        }
+        return false;
+    }
+
 
     public function ToStrHomePreview(){
-        echo
-            '<div class="article">
+        $html =
+            '<div class="article ' . $this->_id . '">
                 <div>
                     <img src="' . $this->_img . '" alt="">
                 </div>
-                
+
                 <div>
                     <span class="date">' . $this->_date . '</span>
                 </div>
-                
+
                 <h3>' . $this->_title . '</h3>
-                <p>' . $this->_chapo . '</p>
-                <a  href="article_mod.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit mod-icon"></i></a>
-            </div>';
+                <p>' . $this->_chapo . '</p>';
+
+        if ($this->IsRedactor()){
+            $html .= '<a  href="article_mod.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit mod-icon"></i></a>';
+        }
+
+        $html .= '</div>';
+        echo $html;
     }
 
 
     public function ToStrTrucsPreview(){
-        echo
+        $html =
             '<div class="article">
                 <div class="left">
                     <span class="date">' . $this->_date . '</span>
@@ -66,30 +81,37 @@ class Article
                 </div>
                 <button>
                     <a href="detail_article.php?id=' . $this->_id . '"><i class="far fa-file" aria-hidden="true"></i> JE VEUX LA SUITE !</a>
-                </button>
-            </div>';
+                </button>';
+
+        if ($this->IsRedactor()){
+            $html .= '<a  href="article_mod.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit mod-icon"></i></a>';
+        }
+
+        $html .= '</div>';
+        echo $html;
     }
 
 
     public function ToStrFullArt(){
 //        TODO refaire images pour responsive avec <picture>
-        echo
+        $html =
             '<div class="article container">
                 <div>
-                    <span class="date">' . $this->_date . '</span>                
-                </div>
+                    <span class="date">' . $this->_date . '</span>';
+
+        if ($this->IsRedactor()){
+            $html .= '<a  href="article_mod.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit mod-icon"></i></a>';
+        }
+
+        $html .= '</div>
                
                 <div>
-                    <picture>
-                        <source srcset="/imgs/pic03-1280.jpg" media="(min-width: 993)">
-                        <source srcset="/imgs/pic03-640.jpg" media="(min-width: 768)">
-                        <img src="' . $this->_img . '" alt="">
-                    </picture>
+                    <img src="' . $this->_img . '" alt="">
                 </div>
                 <p>' . $this->_chapo . '</p>
                 <p>' . $this->_content . '</p>
-                
             </div>';
+        echo $html;
     }
 
 

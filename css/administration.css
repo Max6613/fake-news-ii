@@ -14,5 +14,6 @@
 }
 
 .mod-logo {
-  /*  TODO modifier pointeur */
+  cursor: pointer;
+  padding: 10px;
 }
