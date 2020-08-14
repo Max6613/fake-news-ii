@@ -1,10 +1,14 @@
 /*----*----*/
 
 /*----Article----*/
+.article {
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 .article:hover,
 .article:active {
-  box-shadow: var(--dark-bckgnd) 0 0 3px;
-  cursor: pointer;
+  box-shadow: var(--dark-bckgnd) 0 0 12px -6px;
 }
 
 /*----Citations----*/
