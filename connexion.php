@@ -28,24 +28,22 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
             if (isset($_GET['err'])){
                 switch ($_GET['err']){
                     case 1:
-                        echo '<div class="error">Erreur d\'identification</div>';
+                        echo '<div class="error"><i class="fas fa-exclamation-triangle"></i> Erreur d\'identification</div>';
                 }
             }
             ?>
 
             <div class="input">
-<!--                <label for="login">Identifiant</label>-->
-                <input type="text" name="login" id="login">
+                <input type="text" name="login" id="login" tabindex="1" required>
                 <span class="floating-label">Utilisateur</span>
             </div>
 
             <div class="input">
-<!--                <label for="passwd">Mot de passe</label>-->
-                <input type="password" name="passwd" id="passwd">
+                <input type="password" name="passwd" id="passwd" tabindex="2" required>
                 <span class="floating-label">Mot de passe</span>
             </div>
 
-            <button type="button" onclick="formValidation()">Se connecter</button>
+            <button type="submit" onclick="formValidation()">Se connecter</button>
         </form>
     </main>
     <script type="application/javascript" src="scripts/js/login_validation.js"></script>

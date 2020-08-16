@@ -51,6 +51,7 @@ function delErrorField(inputs) {
 
 //Vérifie la validité des entrées
 function formValidation() {
+  console.log("coucou");
   //champs du formulaire à vérifier
   let inputs = { login: $("#login"), passwd: $("#passwd") };
   let errors = [];

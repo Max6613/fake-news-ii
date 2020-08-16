@@ -31,7 +31,6 @@ define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
     }
 
 
-
     switch (PAGE_EN_COURS[0]){
         case '/':
         case '/index.php':
