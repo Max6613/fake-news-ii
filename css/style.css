@@ -160,9 +160,11 @@ h3 {
 }
 
 /*------Icones------*/
+/*TODO classe commune aux icones (ico)*/
 .footer-icon,
 .menu-icon,
-.mod-icon {
+.mod-icon,
+.ico {
   align-self: baseline;
   background: var(--light-grey);
   border-radius: 50%;

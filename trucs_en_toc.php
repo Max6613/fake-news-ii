@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html lang="fr">
-<?php require_once 'inc/html_head.php'; ?>
+<?php
+require_once 'inc/html_head.php';
+require_once 'inc/global.php';
+?>
 
 <body>
     <div class="wrapper">
+
+        <!-- Bouton de déploiement du menu -->
         <?php require_once 'inc/burger_btn.php'; ?>
+
         <header class="container">
+
+            <!-- Menu de navigation -->
             <?php require_once 'inc/nav.php'; ?>
+
             <div class="title">
                 <div class="fake-logo">
                     <a href="/">Fake News II</a>
                 </div>
+
                 <h1>TRUCS EN TOC</h1>
+
                 <div id="truc-phrase" class="phrase">
                     <?php
                     require_once 'classes/PDOSetting.php';
 
+
+                    //Récupération et affichage du sous titre
                     $pdo_sett = new PDOSetting();
-                    //TODO passer id en variable global
-                    $setting = $pdo_sett->GetSetting(12);
+                    $setting = $pdo_sett->GetSetting(TRUC_PHRASE_ID);
                     echo $setting->getValue();
 
+                    //Si utilisateur connecté en tant qu'admin ou redac,
+                    // affichage du logo de modification
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
-                        isset($_SESSION['role']) &&
-                        ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
-                        //TODO mettre icone modif en var global
-                        echo '<span class="mod-logo"><i class="fas fa-edit mod-icon"></i></span>';
+                            isset($_SESSION['role']) &&
+                            ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+                        echo MODIFICATION_LOGO;
                     }
                     ?>
                 </div>
@@ -37,16 +50,20 @@
                 <?php
                 require_once 'classes/PDOArticle.php';
 
-                //Recuperation de tous les articles
                 //TODO pages de navigation (1,2,3,4,...) via GET
                 //  ou bouton afficher la suite (JS+AJAX)
 
+                //Recuperation de tous les articles
                 $pdoArticle = new PDOArticle();
                 $res = $pdoArticle->GetAllArticle();
+
                 if (get_class($res[0]) == 'Article'){
+
                     foreach ($res as $index => $article){
                         $article->ToStrTrucsPreview();
-                        //TODO ajouter separator
+
+                        //Ajout d'un trait de séparation après tous
+                        // les articles sauf le dernier
                         if ($index < count($res) - 1){
                             echo '<div>';
                             include 'inc/simple_sep.php';
@@ -55,6 +72,7 @@
                     }
                 }
 
+                //Si aucun article ou erreur de connexion ou de requete
                 if (!$res): ?>
                     <div class="error">
                         <p>Impossible d'afficher les articles, veuillez réessayer ulterieurement.</p>
@@ -62,15 +80,16 @@
                 <?php endif; ?>
             </section>
         </main>
+
         <?php require_once 'inc/footer.php'; ?>
 
     </div>
     <script type="application/javascript" src="scripts/js/menu_deployment.js"></script>
     <?php
-    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
-        isset($_SESSION['role']) &&
-        ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
-        echo '<script type="application/javascript" src="scripts/js/administration.js"></script>';
+    //Si utilisateur connecté en tant qu'admin ou redac,
+    // ajout du script permettant la modification d'éléments
+    if (USER_ADMIN_REDAC){
+        echo ADMINISTRATION_SCRIPT;
     }
     ?>
 </body>

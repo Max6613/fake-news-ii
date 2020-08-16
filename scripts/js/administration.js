@@ -28,7 +28,6 @@ function cancelMod() {}
  * Ajoute un formulaire de modification a la place du contenu
  */
 function addModElmnt(element, value, id) {
-  //TODO ajouter destination form
   let form = createHtmlElmnt("form", {
     method: "POST",
     action: "scripts/php/mod_setting.php",
@@ -94,10 +93,5 @@ mod_logo.addEventListener("click", function () {
 
   addModElmnt(parent, prt_value, settings[parent.id]);
 });
-
-//TODO rajouter dans le tag selectionner un input texte à la place du texte, contenant le texte précédent
-// + un bouton pour valider et un pour annuler
-// le bouton valider modifiera en BDD ??????
-//          il faut enregistrer le sous titre en bdd ????????
 
 //TODO convertir en jquery

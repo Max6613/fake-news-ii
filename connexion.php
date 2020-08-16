@@ -45,7 +45,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
                 <span class="floating-label">Mot de passe</span>
             </div>
 
-            <!--TODO ajouter icone dans button-->
             <button type="button" onclick="formValidation()">Se connecter</button>
         </form>
     </main>

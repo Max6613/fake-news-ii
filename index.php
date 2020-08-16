@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
-<?php require_once 'inc/html_head.php'; ?>
+<?php
+require_once 'inc/html_head.php';
+require_once 'inc/global.php';
+?>
 
 <body>
     <div class="wrapper">
+
+        <!-- Bouton de déploiement du menu -->
         <?php require_once 'inc/burger_btn.php'; ?>
+
         <header class="container">
+
+            <!-- Menu de navigation -->
             <?php require_once 'inc/nav.php'; ?>
+
             <div class="title">
                 <h1 class="fake-logo"><a href="/">FAKE NEWS II</a></h1>
                 <div id="index-phrase" class="phrase">
@@ -15,21 +24,21 @@
 
                     //Récuperation et affichage du sous titre
                     $pdo_sett = new PDOSetting();
-                    $setting = $pdo_sett->GetSetting(11);
+                    $setting = $pdo_sett->GetSetting(INDEX_PHRASE_ID);
                     echo $setting->getValue();
 
-                    //Affichage d'un bouton de modification pour le sous-titre
-                    // si l'utilisateur est redac. ou admin.
-                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
-                        isset($_SESSION['role']) &&
-                        ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
-                        echo '<span class="mod-logo"><i class="fas fa-edit mod-icon"></i></span>';
+                    //Si utilisateur connecté en tant qu'admin ou redac,
+                    // affichage du logo de modification
+                    if (USER_ADMIN_REDAC){
+                        echo MODIFICATION_LOGO;
                     }
                     ?>
                 </div>
 
             </div>
+
             <?php require_once 'inc/double_sep.php' ?>
+
         </header>
         <main>
             <section class="latest-new container">
@@ -47,8 +56,7 @@
                         }
                     }
 
-                    //Si erreur de connexion a la BDD ou de recuperation de resultats
-                    // affichage d'un message d'erreur
+                    //Si aucun article ou erreur de connexion ou de requete
                     if (!$res): ?>
                         <div class="error">
                             <p>Impossible d'afficher les derniers articles, veuillez réessayer ulterieurement.</p>
@@ -56,6 +64,7 @@
                     <?php endif; ?>
 
                 </div>
+
                 <button>
                     <a href="/trucs_en_toc.php"><i class="far fa-file"></i> J'EN VEUX ENCORE !</a>
                 </button>
@@ -70,22 +79,27 @@
                     "ON PEUT TROMPER UNE FOIS MILLE PERSONNES, MAIS ON NE PEUT PAS TROMPER MILLE FOIS UNE PERSONNE."
                     - ÉMILE
                 </div>
+
                 <div class="separator">
                     <span></span>
                 </div>
+
             </aside>
         </main>
+
         <?php require_once 'inc/footer.php'; ?>
 
     </div>
     <script type="application/javascript" src="scripts/js/menu_deployment.js"></script>
     <script type="application/javascript" src="scripts/js/article_link.js"></script>
+
     <?php
-    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
-        isset($_SESSION['role']) &&
-        ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
-        echo '<script type="application/javascript" src="scripts/js/administration.js"></script>';
+    //Si utilisateur connecté en tant qu'admin ou redac,
+    // affichage du logo de modification
+    if (USER_ADMIN_REDAC){
+        echo ADMINISTRATION_SCRIPT;
     }
     ?>
+
 </body>
 </html>
