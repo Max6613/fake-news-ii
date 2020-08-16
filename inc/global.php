@@ -12,13 +12,13 @@ define('ADMINISTRATION_SCRIPT', '<script type="application/javascript" src="scri
 
 //Conditions
 // utilisateur connecté en tant qu'administrateur ou rédacteur
-define('USER_ADMIN_REDAC',
+define('IS_ADMIN_REDAC',
     'isset($_SESSION[\'loggedin\']) && $_SESSION[\'loggedin\'] &&
         isset($_SESSION[\'role\']) &&
         ($_SESSION[\'role\'] == \'administrator\' || 
         $_SESSION[\'role\'] == \'redactor\')');
 // utilisateur connecté en tant qu'administrateur
-define('USER_ADMIN',
+define('IS_ADMIN',
     'isset($_SESSION[\'loggedin\']) && $_SESSION[\'loggedin\'] &&
         isset($_SESSION[\'role\']) && $_SESSION[\'role\'] == \'administrator\'');
 

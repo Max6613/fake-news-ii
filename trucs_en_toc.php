@@ -88,7 +88,7 @@ require_once 'inc/global.php';
     <?php
     //Si utilisateur connecté en tant qu'admin ou redac,
     // ajout du script permettant la modification d'éléments
-    if (USER_ADMIN_REDAC){
+    if (IS_ADMIN_REDAC){
         echo ADMINISTRATION_SCRIPT;
     }
     ?>

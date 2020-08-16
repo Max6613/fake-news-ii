@@ -29,7 +29,7 @@ require_once 'inc/global.php';
 
                     //Si utilisateur connecté en tant qu'admin ou redac,
                     // affichage du logo de modification
-                    if (USER_ADMIN_REDAC){
+                    if (IS_ADMIN_REDAC){
                         echo MODIFICATION_LOGO;
                     }
                     ?>
@@ -96,7 +96,7 @@ require_once 'inc/global.php';
     <?php
     //Si utilisateur connecté en tant qu'admin ou redac,
     // affichage du logo de modification
-    if (USER_ADMIN_REDAC){
+    if (IS_ADMIN_REDAC){
         echo ADMINISTRATION_SCRIPT;
     }
     ?>

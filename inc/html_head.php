@@ -1,4 +1,6 @@
 <?php
+require_once 'inc/global.php';
+
 //Séparation du nom de la page et des attributs GET
 define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
 ?>
@@ -22,15 +24,13 @@ define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
         $pdoArticle = new PDOArticle();
         $art = $pdoArticle->GetArticle($id);
 
-        $art_title = 'Article';
         if (get_class($art) == 'Article'){
             return $art->getTitle();
         }
         return false;
     }
 
-    $style = '';
-    $title = 'FAKE NEWS II, Reloaded';
+
 
     switch (PAGE_EN_COURS[0]){
         case '/':
@@ -66,16 +66,19 @@ define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
                     $title = $tmp . ' - Fake News II';
                 }
             }
+            break;
+
+        default:
+            $style = '';
+            $title = 'FAKE NEWS II, Reloaded';
     }
 
     if (!empty($style)) {
         echo '<link rel="stylesheet" href="css/' . $style . '.css">';
     }
 
-    //TODO mettre condition dans variable bool global isAbleToModify/isRedactor, et créer isAdmin
-    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
-        isset($_SESSION['role']) &&
-        ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+
+    if (IS_ADMIN_REDAC){
         echo '<link rel="stylesheet" href="css/administration.css">';
     }
     ?>
@@ -83,5 +86,5 @@ define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
     <script src="https://kit.fontawesome.com/fda18f4986.js" crossorigin="anonymous"></script>
     <script type="application/javascript" src="Vendor/Jquery/jquery-3.5.1.min.js"></script>
 
-    <title> <?php echo $title ?></title>
+    <title><?php echo $title ?></title>
 </head>
