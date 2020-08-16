@@ -2,6 +2,9 @@
 //include_once '../inc/global.php';
 
 
+/**
+ * Class Article
+ */
 class Article
 {
     private $_id;
@@ -36,7 +39,8 @@ class Article
     }
 
 
-    public function ToStrHomePreview(){
+    public function ToStrHomePreview()
+    {
         $html =
             '<div class="article ' . $this->_id . '">
                 <div>
@@ -59,7 +63,8 @@ class Article
     }
 
 
-    public function ToStrTrucsPreview(){
+    public function ToStrTrucsPreview()
+    {
         $html =
             '<div class="article">
                 <div class="left">
@@ -83,7 +88,8 @@ class Article
     }
 
 
-    public function ToStrFullArt(){
+    public function ToStrFullArt()
+    {
 //        TODO refaire images pour responsive avec <picture>
         $html =
             '<div class="article container">
@@ -106,7 +112,8 @@ class Article
     }
 
 
-    public function ToModifForm(){
+    public function ToModifForm()
+    {
         //TODO ajouter un apercu de l'image selectionné
 
         $date = explode(' ', $this->_date);

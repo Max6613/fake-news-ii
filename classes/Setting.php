@@ -57,8 +57,4 @@ class Setting
         $pdo_sett = new PDOSetting();
         $pdo_sett->SetSetting($this->_id, $value);
     }
-
-
-
-
 }

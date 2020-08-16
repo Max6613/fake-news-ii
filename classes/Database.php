@@ -1,6 +1,9 @@
 <?php
 
 
+/**
+ * Class Database
+ */
 class Database
 {
     private $_host;
@@ -8,6 +11,9 @@ class Database
     private $_password;
     private $_db_name;
 
+    /**
+     * Database constructor.
+     */
     public function __construct()
     {
         $this->_host = 'localhost';
@@ -16,7 +22,11 @@ class Database
         $this->_db_name = 'fakenewsii';
     }
 
-    public function getConnection()
+
+    /**
+     * @return PDO|false
+     */
+    public function getConnection() : PDO
     {
         $dsn = 'mysql:host=' . $this->_host . ';dbname=' . $this->_db_name;
 
@@ -25,8 +35,7 @@ class Database
             return $pdo;
         }catch (PDOException $ex){
             //var_dump($ex);
-            //TODO message erreur via GET ou SESSION ?
-            echo '<div class="error">Unable to connect to database</div>';
+            //TODO gérer erreur
         }
         return false;
     }
