@@ -4,15 +4,15 @@ define('INDEX_PHRASE_ID', 11);
 define('TRUC_PHRASE_ID', 12);
 
 
-//
-define('MODIFICATION_LOGO', '<span class="mod-logo"><i class="fas fa-edit mod-icon"></i></span>');
+//Icone de modification des sous-titres
+define('MODIFICATION_LOGO', '<span class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></span>');
 
 //Scripts
 define('ADMINISTRATION_SCRIPT', '<script type="application/javascript" src="scripts/js/administration.js"></script>');
 
 //Conditions
 // utilisateur connecté en tant qu'administrateur ou rédacteur
-define('IS_ADMIN_REDAC',
+define('IS_REDAC',
     'isset($_SESSION[\'loggedin\']) && $_SESSION[\'loggedin\'] &&
         isset($_SESSION[\'role\']) &&
         ($_SESSION[\'role\'] == \'administrator\' || 

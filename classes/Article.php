@@ -1,4 +1,5 @@
 <?php
+//include_once '../inc/global.php';
 
 
 class Article
@@ -34,16 +35,6 @@ class Article
         $this->_img = $img;
     }
 
-    private function IsRedactor() : bool
-    {
-        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
-            isset($_SESSION['role']) &&
-            ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
-            return true;
-        }
-        return false;
-    }
-
 
     public function ToStrHomePreview(){
         $html =
@@ -59,8 +50,8 @@ class Article
                 <h3>' . $this->_title . '</h3>
                 <p>' . $this->_chapo . '</p>';
 
-        if ($this->IsRedactor()){
-            $html .= '<a  href="article_mod.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit mod-icon"></i></a>';
+        if (IS_REDAC){
+            $html .= '<a  href="article_mod.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>';
         }
 
         $html .= '</div>';
@@ -83,8 +74,8 @@ class Article
                     <a href="detail_article.php?id=' . $this->_id . '"><i class="far fa-file" aria-hidden="true"></i> JE VEUX LA SUITE !</a>
                 </button>';
 
-        if ($this->IsRedactor()){
-            $html .= '<a  href="article_mod.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit mod-icon"></i></a>';
+        if (IS_REDAC){
+            $html .= '<a  href="article_mod.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>';
         }
 
         $html .= '</div>';
@@ -99,8 +90,8 @@ class Article
                 <div>
                     <span class="date">' . $this->_date . '</span>';
 
-        if ($this->IsRedactor()){
-            $html .= '<a  href="article_mod.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit mod-icon"></i></a>';
+        if (IS_REDAC){
+            $html .= '<a  href="article_mod.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>';
         }
 
         $html .= '</div>
@@ -116,8 +107,7 @@ class Article
 
 
     public function ToModifForm(){
-        //TODO modifier input type date en fonction du resultat
-        //TODO ajouter un apercu de l'image actuel/selectionné
+        //TODO ajouter un apercu de l'image selectionné
 
         $date = explode(' ', $this->_date);
 

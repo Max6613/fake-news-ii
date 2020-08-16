@@ -3,10 +3,17 @@ require 'Database.php';
 require 'User.php';
 
 
-//TODO PHPdoc
+/**
+ * Class PDOLogin
+ */
 class PDOLogin
 {
-    public function Authenticate($login, $passwd)
+    /**
+     * @param $login
+     * @param $passwd
+     * @return User|false
+     */
+    public function Authenticate(string $login, string $passwd) : User
     {
         $db = new Database();
         //objet pdo
@@ -23,7 +30,7 @@ class PDOLogin
         if (!empty($res) && $res != false){
             return new User($res['id'], $res['login'], $res['role']);
         }
-        //TODO gérer erreur
+
         return false;
     }
 }

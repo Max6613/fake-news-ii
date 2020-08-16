@@ -3,8 +3,14 @@ require_once 'Setting.php';
 require_once 'Database.php';
 
 
+/**
+ * Class PDOSetting
+ */
 class PDOSetting
 {
+    /**
+     * @return PDO
+     */
     private function GetConnection() : PDO
     {
         $db = new Database();
@@ -12,7 +18,11 @@ class PDOSetting
     }
 
 
-    public function GetSetting(int $id)
+    /**
+     * @param int $id
+     * @return Setting|false
+     */
+    public function GetSetting(int $id) : Setting
     {
         $connection = $this->GetConnection();
         if (!$connection){
@@ -36,7 +46,12 @@ class PDOSetting
     }
 
 
-    public function SetSetting(int $id, string $val)
+    /**
+     * @param int $id
+     * @param string $val
+     * @return bool
+     */
+    public function SetSetting(int $id, string $val) : bool
     {
         $connection = $this->GetConnection();
         if (!$connection){
@@ -50,7 +65,9 @@ class PDOSetting
         $stmt = $connection->prepare($sql);
         $res = $stmt->execute([':val' => $val, ':sett_id' => $id]);
 
-        //TODO gerer erreur, return
-        var_dump($res);
+        if (!$res){
+            return false;
+        }
+        return true;
     }
 }

@@ -77,7 +77,7 @@ define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
     }
 
 
-    if (IS_ADMIN_REDAC){
+    if (IS_REDAC){
         echo '<link rel="stylesheet" href="css/administration.css">';
     }
     ?>

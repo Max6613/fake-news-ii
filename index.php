@@ -29,7 +29,7 @@ require_once 'inc/global.php';
 
                     //Si utilisateur connecté en tant qu'admin ou redac,
                     // affichage du logo de modification
-                    if (IS_ADMIN_REDAC){
+                    if (IS_REDAC){
                         echo MODIFICATION_LOGO;
                     }
                     ?>
@@ -49,7 +49,7 @@ require_once 'inc/global.php';
 
                     //Recuperation des 3 derniers articles
                     $pdoArticle = new PDOArticle();
-                    $res = $pdoArticle->Get3LatestArticles();
+                    $res = $pdoArticle->GetArticles(3);
                     if (get_class($res[0]) == 'Article'){
                         foreach ($res as $article){
                             $article->ToStrHomePreview();
@@ -59,7 +59,7 @@ require_once 'inc/global.php';
                     //Si aucun article ou erreur de connexion ou de requete
                     if (!$res): ?>
                         <div class="error">
-                            <p>Impossible d'afficher les derniers articles, veuillez réessayer ulterieurement.</p>
+                            Impossible d'afficher les derniers articles, veuillez réessayer ulterieurement.
                         </div>
                     <?php endif; ?>
 
@@ -96,7 +96,7 @@ require_once 'inc/global.php';
     <?php
     //Si utilisateur connecté en tant qu'admin ou redac,
     // affichage du logo de modification
-    if (IS_ADMIN_REDAC){
+    if (IS_REDAC){
         echo ADMINISTRATION_SCRIPT;
     }
     ?>

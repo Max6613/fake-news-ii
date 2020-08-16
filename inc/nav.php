@@ -1,10 +1,10 @@
 <nav id="main-menu">
     <ul>
         <li>
-            <a href="#"><i class="fas fa-home menu-icon"></i> Rembobiner</a>
+            <a href="/"><i class="fas fa-home ico menu-icon"></i> Rembobiner</a>
         </li>
         <li>
-            <a href="trucs_en_toc.php"><i class="fas fa-chart-bar menu-icon"></i> Trucs en toc</a>
+            <a href="trucs_en_toc.php"><i class="fas fa-chart-bar ico menu-icon"></i> Trucs en toc</a>
             <!--TODO sup/garder sous-menu, ?:bonus:? ajouter des tags aux articles pour afficher par catégorie-->
             <ul>
                 <li>
@@ -54,7 +54,7 @@
                 }
             }
 
-            echo '<a href="' . $link . '"><i class="fas fa-cog menu-icon"></i> ' . $text . '</a>' . $sub_ul
+            echo '<a href="' . $link . '"><i class="fas fa-cog ico menu-icon"></i> ' . $text . '</a>' . $sub_ul
             ?>
 
         </li>

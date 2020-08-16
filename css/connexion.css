@@ -34,17 +34,6 @@ main {
   border: none;
 }
 
-/*#login-form .input > label {*/
-/*  text-align: left;*/
-/*  margin-bottom: 5px;*/
-/*}*/
-
-/*#login-form .input:hover > label,*/
-/*#login-form .input:active > label {*/
-/*  !*color: var(--hover-orange);*!*/
-/*  text-shadow: var(--dark-grey) 0 0 5px;*/
-/*}*/
-
 #login-form .input > input {
   background: var(--light-bckgnd);
   border-radius: 4px;

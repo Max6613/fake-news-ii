@@ -126,8 +126,6 @@ h3 {
   flex-basis: 100%;
   /* annule le margin-b global des div */
   margin-bottom: 0;
-  /*TODO garder overflow?*/
-  /*overflow-x: hidden;*/
 }
 
 /*------Séparateurs------*/
@@ -160,10 +158,6 @@ h3 {
 }
 
 /*------Icones------*/
-/*TODO classe commune aux icones (ico)*/
-.footer-icon,
-.menu-icon,
-.mod-icon,
 .ico {
   align-self: baseline;
   background: var(--light-grey);
@@ -453,7 +447,6 @@ address li {
 
 /*------mode bureau------*/
 @media (min-width: 992px) {
-  /*TODO regler decalage sous menu*/
   body {
     flex-direction: column; /* affiche le menu en haut de la page */
   }
@@ -528,6 +521,11 @@ address li {
   #main-menu > ul > li > a {
     /* supprime les traits de séparations sous les <a> de premier niveau*/
     border-bottom: none;
+  }
+
+  /* Alignement du premier sous menu */
+  #main-menu > ul > li > ul {
+    margin-left: 10px;
   }
 
   /* Masque les sous menus */

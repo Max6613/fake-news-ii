@@ -24,9 +24,9 @@ class Database
             $pdo = new PDO($dsn, $this->_user, $this->_password);
             return $pdo;
         }catch (PDOException $ex){
-            var_dump($ex);
+            //var_dump($ex);
             //TODO message erreur via GET ou SESSION ?
-            echo "Unable to connect to database";
+            echo '<div class="error">Unable to connect to database</div>';
         }
         return false;
     }

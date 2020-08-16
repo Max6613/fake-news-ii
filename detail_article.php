@@ -27,7 +27,7 @@ else {
             <div class="title">
 
                 <div class="fake-logo">
-                    <a href="index.php">Fake News II</a>
+                    <a href="/">Fake News II</a>
                 </div>
 
                 <h1><?php echo $art->getTitle() ?></h1>
