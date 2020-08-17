@@ -31,8 +31,7 @@ class Database
         $dsn = 'mysql:host=' . $this->_host . ';dbname=' . $this->_db_name;
 
         try{
-            $pdo = new PDO($dsn, $this->_user, $this->_password);
-            return $pdo;
+            return new PDO($dsn, $this->_user, $this->_password);
         }catch (PDOException $ex){
             //var_dump($ex);
             //TODO gérer erreur

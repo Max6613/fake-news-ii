@@ -54,6 +54,6 @@
 
     <div class="footer-bottom">
         <p>&copy;Fake News. Tout droits réservés.</p>
-        <p> <a href="#" class="a-underline">Mentions Illégales</a></p>
+        <p> <a href="mentions_illegales.php" class="a-underline">Mentions Illégales</a></p>
     </div>
 </footer>

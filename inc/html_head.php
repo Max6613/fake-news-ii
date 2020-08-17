@@ -30,7 +30,8 @@ define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
         return false;
     }
 
-
+    $style = '';
+    $title = 'FAKE NEWS II, Reloaded';
     switch (PAGE_EN_COURS[0]){
         case '/':
         case '/index.php':
@@ -67,9 +68,10 @@ define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
             }
             break;
 
-        default:
-            $style = '';
-            $title = 'FAKE NEWS II, Reloaded';
+        case '/mentions_illegales.php':
+            $title = 'Mentions illégales - Fake News II';
+
+            break;
     }
 
     if (!empty($style)) {
