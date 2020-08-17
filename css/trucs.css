@@ -1,34 +1,36 @@
 .article > button {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .art-desc {
-    display: flex;
-    margin-bottom: 0;
+  display: flex;
+  margin-bottom: 0;
 }
 
 .article img {
-    /*float: left;*/
-    /*margin-right: 15px;*/
-    margin-bottom: 10px;
-    width: 35%;
+  margin-bottom: 10px;
+  width: 35%;
 }
 
 .art-desc > p {
-    flex-basis: 70%;
+  flex-basis: 70%;
 }
 
 .left {
-    text-align: left;
+  text-align: left;
+}
+
+.mod-btns {
+  left: -77px;
+  top: 41px;
 }
 
 @media (min-width: 768px) {
-    .article {
-        text-align: initial;
-    }
+  .article {
+    text-align: initial;
+  }
 
-        .article img {
-            width: 60%;
-        }
+  .article img {
+    width: 60%;
+  }
 }
-

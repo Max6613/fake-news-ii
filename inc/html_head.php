@@ -58,7 +58,7 @@ define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
             $title = 'Connexion - Fake News II';
             break;
 
-        case '/article_mod.php':
+        case '/mod_article.php':
             $style = 'article_mod';
             if (isset($_GET['id']) && !empty($_GET['id'])){
                 $tmp = GetTitleByID($_GET['id']);

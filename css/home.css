@@ -11,6 +11,16 @@
   box-shadow: var(--dark-bckgnd) 0 0 12px -6px;
 }
 
+.mod-btns {
+  left: 130px;
+  top: 337px;
+}
+
+.mod-btns:hover ~ .article,
+.mod-btns:active ~ .article {
+  box-shadow: var(--dark-bckgnd) 0 0 12px -6px;
+}
+
 /*----Citations----*/
 .citation {
   position: relative;

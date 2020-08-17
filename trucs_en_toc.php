@@ -38,7 +38,7 @@ require_once 'inc/global.php';
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
                             isset($_SESSION['role']) &&
                             ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
-                        echo MODIFICATION_LOGO;
+                        echo MOD_LOGO;
                     }
                     ?>
                 </div>
@@ -50,8 +50,7 @@ require_once 'inc/global.php';
                 <?php
                 require_once 'classes/PDOArticle.php';
 
-                //TODO pages de navigation (1,2,3,4,...) via GET
-                //  ou bouton afficher la suite (JS+AJAX)
+                //TODO ajouter un article
 
                 //Recuperation de tous les articles
                 $pdoArticle = new PDOArticle();
@@ -71,6 +70,8 @@ require_once 'inc/global.php';
                         }
                     }
                 }
+                //TODO pages de navigation (1,2,3,4,...) via GET
+                //  ou bouton afficher la suite (JS+AJAX)
 
                 //Si aucun article ou erreur de connexion ou de requete
                 if (!$res): ?>

@@ -67,6 +67,49 @@ function addModElmnt(element, value, id) {
   element.appendChild(form);
 }
 
+/**
+ *
+ */
+function closeModal() {
+  $(".modal").remove();
+  $(".layer").remove();
+}
+
+/**
+ * Créer la modal de confirmation pour la suppression d'un article
+ */
+function buildModal(art_id) {
+  let p = createHtmlElmnt(
+    "p",
+    {},
+    "Etes-vous sur de vouloir supprimer cet article ?"
+  );
+
+  let valid_btn = createHtmlElmnt("button", { type: "submit" }, "Supprimer");
+  let cancel_btn = createHtmlElmnt(
+    "button",
+    { onclick: "closeModal()" },
+    "Annuler"
+  );
+
+  let form = createHtmlElmnt("form", {
+    action: "/scripts/php/del_article.php?id=" + art_id,
+    method: "POST",
+    id: "del_form",
+  });
+  form.appendChild(p);
+  form.appendChild(valid_btn);
+  form.appendChild(cancel_btn);
+
+  let modal = createHtmlElmnt("div", { class: "modal" });
+  modal.appendChild(form);
+
+  let layer = createHtmlElmnt("div", { class: "layer" });
+
+  $("body").append(modal);
+  $("body").append(layer);
+}
+
 //__________LISTENERS__________
 const mod_logo = document.querySelector(".mod-logo");
 
@@ -92,6 +135,15 @@ mod_logo.addEventListener("click", function () {
   }
 
   addModElmnt(parent, prt_value, settings[parent.id]);
+});
+
+const del_logo = document.querySelector(".del-logo");
+
+del_logo.addEventListener("click", function () {
+  let article = this.parentNode.nextElementSibling;
+
+  console.log(article.classList);
+  buildModal(article.classList[1]);
 });
 
 //TODO convertir en jquery

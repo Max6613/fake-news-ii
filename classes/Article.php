@@ -41,7 +41,15 @@ class Article
 
     public function ToStrHomePreview()
     {
-        $html =
+        $html = '';
+
+        if (IS_REDAC){
+            $html .= '<div class="mod-btns">
+                        <a  href="mod_article.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>
+                        <span class="del-logo"><i class="fas fa-trash-alt ico mod-icon"></i></span>
+                      </div>';
+        }
+        $html .=
             '<div class="article ' . $this->_id . '">
                 <div>
                     <img src="' . $this->_img . '" alt="">
@@ -52,21 +60,25 @@ class Article
                 </div>
 
                 <h3>' . $this->_title . '</h3>
-                <p>' . $this->_chapo . '</p>';
+                <p>' . $this->_chapo . '</p>
+            </div>';
 
-        if (IS_REDAC){
-            $html .= '<a  href="article_mod.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>';
-        }
-
-        $html .= '</div>';
         echo $html;
     }
 
 
     public function ToStrTrucsPreview()
     {
-        $html =
-            '<div class="article">
+        $html = '';
+        if (IS_REDAC){
+            $html .= '<div class="mod-btns">
+                        <a  href="mod_article.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>
+                        <span class="del-logo"><i class="fas fa-trash-alt ico mod-icon"></i></span>
+                      </div>';
+        }
+
+        $html .=
+            '<div class="article ' . $this->_id . '">
                 <div class="left">
                     <span class="date">' . $this->_date . '</span>
                 </div>
@@ -77,13 +89,9 @@ class Article
                 </div>
                 <button>
                     <a href="detail_article.php?id=' . $this->_id . '"><i class="far fa-file" aria-hidden="true"></i> JE VEUX LA SUITE !</a>
-                </button>';
+                </button>
+            </div>';
 
-        if (IS_REDAC){
-            $html .= '<a  href="article_mod.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>';
-        }
-
-        $html .= '</div>';
         echo $html;
     }
 
@@ -97,7 +105,7 @@ class Article
                     <span class="date">' . $this->_date . '</span>';
 
         if (IS_REDAC){
-            $html .= '<a  href="article_mod.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>';
+            $html .= '<a  href="mod_article.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>';
         }
 
         $html .= '</div>

@@ -319,6 +319,12 @@ main p {
   padding: 3px 10px;
 }
 
+.mod-btns {
+  display: inline;
+  position: relative;
+  z-index: 20;
+}
+
 /*------Footer------*/
 footer {
   background: var(--grey-bckgnd);
@@ -384,6 +390,37 @@ address li {
   padding-bottom: 30px;
 }
 
+/*------Modal + layer------*/
+.modal {
+  background: var(--light-bckgnd);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  left: 50%;
+  padding: 30px 30px 0 30px;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  width: 75%;
+  z-index: 30;
+}
+
+.modal p {
+  margin-bottom: 30px;
+}
+
+.layer {
+  background: #000000;
+  display: block;
+  height: 100vh;
+  left: 0;
+  opacity: 90%;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 20;
+}
+
 /*--------Media queries--------*/
 /*------mode tablette------*/
 @media (min-width: 768px) {
@@ -442,6 +479,11 @@ address li {
 
   .footer-bottom p:first-child {
     border-right: 1px solid var(--light-grey);
+  }
+
+  /*----Modal----*/
+  .modal {
+    width: auto;
   }
 }
 

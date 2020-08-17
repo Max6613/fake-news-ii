@@ -33,7 +33,7 @@ require_once 'inc/global.php';
                     //Si utilisateur connecté en tant qu'admin ou redac,
                     // affichage du logo de modification
                     if (IS_REDAC){
-                        echo MODIFICATION_LOGO;
+                        echo MOD_LOGO;
                     }
                     ?>
                 </div>
