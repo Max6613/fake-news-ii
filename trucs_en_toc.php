@@ -47,6 +47,9 @@ require_once 'inc/global.php';
         </header>
         <main>
             <section class="latest-news container">
+                <div>
+                    <?php echo ADD_LOGO ?>
+                </div>
                 <?php
                 require_once 'classes/PDOArticle.php';
 
