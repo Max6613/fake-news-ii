@@ -7,6 +7,7 @@ define('TRUC_PHRASE_ID', 12);
 //Icone de modification des sous-titres
 define('MOD_LOGO', '<span class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></span>');
 define('ADD_LOGO', '<a href="new_article.php" class="add-logo"><i class="fas fa-plus-circle ico mod-icon"></i> Nouvel article</a>');
+define('DEL_LOGO', '<span class="del-logo"><i class="fas fa-trash ico mod-icon"></i></span>');
 
 //Scripts
 define('ADMINISTRATION_SCRIPT', '<script type="application/javascript" src="scripts/js/administration.js"></script>');

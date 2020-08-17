@@ -1,8 +1,8 @@
 <?php
-require_once '../../classes/PDOLogin.php';
+require_once '../../classes/PDOUser.php';
 
 if (isset($_POST['login']) && isset($_POST['passwd'])){
-    $PDOlogin = new PDOLogin();
+    $PDOlogin = new PDOUser();
     $user = $PDOlogin->Authenticate($_POST['login'], $_POST['passwd']);
 
     if (!$user){
