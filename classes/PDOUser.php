@@ -101,13 +101,16 @@ class PDOUser
                 $redac_opt = new Html('option', $redac_attrs, 'Rédacteur');
 
                 //Création du select
-                $select = new Html('select', ['name'=>'role', 'id'=>'role'], null, [$admin_opt, $read_opt, $redac_opt]);
+                $select = new Html('select', ['name'=>'role'], null, [$admin_opt, $read_opt, $redac_opt]);
+
+                //Création d'input caché contenant l'id
+                $hidden_inp = new Html('input', ['type'=>'hidden', 'name'=>'id', 'value'=>$user->GetId()]);
 
                 //Création du bouton de validation du formulaire
                 $btn = new Html('button', ['type'=>'submit'], 'Appliquer');
 
                 //Création du formulaire
-                $form = new Html('form', ['action'=>'scripts/php/modif_role_user.php', 'method'=>'POST', 'id'=>'modif-role'], null, [$select, $btn]);
+                $form = new Html('form', ['action'=>'scripts/php/modif_role_user.php', 'method'=>'POST'], null, [$select, $hidden_inp, $btn]);
 
                 //Création du span pour l'id
                 $id_span = new Html('span', null, $user->GetId());
@@ -121,8 +124,29 @@ class PDOUser
                 //Création de la div pour les données de l'utilisateur
                 $user_div = new Html('div', ['class'=>'user'], null, [$id_span, $login_span, $form, $del_span]);
 
+                $html.= $user_div->ToStr();
+
             }
-            echo $user_div->ToStr();
+            echo $html;
         }
+    }
+
+
+    public function ModRole(int $id, string $role) : bool
+    {
+        $connection = $this->GetConnection();
+
+        if (!$connection){
+            return false;
+        }
+
+        $sql = 'UPDATE `users` SET `role` = ? WHERE `id` = ?';
+        $stmt = $connection->prepare($sql);
+        $res = $stmt->execute([$role, $id]);
+
+        if (!$res){
+            return false;
+        }
+        return true;
     }
 }
