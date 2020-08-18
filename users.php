@@ -2,11 +2,14 @@
 <html lang="fr">
 <?php
 require_once 'inc/global.php';
-if (!IS_ADMIN){
-    header('Location: /');
+require_once 'inc/html_head.php';
+
+if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
+    isset($_SESSION['role']) && $_SESSION['role'] == 'administrator')){
+        header('Location: /');
 }
 
-require_once 'inc/html_head.php';
+
 ?>
 
 <body>
@@ -26,6 +29,7 @@ require_once 'inc/html_head.php';
                 </div>
 
                 <div id="index-phrase" class="phrase">
+
                     <?php
                     require_once 'classes/PDOSetting.php';
 
@@ -34,6 +38,7 @@ require_once 'inc/html_head.php';
                     $setting = $pdo_sett->GetSetting(INDEX_PHRASE_ID);
                     echo $setting->getValue();
                     ?>
+
                 </div>
 
             </div>
@@ -45,6 +50,13 @@ require_once 'inc/html_head.php';
             <section class="container">
                 <h1>Gestion des utilisateurs</h1>
 
+                <div class="user user-header">
+                    <span class="user-id">Numéro</span>
+                    <span class="user-login">Identifiant</span>
+                    <span class="user-role">Privilège</span>
+                    <span class="user-del">Suppression</span>
+                </div>
+
                 <?php
                 require_once 'classes/PDOUser.php';
 
@@ -54,6 +66,8 @@ require_once 'inc/html_head.php';
 
                 ?>
 
+                <!-- TODO ajouter une ligne avant/apres les utilisateurs, pour ajouter un utilisateur -->
+
             </section>
         </main>
 
@@ -61,5 +75,14 @@ require_once 'inc/html_head.php';
 
     </div>
     <script type="application/javascript" src="scripts/js/menu_deployment.js"></script>
+
+    <?php
+    //Si utilisateur connecté en tant qu'admin ou redac,
+    // ajout du script permettant la modification d'éléments
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
+        isset($_SESSION['role']) && $_SESSION['role'] == 'administrator'){
+        echo USER_ADMINISTRATION_SCRIPT;
+    }
+    ?>
 </body>
 </html>

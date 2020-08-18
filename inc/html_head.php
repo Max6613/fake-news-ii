@@ -70,7 +70,11 @@ define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
 
         case '/mentions_illegales.php':
             $title = 'Mentions illégales - Fake News II';
+            break;
 
+        case '/users.php':
+            $title = 'Gestion utilisateurs - Fake News II';
+            $style = 'users';
             break;
     }
 

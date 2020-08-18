@@ -6,8 +6,8 @@ if (!isset($_GET['id'])) {
 require_once '../../classes/PDOArticle.php';
 
 if (!empty($_GET['id'])){
-    $pdoArticle = new PDOArticle();
-    $pdoArticle->DelArticle($_GET['id']);
+    $pdo_article = new PDOArticle();
+    $pdo_article->DelArticle($_GET['id']);
 }
 
 header('Location: ' . $_SERVER['HTTP_REFERER']);

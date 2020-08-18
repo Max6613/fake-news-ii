@@ -92,7 +92,10 @@ require_once 'inc/global.php';
     <?php
     //Si utilisateur connecté en tant qu'admin ou redac,
     // ajout du script permettant la modification d'éléments
-    if (IS_REDAC){
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
+        isset($_SESSION['role']) &&
+        ($_SESSION['role'] == 'administrator' ||
+        $_SESSION['role'] == 'redactor')){
         echo ADMINISTRATION_SCRIPT;
     }
     ?>

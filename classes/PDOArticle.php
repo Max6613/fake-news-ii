@@ -183,7 +183,7 @@ class PDOArticle
             return false;
         }
 
-        $sql = 'DELETE FROM posts WHERE `id` = ?';
+        $sql = 'DELETE FROM `posts` WHERE `id` = ?';
         $stmt = $connection->prepare($sql);
         $res = $stmt->execute([$article_id]);
 

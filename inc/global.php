@@ -10,7 +10,12 @@ define('ADD_LOGO', '<a href="new_article.php" class="add-logo"><i class="fas fa-
 define('DEL_LOGO', '<span class="del-logo"><i class="fas fa-trash ico mod-icon"></i></span>');
 
 //Scripts
-define('ADMINISTRATION_SCRIPT', '<script type="application/javascript" src="scripts/js/administration.js"></script>');
+define('ADMINISTRATION_SCRIPT', '<script type="application/javascript" src="scripts/js/administration.js"></script>
+                                 <script type="application/javascript" src="scripts/js/modal.js"></script>
+                                 <script type="application/javascript" src="scripts/js/create_html.js"></script>');
+define('USER_ADMINISTRATION_SCRIPT', '<script type="application/javascript" src="scripts/js/user_administration.js"></script>
+                                      <script type="application/javascript" src="scripts/js/modal.js"></script>
+                                      <script type="application/javascript" src="scripts/js/create_html.js"></script>');
 
 //Conditions
 // utilisateur connecté en tant qu'administrateur ou rédacteur

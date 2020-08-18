@@ -32,7 +32,10 @@ require_once 'inc/global.php';
 
                     //Si utilisateur connecté en tant qu'admin ou redac,
                     // affichage du logo de modification
-                    if (IS_REDAC){
+                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
+        isset($_SESSION['role']) &&
+        ($_SESSION['role'] == 'administrator' ||
+        $_SESSION['role'] == 'redactor')){
                         echo MOD_LOGO;
                     }
                     ?>

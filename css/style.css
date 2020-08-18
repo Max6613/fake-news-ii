@@ -1,5 +1,7 @@
 @import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
 
+/* TODO passer les unites en REM ou VH/VW ou %*/
+
 /*----------Généralités----------*/
 :root {
   --light-bckgnd: #ffffff;

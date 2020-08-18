@@ -107,19 +107,23 @@ class PDOUser
                 $hidden_inp = new Html('input', ['type'=>'hidden', 'name'=>'id', 'value'=>$user->GetId()]);
 
                 //Création du bouton de validation du formulaire
-                $btn = new Html('button', ['type'=>'submit'], 'Appliquer');
+                $btn = new Html('button', ['type'=>'submit', 'disabled'=>null], 'Appliquer');
 
                 //Création du formulaire
-                $form = new Html('form', ['action'=>'scripts/php/modif_role_user.php', 'method'=>'POST'], null, [$select, $hidden_inp, $btn]);
+                $form = new Html('form', ['action'=>'scripts/php/modif_role_user.php', 'method'=>'POST', 'class'=>'user-role'], null, [$hidden_inp, $select, $btn]);
 
                 //Création du span pour l'id
-                $id_span = new Html('span', null, $user->GetId());
+                $id_span = new Html('span', ['class'=>'user-id'], $user->GetId());
 
                 //Création du span pour le login
-                $login_span = new Html('span', null, $user->GetLogin());
+                $login_span = new Html('span', ['class'=>'user-login'], $user->GetLogin());
 
                 //Création du bouton de suppression
-                $del_span = new Html('span', null, null, [new Html('i', ['class'=>'fas fa-trash-alt ico mod-icon'])]);
+                $del_span = null;
+                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
+                    && $_SESSION['role'] == 'administrator' && $_SESSION['id'] != $user->GetId()){
+                    $del_span = new Html('span', ['class'=>'user-del ' . $user->GetId()], null, [new Html('i', ['class'=>'fas fa-trash-alt ico mod-icon'])]);
+                }
 
                 //Création de la div pour les données de l'utilisateur
                 $user_div = new Html('div', ['class'=>'user'], null, [$id_span, $login_span, $form, $del_span]);
@@ -132,7 +136,7 @@ class PDOUser
     }
 
 
-    public function ModRole(int $id, string $role) : bool
+    public function ModRole(int $user_id, string $role) : bool
     {
         $connection = $this->GetConnection();
 
@@ -142,9 +146,27 @@ class PDOUser
 
         $sql = 'UPDATE `users` SET `role` = ? WHERE `id` = ?';
         $stmt = $connection->prepare($sql);
-        $res = $stmt->execute([$role, $id]);
+        $res = $stmt->execute([$role, $user_id]);
 
         if (!$res){
+            return false;
+        }
+        return true;
+    }
+
+
+    public function DelUser(int $user_id) : bool
+    {
+        $connection = $this->GetConnection();
+        if (!$connection){
+            return false;
+        }
+
+        $sql = 'DELETE FROM `users` WHERE `id` = ?';
+        $stmt = $connection->prepare($sql);
+        $res = $stmt->execute([$user_id]);
+
+        if(!$res){
             return false;
         }
         return true;

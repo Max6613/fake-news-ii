@@ -44,7 +44,7 @@ class Html
 
         if (!empty($this->_child)){
             foreach ($this->_child as $child){
-                if (get_class($child) == 'Html'){
+                if (!empty($child) && get_class($child) == 'Html'){
                     $html .= $child->ToStr();
                 }
             }

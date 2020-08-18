@@ -59,7 +59,8 @@
         </li>
 
         <?php
-        if (IS_ADMIN){
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
+            && $_SESSION['role'] == 'administrator'){
             echo '<li>
                       <a href="/users.php"><i class="fas fa-user ico menu-icon"></i> Utilisateurs</a>
                   </li>';

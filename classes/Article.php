@@ -43,7 +43,9 @@ class Article
     {
         $html = '';
 
-        if (IS_REDAC){
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role']) &&
+            ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')
+){
             $html .= '<div class="mod-btns">
                         <a  href="mod_article.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>
                         <span class="del-logo"><i class="fas fa-trash-alt ico mod-icon"></i></span>
@@ -70,7 +72,9 @@ class Article
     public function ToStrTrucsPreview()
     {
         $html = '';
-        if (IS_REDAC){
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role']) &&
+            ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')
+){
             $html .= '<div class="mod-btns">
                         <a  href="mod_article.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>
                         <span class="del-logo"><i class="fas fa-trash-alt ico mod-icon"></i></span>
@@ -104,7 +108,11 @@ class Article
                 <div>
                     <span class="date">' . $this->_date . '</span>';
 
-        if (IS_REDAC){
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
+        isset($_SESSION['role']) &&
+        ($_SESSION['role'] == 'administrator' ||
+        $_SESSION['role'] == 'redactor')
+){
             $html .= '<a  href="mod_article.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>';
         }
 

@@ -1,0 +1,57 @@
+main {
+  margin-bottom: 150px;
+}
+
+.user {
+  display: flex;
+  height: 35px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.user > .user-id {
+  flex-basis: 15%;
+}
+
+.user > .user-login {
+  flex-basis: 20%;
+}
+
+.user > .user-role {
+  flex-basis: 50%;
+}
+
+.user:not(.user-header) > .user-role {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user > .user-role select {
+  border-radius: 4px;
+  color: var(--mid-grey);
+  flex-basis: 59%;
+  border-color: var(--lighter-grey);
+}
+
+.user > .user-role button {
+  margin-bottom: 0;
+  padding: 10px;
+  flex-basis: 39%;
+}
+
+.user > .user-role button:disabled {
+  background: var(--mid-grey);
+  cursor: not-allowed;
+}
+
+.user > .user-del {
+  flex-basis: 15%;
+}
+
+.user > .user-del .ico {
+  cursor: pointer;
+}
+
+.user-header {
+  font-weight: 400;
+}

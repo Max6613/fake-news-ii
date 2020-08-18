@@ -1,23 +1,7 @@
+//TODO convertir en jquery
+
 //Tableau associatif des ID(html):ID(sql) des sous titres modifiables
 const settings = { "index-phrase": 1, "truc-phrase": 2 };
-
-/**
- * Créé une balise html avec en option des attributs et une valeur
- */
-function createHtmlElmnt(markup, attribute = null, value = null) {
-  markup = document.createElement(markup);
-
-  if (attribute != null) {
-    for (let attr in attribute) {
-      markup.setAttribute(attr, attribute[attr]);
-    }
-  }
-
-  if (value != null) {
-    markup.innerHTML = value;
-  }
-  return markup;
-}
 
 /**
  * Annule la modification et rajoute le texte d'origine
@@ -67,49 +51,6 @@ function addModElmnt(element, value, id) {
   element.appendChild(form);
 }
 
-/**
- *
- */
-function closeModal() {
-  $(".modal").remove();
-  $(".layer").remove();
-}
-
-/**
- * Créer la modal de confirmation pour la suppression d'un article
- */
-function buildModal(art_id) {
-  let p = createHtmlElmnt(
-    "p",
-    {},
-    "Etes-vous sur de vouloir supprimer cet article ?"
-  );
-
-  let valid_btn = createHtmlElmnt("button", { type: "submit" }, "Supprimer");
-  let cancel_btn = createHtmlElmnt(
-    "button",
-    { onclick: "closeModal()" },
-    "Annuler"
-  );
-
-  let form = createHtmlElmnt("form", {
-    action: "/scripts/php/del_article.php?id=" + art_id,
-    method: "POST",
-    id: "del_form",
-  });
-  form.appendChild(p);
-  form.appendChild(valid_btn);
-  form.appendChild(cancel_btn);
-
-  let modal = createHtmlElmnt("div", { class: "modal" });
-  modal.appendChild(form);
-
-  let layer = createHtmlElmnt("div", { class: "layer" });
-
-  $("body").append(modal);
-  $("body").append(layer);
-}
-
 //__________LISTENERS__________
 const mod_logo = document.querySelector(".mod-logo");
 
@@ -142,8 +83,5 @@ const del_logo = document.querySelector(".del-logo");
 del_logo.addEventListener("click", function () {
   let article = this.parentNode.nextElementSibling;
 
-  console.log(article.classList);
-  buildModal(article.classList[1]);
+  buildModal(article.classList[1], "article");
 });
-
-//TODO convertir en jquery
