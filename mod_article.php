@@ -11,7 +11,7 @@ if (!isset($_GET['id'])) {
 
 if (!empty($_GET['id'])){
     $pdoArticle = new PDOArticle();
-    $art = $pdoArticle->GetArticle($_GET['id']);
+    $art = $pdoArticle->GetArticleById($_GET['id']);
 }
 ?>
 

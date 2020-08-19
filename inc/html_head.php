@@ -22,7 +22,7 @@ define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
 
     function GetTitleByID(int $id){
         $pdoArticle = new PDOArticle();
-        $art = $pdoArticle->GetArticle($id);
+        $art = $pdoArticle->GetArticleById($id);
 
         if (get_class($art) == 'Article'){
             return $art->getTitle();
@@ -76,10 +76,15 @@ define('PAGE_EN_COURS', explode('?', $_SERVER['REQUEST_URI']));
             $title = 'Gestion utilisateurs - Fake News II';
             $style = 'users';
             break;
+
+        case '/new_article.php':
+            $title = 'Ajout d\'article - Fake News II';
+            $style = 'new_art';
+            break;
     }
 
     if (!empty($style)) {
-        echo '<link rel="stylesheet" href="css/' . $style . '.css">';
+        echo '<link rel="stylesheet" href="/css/' . $style . '.css">';
     }
 
 

@@ -3,15 +3,15 @@
 <?php
 require_once 'inc/html_head.php';
 require_once 'classes/PDOArticle.php';
+require_once 'classes/Html.php';
 
 if (isset($_GET['id']) && !empty($_GET['id'])){
     $pdoArticle = new PDOArticle();
-    $art = $pdoArticle->GetArticle($_GET['id']);
+    $art = $pdoArticle->GetArticleById($_GET['id']);
 }
 else {
-    echo '<div class="error">
-            <p>Article indisponible, veuillez réessayer</p>
-        </div>';
+    $html = new Html('div', ['class'=>'error'], 'Cet article n\'existe pas, ou a été supprimé.');
+    echo $html->ToStr();
 }
 ?>
 

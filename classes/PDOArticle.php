@@ -54,7 +54,7 @@ class PDOArticle
      * @param int $article_id
      * @return Article|false
      */
-    public function GetArticle(int $article_id) : Article
+    public function GetArticleById(int $article_id)
     {
         $connection = $this->GetConnection();
         if (!$connection){
