@@ -6,6 +6,17 @@ textarea {
   resize: vertical;
 }
 
+label {
+  font-weight: 400;
+}
+
+input,
+textarea {
+  border: var(--lighter-grey) 1px solid;
+  border-radius: 4px;
+  color: var(--mid-grey);
+}
+
 .content > textarea,
 .chapo > textarea {
   width: 100%;

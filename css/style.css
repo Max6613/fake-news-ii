@@ -312,6 +312,7 @@ main p {
 /*----Article----*/
 .article {
   padding: 15px;
+  width: 100%;
 }
 
 .article img {
@@ -325,12 +326,6 @@ main p {
   color: var(--light-bckgnd);
   font-weight: 400;
   padding: 3px 10px;
-}
-
-.mod-btns {
-  display: inline;
-  position: relative;
-  z-index: 20;
 }
 
 /*------Footer------*/
@@ -492,6 +487,11 @@ address li {
   /*----Modal----*/
   .modal {
     width: auto;
+  }
+
+  .btns {
+    display: flex;
+    justify-content: space-around;
   }
 }
 

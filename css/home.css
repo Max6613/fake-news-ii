@@ -11,11 +11,6 @@
   box-shadow: var(--dark-bckgnd) 0 0 12px -6px;
 }
 
-.mod-btns {
-  left: 130px;
-  top: 337px;
-}
-
 .mod-btns:hover ~ .article,
 .mod-btns:active ~ .article {
   box-shadow: var(--dark-bckgnd) 0 0 12px -6px;
@@ -47,14 +42,14 @@
 }
 
 @media (min-width: 768px) {
-  /*----Fake news----*/
   .flex-article {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    width: 100%;
   }
 
-  .article {
+  .article-mod {
     flex-basis: 49%;
   }
 
@@ -64,7 +59,7 @@
 }
 
 @media (min-width: 992px) {
-  .article {
+  .article-mod {
     flex-basis: 33%;
   }
 }

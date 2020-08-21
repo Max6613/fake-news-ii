@@ -46,10 +46,7 @@ class Article
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role']) &&
             ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')
 ){
-            $html .= '<div class="mod-btns">
-                        <a  href="mod_article.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>
-                        <span class="del-logo"><i class="fas fa-trash-alt ico mod-icon"></i></span>
-                      </div>';
+            $html .= '<div class="article-mod">';
         }
         $html .=
             '<div class="article ' . $this->_id . '">
@@ -63,7 +60,12 @@ class Article
 
                 <h3>' . $this->_title . '</h3>
                 <p>' . $this->_chapo . '</p>
-            </div>';
+            </div>
+            <div class="mod-btns">
+                <a  href="mod_article.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>
+                <span class="del-logo"><i class="fas fa-trash-alt ico mod-icon"></i></span>
+            </div>
+        </div>';
 
         echo $html;
     }
@@ -71,17 +73,7 @@ class Article
 
     public function ToStrTrucsPreview()
     {
-        $html = '';
-        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role']) &&
-            ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')
-){
-            $html .= '<div class="mod-btns">
-                        <a  href="mod_article.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>
-                        <span class="del-logo"><i class="fas fa-trash-alt ico mod-icon"></i></span>
-                      </div>';
-        }
-
-        $html .=
+        $html =
             '<div class="article ' . $this->_id . '">
                 <div class="left">
                     <span class="date">' . $this->_date . '</span>
@@ -93,8 +85,16 @@ class Article
                 </div>
                 <button>
                     <a href="detail_article.php?id=' . $this->_id . '"><i class="far fa-file" aria-hidden="true"></i> JE VEUX LA SUITE !</a>
-                </button>
-            </div>';
+                </button>';
+
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role']) &&
+            ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+
+            $html .= '<a  href="mod_article.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>
+                        <span class="del-logo"><i class="fas fa-trash-alt ico mod-icon"></i></span>';
+        }
+
+        $html .= '</div>';
 
         echo $html;
     }
@@ -151,7 +151,7 @@ class Article
                 <div class="image">
                     <label for="image">Image: </label>
                     <input type="file" name="image" id="image" accept="image/jpeg">
-                    <img src="' . $this->_img . '" alt="">
+                    <img src="' . $this->_img . '" id="img-prev" alt="">
                 </div>
                 
                 <div class="chapo">

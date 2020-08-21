@@ -35,6 +35,8 @@ function buildModal(id, content) {
     { onclick: "closeModal()" },
     "Annuler"
   );
+  let btn_div = createHtmlElmnt("div", { class: "btns" });
+  btn_div.append(valid_btn, cancel_btn);
 
   let form = createHtmlElmnt("form", {
     action: "/scripts/php/del_" + script + ".php?id=" + id,
@@ -42,8 +44,7 @@ function buildModal(id, content) {
     id: "del_form",
   });
   form.appendChild(p);
-  form.appendChild(valid_btn);
-  form.appendChild(cancel_btn);
+  form.appendChild(btn_div);
 
   let modal = createHtmlElmnt("div", { class: "modal" });
   modal.appendChild(form);

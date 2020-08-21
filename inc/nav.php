@@ -56,7 +56,7 @@
 
             //"BIENVENUE (user)"
             $icon = new Html('i', ['class'=>'fas fa-cog ico menu-icon']);
-            $link = new Html('a', ['href'=>$link], $text, [$icon]);
+            $link = new Html('a', ['href'=>$link], $icon->ToStr() . $text);
             echo $link->ToStr();
 
             //Sous-menu

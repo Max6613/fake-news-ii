@@ -48,5 +48,6 @@ if (!empty($_GET['id'])){
 
     </div>
     <script type="application/javascript" src="scripts/js/menu_deployment.js"></script>
+    <script type="application/javascript" src="scripts/js/img_preview.js"></script>
 </body>
 </html>

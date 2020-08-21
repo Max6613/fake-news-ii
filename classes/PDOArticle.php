@@ -26,14 +26,6 @@ class PDOArticle
     {
         $columns = '';
         $cnt = 0;
-//        foreach ($list as $key => $val) {
-//            $columns .= '`' .$key . '` = \'' . str_replace('\'', '\'\'', $val) . '\'';
-//
-//            if ($cnt < count($list) - 1){
-//                $columns .= ', ';
-//            }
-//            $cnt++;
-//        }
 
         foreach ($list as $key => $val) {
             $columns .= '`' .$key . '` = \'' . str_replace('\'', '\'\'', $val) . '\'';
@@ -161,6 +153,8 @@ class PDOArticle
         //$sql = 'UPDATE `posts` SET ? WHERE `id` = ?';
         //$stmt = $connection->prepare($sql);
         //$res = $stmt->execute([$this->ModList($mods), $article_id]);
+
+
 
         $sql = 'UPDATE `posts` SET ' . $this->ModList($mods) . ' WHERE `id` = ' . $article_id;
         $res = $connection->query($sql);

@@ -13,83 +13,82 @@ define('WIDTH_MAX', 800);    // Largeur max de l'image en pixels
 define('HEIGHT_MAX', 800);    // Hauteur max de l'image en pixels
 
 
+var_dump($_POST);
+var_dump($_FILES);
+
 if (isset($_POST['title']) && !empty($_POST['title'])
     && isset($_POST['chapo']) && !empty($_POST['chapo'])
     && isset($_POST['content']) && !empty($_POST['content'])){
 
     //Si upload d'une image pour l'article
-    if (isset($_FILES['img'])) {
+    if (isset($_FILES['img']) && !empty($_FILES['img']['tmp_name'])) {
 
-        if (!empty($_FILES['img']['tmp_name'])){
-            //Upload de l'image dans le dossier images du site
 
-            // Tableaux de donnees
-            $tabExt = array('jpg','png','jpeg');    // Extensions autorisees
-            $infosImg = array();
+        //Upload de l'image dans le dossier images du site
 
-            // Variables
-            $upload = false;
-            $ext = '';
-            $err_nb = '';
+        // Tableaux de donnees
+        $tabExt = array('jpg','png','jpeg');    // Extensions autorisees
+        $infosImg = array();
 
-            // On verifie si le champ est rempli
-            if( !empty($_FILES['img']['name']) ) {
+        // Variables
+        $upload = false;
+        $ext = '';
+        $err_nb = '';
 
-                // Recuperation de l'extension du fichier
-                $ext  = pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);
+        // On verifie si le champ est rempli
+        if( !empty($_FILES['img']['name']) ) {
 
-                // On verifie l'extension du fichier
-                if(in_array(strtolower($ext),$tabExt)) {
-                    // On recupere les dimensions du fichier
-                    $infosImg = getimagesize($_FILES['img']['tmp_name']);
+            // Recuperation de l'extension du fichier
+            $ext  = pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);
 
-                    // On verifie le type de l'image
-                    if($infosImg[2] >= 1 && $infosImg[2] <= 14) {
+            // On verifie l'extension du fichier
+            if(in_array(strtolower($ext),$tabExt)) {
+                // On recupere les dimensions du fichier
+                $infosImg = getimagesize($_FILES['img']['tmp_name']);
 
-                        // On verifie les dimensions et taille de l'image
-                        if(($infosImg[0] <= WIDTH_MAX) && ($infosImg[1] <= HEIGHT_MAX) && (filesize($_FILES['img']['tmp_name']) <= MAX_SIZE)) {
+                // On verifie le type de l'image
+                if($infosImg[2] >= 1 && $infosImg[2] <= 14) {
 
-                            // Parcours du tableau d'erreurs
-                            if(isset($_FILES['img']['error'])
-                                && UPLOAD_ERR_OK === $_FILES['img']['error']) {
+                    // On verifie les dimensions et taille de l'image
+                    if(($infosImg[0] <= WIDTH_MAX) && ($infosImg[1] <= HEIGHT_MAX) && (filesize($_FILES['img']['tmp_name']) <= MAX_SIZE)) {
 
-                                // Si c'est OK, on teste l'upload
-                                if(move_uploaded_file($_FILES['img']['tmp_name'], TARGET . $_FILES['img']['name'])) {
-                                    $upload = true;
-                                }
-                                else {
-                                    // Sinon on affiche une erreur systeme
-                                    $err_nb = 6;
-                                }
+                        // Parcours du tableau d'erreurs
+                        if(isset($_FILES['img']['error'])
+                            && UPLOAD_ERR_OK === $_FILES['img']['error']) {
+
+                            // Si c'est OK, on teste l'upload
+                            if(move_uploaded_file($_FILES['img']['tmp_name'], TARGET . $_FILES['img']['name'])) {
+                                $upload = true;
                             }
                             else {
-                                $err_nb = 5;
+                                // Sinon on affiche une erreur systeme
+                                $err_nb = 6;
                             }
                         }
                         else {
-                            // Sinon erreur sur les dimensions et taille de l'image
-                            $err_nb = 4;
+                            $err_nb = 5;
                         }
                     }
                     else {
-                        // Sinon erreur sur le type de l'image
-                        $err_nb = 3;
+                        // Sinon erreur sur les dimensions et taille de l'image
+                        $err_nb = 4;
                     }
                 }
                 else {
-                    // Sinon on affiche une erreur pour l'extension
-                    $err_nb = 2;
+                    // Sinon erreur sur le type de l'image
+                    $err_nb = 3;
                 }
             }
-            else{
-                $err_nb = 10;
+            else {
+                // Sinon on affiche une erreur pour l'extension
+                $err_nb = 2;
             }
         }
-        else
-        {
-            // Sinon on affiche une erreur pour le champ vide
-            $err_nb = 1;
+        else{
+            $err_nb = 10;
         }
+        
+
 
         //SI erreur d'upload, redirection vers la page nouvel article, avec message d'erreur
         if (!$upload){
@@ -102,6 +101,7 @@ if (isset($_POST['title']) && !empty($_POST['title'])
 
     //Sinon si une image est selectionné dans la liste des images
     elseif (isset($_POST['img-select']) && !empty($_POST['img-select'])) {
+        var_dump($_POST);
         $image = 'imgs/' . $_POST['img-select'];
     }
 
