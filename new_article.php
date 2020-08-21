@@ -138,7 +138,7 @@ require_once 'inc/global.php';
                         </textarea>
                     </div>
 
-                    <div class="img">
+                    <div class="image">
                         <label for="img-select">Sélectionné une image: </label>
                         <select name="img-select" id="img-select">
                             <option disabled selected value> -- Selectionné une image -- </option>
@@ -163,11 +163,10 @@ require_once 'inc/global.php';
                         <!--TODO upload d'une image-->
                         <label for="img">Ou uploader une image: </label>
                         <input type="hidden" name="MAX_FILE_SIZE" value="30000">
-                        <input type="file" name="img" id="img">
+                        <input type="file" name="img" id="image">
 
                         <!-- Apercu de l'image sélectionné -->
-                        <!-- TODO js pour la src -->
-                        <img src="#" alt="">
+                        <img src="#" alt="" id="img-prev">
                     </div>
 
                     <div class="btns">
@@ -184,5 +183,6 @@ require_once 'inc/global.php';
 
     </div>
     <script type="application/javascript" src="scripts/js/menu_deployment.js"></script>
+    <script type="application/javascript" src="scripts/js/img_preview.js"></script>
 </body>
 </html>

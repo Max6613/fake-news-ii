@@ -24,3 +24,10 @@ main form textarea {
 main form textarea[name="content"] {
   flex-basis: 300px;
 }
+
+main form img {
+  background: var(--grey-bckgnd);
+  height: auto;
+  padding: 7px;
+  width: 50%;
+}

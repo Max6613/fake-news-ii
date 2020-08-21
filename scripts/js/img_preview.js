@@ -4,12 +4,22 @@ function readURL(input) {
 
     reader.onload = function (e) {
       $("#img-prev").attr("src", e.target.result);
+      console.log(e.target.result);
     };
 
     reader.readAsDataURL(input.files[0]);
   }
 }
 
+function selectPrev(select) {
+  $("#img-prev").attr("src", "imgs/" + select);
+}
+
 $("#image").change(function () {
   readURL(this);
+});
+
+$("#img-select").change(function () {
+  console.log("select");
+  selectPrev($(this).val());
 });

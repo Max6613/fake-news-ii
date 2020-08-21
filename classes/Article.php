@@ -130,8 +130,6 @@ class Article
 
     public function ToModifForm()
     {
-        //TODO ajouter un apercu de l'image selectionné
-
         $date = explode(' ', $this->_date);
 
         echo
