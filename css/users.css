@@ -9,15 +9,15 @@ main {
   width: 100%;
 }
 
-.user > .user-id {
+.user .user-id {
   flex-basis: 15%;
 }
 
-.user > .user-login {
+.user .user-login {
   flex-basis: 20%;
 }
 
-.user > .user-role {
+.user .user-role {
   flex-basis: 50%;
 }
 
@@ -26,11 +26,15 @@ main {
   justify-content: space-between;
 }
 
-.user > .user-role select {
+.user > .user-role select,
+.user-add select {
   border-radius: 4px;
   color: var(--mid-grey);
-  flex-basis: 59%;
   border-color: var(--lighter-grey);
+}
+
+.user > .user-role select {
+  flex-basis: 59%;
 }
 
 .user > .user-role button {
@@ -44,14 +48,55 @@ main {
   cursor: not-allowed;
 }
 
-.user > .user-del {
+.user .user-del {
   flex-basis: 15%;
-}
-
-.user > .user-del .ico {
-  cursor: pointer;
 }
 
 .user-header {
   font-weight: 400;
+}
+
+.user-add {
+  /*height: auto;*/
+}
+
+.user-add > form {
+  display: flex;
+  flex-basis: 100%;
+  /*flex-wrap: wrap;*/
+  height: 35px;
+}
+
+.user-add > form > .user-login > input {
+  border: var(--lighter-grey) 1px solid;
+  border-radius: 4px;
+  color: var(--mid-grey);
+  text-align: center;
+}
+
+.user-add > form > .user-id,
+.user-add > form > .user-login,
+.user-add > form > .user-role {
+  padding: 0 5px;
+}
+
+.user-add > form > .btns {
+  margin-left: 5px;
+}
+
+.user-add > form > .user-login {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-add > form > select[name="role"] {
+  flex-basis: 30%;
+}
+
+.user-add button {
+  margin-bottom: 0;
+}
+
+.mod-icon {
+  cursor: pointer;
 }

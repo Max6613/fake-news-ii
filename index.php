@@ -45,6 +45,25 @@ require_once 'inc/global.php';
         </header>
         <main>
             <section class="latest-new container">
+
+                <?php
+                if (isset($_GET['err']) && !empty($_GET['err'])){
+                    require_once 'classes/Html.php';
+
+
+                    switch (($_GET['err'])){
+
+                        case 1:
+                            $mess = 'Erreur lors du chargement de l\'article';
+                            break;
+
+                        default:
+                            $mess = 'Une erreur est survenue, veuillez réessayer !';
+                    }
+                    $html = new Html('div', ['class'=>'error'], $mess);
+                }
+                ?>
+
                 <h2>LES DERNIÈRES <strong>FAKE NEWS</strong>!</h2>
                 <div class="flex-article">
                     <?php

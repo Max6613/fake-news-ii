@@ -8,8 +8,6 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
     isset($_SESSION['role']) && $_SESSION['role'] == 'administrator')){
         header('Location: /');
 }
-
-
 ?>
 
 <body>
@@ -57,6 +55,20 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
                     <span class="user-del">Suppression</span>
                 </div>
 
+                <div class="user user-add">
+                    <span>Ajouter un nouvel utilisateur: <i class="fas fa-plus-circle ico mod-icon"></i></span>
+
+                    <?php
+                    if (isset($_GET['err']) && !empty($_GET['err'])){
+                        require_once 'classes/Html.php';
+
+                        $html = new Html('div', ['class'=>'error'], 'Erreur lors de l\'ajout du nouvel utilisateur');
+                        echo $html->ToStr();
+                    }
+                    ?>
+
+                </div>
+
                 <?php
                 require_once 'classes/PDOUser.php';
 
@@ -67,7 +79,6 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
                 ?>
 
                 <!-- TODO ajouter une ligne avant/apres les utilisateurs, pour ajouter un utilisateur -->
-
             </section>
         </main>
 

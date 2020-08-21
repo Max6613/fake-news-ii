@@ -17,6 +17,7 @@ if (isset($_POST['title']) && !empty($_POST['title'])
     && isset($_POST['chapo']) && !empty($_POST['chapo'])
     && isset($_POST['content']) && !empty($_POST['content'])){
 
+    //Si upload d'une image pour l'article
     if (isset($_FILES['img'])) {
 
         if (!empty($_FILES['img']['tmp_name'])){
@@ -99,10 +100,12 @@ if (isset($_POST['title']) && !empty($_POST['title'])
 
     }
 
+    //Sinon si une image est selectionné dans la liste des images
     elseif (isset($_POST['img-select']) && !empty($_POST['img-select'])) {
         $image = 'imgs/' . $_POST['img-select'];
     }
 
+    //Sinon erreur => pas d'image
     else {
         header('Location: ../../new_article.php?err=1');
     }

@@ -48,9 +48,10 @@ require_once 'inc/global.php';
         </header>
         <main>
             <section class="container">
-                <h1>Ajouter un nouvel utilisateur</h1>
+                <h1>Ajouter un nouvel article</h1>
 
                 <?php
+                //Gestion des erreurs
                 if (isset($_GET['err']) && !empty($_GET['err'])){
                     switch ($_GET['err']){
                         case 1:
@@ -121,7 +122,7 @@ require_once 'inc/global.php';
 
                     <div class="art-chapo">
                         <label for="chapo">Chapo: </label>
-                        <textarea name="chapo" id="chapo" maxlength="300">
+                        <textarea name="chapo" id="chapo" maxlength="300" >
                             <?php
                             echo (isset($_GET['chapo']) && !empty($_GET['chapo'])) ? $_GET['chapo'] : '';
                             ?>

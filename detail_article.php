@@ -8,6 +8,10 @@ require_once 'classes/Html.php';
 if (isset($_GET['id']) && !empty($_GET['id'])){
     $pdoArticle = new PDOArticle();
     $art = $pdoArticle->GetArticleById($_GET['id']);
+
+    if (!$art){
+        header('Location: /?err=');
+    }
 }
 else {
     $html = new Html('div', ['class'=>'error'], 'Cet article n\'existe pas, ou a été supprimé.');

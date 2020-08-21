@@ -171,4 +171,27 @@ class PDOUser
         }
         return true;
     }
+
+
+    public function SetUser(string $login, string $psswd, string $role) : bool
+    {
+        $connection = $this->GetConnection();
+        if (!$connection){
+            return false;
+        }
+
+        $sql = 'INSERT INTO users(`login`, `password`, `role`)
+                VALUES (:login, :psswd, :user_role)';
+        $stmt = $connection->prepare($sql);
+        $res = $stmt->execute([
+            ':login' => $login,
+            ':psswd' => hash('SHA512', $psswd),
+            ':user_role' => $role
+        ]);
+
+        if (!$res){
+            return false;
+        }
+        return true;
+    }
 }

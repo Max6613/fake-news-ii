@@ -178,6 +178,12 @@ h3 {
   background: var(--hover-orange);
 }
 
+/*------Messages d'erreurs------*/
+.error {
+  color: var(--red);
+  /*//TODO*/
+}
+
 /*--------Page--------*/
 /*------Menu------*/
 /*----Btn burger----*/

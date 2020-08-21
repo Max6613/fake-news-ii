@@ -2,6 +2,10 @@ main {
   text-align: left;
 }
 
+textarea {
+  resize: vertical;
+}
+
 .content > textarea,
 .chapo > textarea {
   width: 100%;

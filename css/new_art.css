@@ -1,0 +1,26 @@
+main form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+main form select,
+main form input,
+main form textarea {
+  border: var(--lighter-grey) 1px solid;
+  border-radius: 4px;
+  color: var(--mid-grey);
+  text-align: center;
+}
+
+main form input {
+  flex-basis: 35px;
+}
+
+main form textarea {
+  flex-basis: 150px;
+  resize: vertical;
+}
+
+main form textarea[name="content"] {
+  flex-basis: 300px;
+}

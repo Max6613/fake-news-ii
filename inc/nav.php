@@ -36,6 +36,8 @@
         </li>
         <li>
             <?php
+            require_once 'classes/Html.php';
+
             $link = '/connexion.php';
             $text = 'Rouages';
             $sub_ul = '';
@@ -43,7 +45,6 @@
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
                 $link = '/';
                 $text = 'Bienvue ';
-                $sub_ul = '<ul><li><a href="scripts/php/logout.php"> Se déconnecter</a></li></ul>';
 
                 if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
                     $text .= strtoupper($_SESSION['user']);
@@ -53,18 +54,28 @@
                 }
             }
 
-            echo '<a href="' . $link . '"><i class="fas fa-cog ico menu-icon"></i> ' . $text . '</a>' . $sub_ul
+            //"BIENVENUE (user)"
+            $icon = new Html('i', ['class'=>'fas fa-cog ico menu-icon']);
+            $link = new Html('a', ['href'=>$link], $text, [$icon]);
+            echo $link->ToStr();
+
+            //Sous-menu
+            $sub_ul_li = [];
+
+            $logout = new Html('a', ['href'=>'scripts/php/logout.php'], 'Se déconnecter');
+            $sub_ul_li[] = new Html('li', [], null, [$logout]);
+            //Si admin acces page de gestion des utilisateurs
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
+                isset($_SESSION['role']) && $_SESSION['role'] == 'administrator'){
+                $users_admin = new Html('a', ['href'=>'users.php'], 'Utilisateurs');
+                $sub_ul_li[] = new Html('li', [], null, [$users_admin]);
+            }
+
+            $sub_ul = new Html('ul', [], null, $sub_ul_li);
+
+            echo $sub_ul->ToStr();
             ?>
 
         </li>
-
-        <?php
-        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
-            && $_SESSION['role'] == 'administrator'){
-            echo '<li>
-                      <a href="/users.php"><i class="fas fa-user ico menu-icon"></i> Utilisateurs</a>
-                  </li>';
-        }
-        ?>
     </ul>
 </nav>
