@@ -53,8 +53,6 @@ require_once 'inc/global.php';
                 <?php
                 require_once 'classes/PDOArticle.php';
 
-                //TODO ajouter un article
-
                 //Recuperation de tous les articles
                 $pdoArticle = new PDOArticle();
                 $res = $pdoArticle->GetArticles();

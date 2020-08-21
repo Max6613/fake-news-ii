@@ -102,7 +102,6 @@ class Article
 
     public function ToStrFullArt()
     {
-//        TODO refaire images pour responsive avec <picture>
         $html =
             '<div class="article container">
                 <div>

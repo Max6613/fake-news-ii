@@ -1,5 +1,4 @@
 <?php
-//TODO
 require_once '../../classes/PDOArticle.php';
 
 //Définition des tailles de champs a respécter

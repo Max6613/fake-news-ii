@@ -78,7 +78,6 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
 
                 ?>
 
-                <!-- TODO ajouter une ligne avant/apres les utilisateurs, pour ajouter un utilisateur -->
             </section>
         </main>
 

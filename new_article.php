@@ -160,7 +160,7 @@ require_once 'inc/global.php';
                              }
                             ?>
                         </select>
-                        <!--TODO upload d'une image-->
+
                         <label for="img">Ou uploader une image: </label>
                         <input type="hidden" name="MAX_FILE_SIZE" value="30000">
                         <input type="file" name="img" id="image">
