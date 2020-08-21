@@ -29,9 +29,10 @@ class Database
     public function getConnection() : PDO
     {
         $dsn = 'mysql:host=' . $this->_host . ';dbname=' . $this->_db_name;
+        $options = [PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'];
 
         try{
-            return new PDO($dsn, $this->_user, $this->_password);
+            return new PDO($dsn, $this->_user, $this->_password, $options);
         }catch (PDOException $ex){
             //var_dump($ex);
             //TODO gérer erreur

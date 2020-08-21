@@ -24,6 +24,11 @@ class Html
         $this->_child = $children;
     }
 
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+    }
+
 
     public function ToStr() : string
     {
