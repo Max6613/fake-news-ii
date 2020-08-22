@@ -1,13 +1,18 @@
 <?php
-//include_once '../inc/global.php';
-
+require_once 'Html.php';
 
 /**
  * Class Article
  */
 class Article
 {
+    /**
+     * @var int
+     */
     private $_id;
+    /**
+     * @var string
+     */
     private $_date;
     private $_title;
     private $_chapo;
@@ -39,135 +44,177 @@ class Article
     }
 
 
-    public function ToStrHomePreview()
+    /**
+     * @return Html
+     */
+    public function GetAdminIcons() : Html
     {
-        $html = '';
+        $mod_icon = new Html('i', ['class' => 'fas fa-edit ico mod-icon']);
+        $link = new Html('a', ['href' => 'mod_article.php?id=' . $this->_id, 'class' => 'mod-logo'], null, [$mod_icon]);
 
-        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role']) &&
-            ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')
-){
-            $html .= '<div class="article-mod">';
-        }
-        $html .=
-            '<div class="article ' . $this->_id . '">
-                <div>
-                    <img src="' . $this->_img . '" alt="">
-                </div>
+        $del_icon = new Html('i', ['class' => 'fas fa-trash-alt ico mod-icon']);
+        $del_span = new Html('span', ['class' => 'del-logo'], null, [$del_icon]);
 
-                <div>
-                    <span class="date">' . $this->_date . '</span>
-                </div>
-
-                <h3>' . $this->_title . '</h3>
-                <p>' . $this->_chapo . '</p>
-            </div>
-            <div class="mod-btns">
-                <a  href="mod_article.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>
-                <span class="del-logo"><i class="fas fa-trash-alt ico mod-icon"></i></span>
-            </div>
-        </div>';
-
-        echo $html;
+        return new Html('div', ['class' => 'mod-btns'], null, [$link, $del_span]);
     }
 
 
-    public function ToStrTrucsPreview()
+    /**
+     * @return string
+     */
+    public function ToStrHomePreview() : string
     {
-        $html =
-            '<div class="article ' . $this->_id . '">
-                <div class="left">
-                    <span class="date">' . $this->_date . '</span>
-                </div>
-                <h3>' . $this->_title . '</h3>
-                <div class="art-desc">
-                    <img src="' . $this->_img . '" alt="">
-                    <p>' . $this->_chapo . '</p>    
-                </div>
-                <button>
-                    <a href="detail_article.php?id=' . $this->_id . '"><i class="far fa-file" aria-hidden="true"></i> JE VEUX LA SUITE !</a>
-                </button>';
+        //image
+        $img = new Html('img', ['src' => $this->_img, 'alt' => ''], null, null, true);
+        $img_div = new Html('div', null, null, [$img]);
 
-        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role']) &&
-            ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+        //date
+        $date = new Html('span', ['class' => 'date'], $this->_date);
+        $date_div = new Html('div', null, null, [$date]);
 
-            $html .= '<a  href="mod_article.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>
-                        <span class="del-logo"><i class="fas fa-trash-alt ico mod-icon"></i></span>';
+        //titre
+        $title = new Html('h3', null, $this->_title);
+
+        //chapo
+        $chapo = new Html('p', null, $this->_chapo);
+
+        //contenu de la div article-mod
+        $art_mod_div_cont = [new Html('div', ['class' => 'article ' . $this->_id], null, [$img_div, $date_div, $title, $chapo])];
+
+        //Si utilisateur admin ou redac, ajout des icones de modification/suppression
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
+            && ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+
+            $art_mod_div_cont[] = $this->GetAdminIcons();
         }
 
-        $html .= '</div>';
+        $art_mod_div = new Html('div', ['class' => 'article-mod'], null, $art_mod_div_cont);
 
-        echo $html;
+        return $art_mod_div->__toString();
     }
 
 
-    public function ToStrFullArt()
+    /**
+     * @return string
+     */
+    public function ToStrTrucsPreview() : string
     {
-        $html =
-            '<div class="article container">
-                <div>
-                    <span class="date">' . $this->_date . '</span>';
+        //date
+        $date = new Html('span', ['class' => 'date'], $this->_date);
+        $art_div_cont = [new Html('div', ['class' => 'left'], null, [$date])];
 
-        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
-        isset($_SESSION['role']) &&
-        ($_SESSION['role'] == 'administrator' ||
-        $_SESSION['role'] == 'redactor')
-){
-            $html .= '<a  href="mod_article.php?id=' . $this->_id . '" class="mod-logo"><i class="fas fa-edit ico mod-icon"></i></a>';
+        //titre
+        $art_div_cont[] = new Html('h3', null, $this->_title);
+
+        //image
+        $img = new Html('img', ['src' => $this->_img, 'alt' => ''], null, null, true);
+        //chapo
+        $chapo = new Html('p', null, $this->_chapo);
+
+        //Description (image + chapo)
+        $art_div_cont[] = new Html('div', ['class' => 'art-desc'], null, [$img, $chapo]);
+
+        //Bouton acces a l'article
+        $btn_icon = new Html('i', ['class' => 'far fa-file']);
+        $art_link = new Html('a', ['href' => 'detail_article.php?id=' . $this->_id], $btn_icon->__toString() . ' JE VEUX LA SUITE !');
+        $art_div_cont[] = new Html('button', null, null, [$art_link]);
+
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
+            && ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+
+            $art_div_cont[] = $this->GetAdminIcons();
         }
 
-        $html .= '</div>
-               
-                <div>
-                    <img src="' . $this->_img . '" alt="">
-                </div>
-                <p>' . $this->_chapo . '</p>
-                <p>' . $this->_content . '</p>
-            </div>';
-        echo $html;
+        $art_div = new Html('div', ['class' => 'article ' . $this->_id], null, $art_div_cont);
+
+        return $art_div->__toString();
     }
 
 
-    public function ToModifForm()
+    /**
+     * @return string
+     */
+    public function ToStrFullArt() : string
+    {
+        //date
+        $date = new Html('span', ['class' => 'date'], $this->_date);
+        $art_cont = [new Html('div', ['class' => 'left'], null, [$date])];
+
+        //Si utilisateur admin ou redac, ajout des icones de modification/suppression
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
+            && ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+
+            $art_cont[] = $this->GetAdminIcons();
+        }
+
+        //image
+        $img = new Html('img', ['src' => $this->_img, 'alt' => ''], null, null, true);
+        $art_cont[] = new Html('div', null, null, [$img]);
+
+        //chapo
+        $art_cont[] = new Html('p', ['class' => 'chapo'], $this->_chapo);
+
+        //contenu
+        $art_cont[] = new Html('p', null, $this->_content);
+
+
+
+        //article
+        $art = new Html('div', ['class' => 'article'], null, $art_cont);
+
+        return $art->__toString();
+    }
+
+
+    /**
+     * @return string
+     */
+    public function ToModifForm() : string
     {
         $date = explode(' ', $this->_date);
 
-        echo
-        '<div class="article container">
-            <form action="scripts/php/mod_article.php" method="POST">
-                <input type="hidden" name="id" value="' . $this->_id . '">
-                <div class="art_title">
-                    <input type="text" name="title" value="' . $this->_title . '">                
-                </div>
-            
-                <div class="datetime">
-                    <label for="date">Date et heure: </label>
-                    <input type="date" name="date" id="date" value="' . $date[0] . '">
-                    <input type="time" name="time" id="time" value="' . $date[1] . '">
-                </div>
-                
-                <div class="image">
-                    <label for="image">Image: </label>
-                    <input type="file" name="image" id="image" accept="image/jpeg">
-                    <img src="' . $this->_img . '" id="img-prev" alt="">
-                </div>
-                
-                <div class="chapo">
-                    <label for="chapo">Chapo de l\'article: </label>
-                    <textarea name="chapo" id="chapo">' . str_replace('"', '\'', $this->_chapo) . '</textarea>
-                </div>
-                
-                <div class="content">
-                    <label for="content">Contenu de l\'article: </label>
-                    <textarea name="content" id="content">' . str_replace('"', '\'', $this->_content) . '</textarea>
-                </div>
-                
-                <div class="buttons">
-                    <button type="submit">Modifier l\'article</button>
-                    <button>Annuler</button>
-                </div>
-                                                
-            </form>
-        </div>';
+        //Id caché
+        $form_cont = [new Html('input', ['type' => 'hidden', 'name' => 'id', 'value' => $this->_id], null, null, true)];
+
+        //Titre
+        $title_label = new Html('label', ['for' => 'title'], 'Titre: ');
+        $title_inp = new Html('input', ['type' => 'text', 'name' => 'title', 'id' => 'title', 'value' => $this->_title], null, null, true);
+        $form_cont[] = new Html('div', ['class' => 'art-title'], null, [$title_label, $title_inp]);
+
+        //date
+        $date_label = new Html('label', ['for' => 'date'], 'Date et heure: ');
+        $date_inp = new Html('input', ['type' => 'date', 'name' => 'date', 'id' => 'date', 'value' => $date[0]], null, null, true);
+        $time_inp = new Html('input', ['type' => 'time', 'name' => 'time', 'id' => 'time', 'value' => $date[1]], null, null, true);
+        $form_cont[] = new Html('div', ['class' => 'datetime'], null, [$date_label, $date_inp, $time_inp]);
+
+        //image
+        $img_label = new Html('label', ['for' => 'image'], 'Image: ');
+        $img_inp = new Html('input', ['type' => 'file', 'name' => 'image', 'id' => 'image', 'accept' => 'image/jpeg'], null, null, true);
+        $img = new Html('img', ['src' => $this->_img, 'id' => 'img-prev', 'alt' => ''], null, null, true);
+        $form_cont[] = new Html('div', ['class' => ''], null, [$img_label, $img_inp, $img]);
+
+        //chapo
+        $chapo_label = new Html('label', ['for' => 'chapo'], 'Chapo: ');
+        $chapo_text = new Html('textarea', ['name' => 'chapo', 'id' => 'chapo'], $this->_chapo);
+        $form_cont[] = new Html('div', ['class' => 'chapo'], null, [$chapo_label, $chapo_text]);
+
+        //contenu
+        $content_label = new Html('label', ['for' => 'content'], 'Contenu: ');
+        $content_text = new Html('textarea', ['name' => 'content', 'id' => 'content'], $this->_content);
+        $form_cont[] = new Html('div', ['class' => 'content'], null, [$content_label, $content_text]);
+
+        //Boutons
+        $submit = new Html('button', ['type' => 'submit', 'class' => 'no-link'], 'Modifier l\'article');
+        $cancel = new Html('button', ['class' => 'no-link'], 'Annuler');
+        $form_cont[] = new Html('div', ['class' => ''], null, [$submit, $cancel]);
+
+        //Formulaire
+        $form = new Html('form', ['action' => 'scripts/php/mod_article.php', 'method' => 'POST'], null, $form_cont);
+
+        //article
+        $art = new Html('div', ['class' => 'article container'], null, [$form]);
+
+        return $art->__toString();
     }
 
 

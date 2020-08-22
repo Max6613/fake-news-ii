@@ -33,11 +33,15 @@ function addModElmnt(element, value, id) {
 
   let button_div = createHtmlElmnt("div", { class: "button-div" });
 
-  let validate = createHtmlElmnt("button", { type: "submit" }, "Valider");
+  let validate = createHtmlElmnt(
+    "button",
+    { type: "submit", class: "no-link" },
+    "Valider"
+  );
 
   let cancel = createHtmlElmnt(
     "button",
-    { type: "button", onclick: "history.go(0)" },
+    { type: "button", onclick: "history.go(0)", class: "no-link" },
     "Annuler"
   );
 

@@ -31,24 +31,7 @@ require_once 'inc/global.php';
                     //Récupération et affichage du sous titre
                     $pdo_sett = new PDOSetting();
                     $setting = $pdo_sett->GetSetting(TRUC_PHRASE_ID);
-
-                    //TODO code dupliquer
-                    if (get_class($setting) == 'Setting') {
-                        echo $setting->getValue();
-
-                        //Si utilisateur connecté en tant qu'admin ou redac,
-                        // affichage du logo de modification
-                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
-                            isset($_SESSION['role']) &&
-                            ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
-                            echo MOD_LOGO;
-                        }
-                    }
-
-                    //Si erreur de recuperation du sous titre, affichage sous titre par defaut
-                    else {
-                        echo DEFAULT_SUBTITLE;
-                    }
+                    require_once 'inc/subtitle.php';
                     ?>
                 </div>
             </div>
@@ -72,7 +55,7 @@ require_once 'inc/global.php';
                 if (get_class($articles[0]) == 'Article'){
 
                     foreach ($articles as $index => $article){
-                        $article->ToStrTrucsPreview();
+                        echo $article->ToStrTrucsPreview();
 
                         //Ajout d'un trait de séparation après tous les articles sauf le dernier
                         if ($index < count($articles) - 1){

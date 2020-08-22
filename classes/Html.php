@@ -7,6 +7,7 @@ class Html
     private $_attributes;
     private $_value;
     private $_child;
+    private $_orphan;
 
 
     /**
@@ -14,14 +15,16 @@ class Html
      * @param string $tag
      * @param array|null $attributes
      * @param string|null $value
-     * @param Html|null $children
+     * @param array|null $children
+     * @param bool $orphan
      */
-    public function __construct(string $tag, array $attributes = null, string $value = null, array $children = null)
+    public function __construct(string $tag, array $attributes = null, string $value = null, array $children = null, bool $orphan = false)
     {
         $this->_tag = $tag;
         $this->_attributes = $attributes;
         $this->_value = $value;
         $this->_child = $children;
+        $this->_orphan = $orphan;
     }
 
 
@@ -38,6 +41,10 @@ class Html
             }
         }
         $html .= '>';
+
+        if ($this->_orphan){
+            return $html;
+        }
 
         if (!empty($this->_value)){
             $html .= $this->_value;

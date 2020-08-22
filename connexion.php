@@ -46,7 +46,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
                 <span class="floating-label">Mot de passe</span>
             </div>
 
-            <button type="submit" onclick="formValidation()">Se connecter</button>
+            <button type="submit" class="no-link" onclick="formValidation()">Se connecter</button>
         </form>
     </main>
     <script type="application/javascript" src="scripts/js/login_validation.js"></script>

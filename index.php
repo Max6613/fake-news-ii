@@ -25,22 +25,7 @@ require_once 'inc/global.php';
                     //Récuperation et affichage du sous titre
                     $pdo_sett = new PDOSetting();
                     $setting = $pdo_sett->GetSetting(INDEX_PHRASE_ID);
-
-                    if (get_class($setting) == 'Setting') {
-                        echo $setting->getValue();
-
-                        //Si utilisateur connecté en tant qu'admin ou redac,
-                        // affichage du logo de modification
-                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
-                            && ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
-
-                            echo MOD_LOGO;
-                        }
-                    }
-                    //Si la récuperation du sous titre a echoué, affichage du sous-titre par defaut
-                    else {
-                        echo DEFAULT_SUBTITLE;
-                    }
+                    require_once 'inc/subtitle.php';
                     ?>
 
                 </div>
@@ -83,7 +68,7 @@ require_once 'inc/global.php';
 
                     foreach ($articles as $article){
                         if (get_class($article) == 'Article'){
-                                $article->ToStrHomePreview();
+                                echo $article->ToStrHomePreview();
                         }
                     }
 
@@ -125,10 +110,9 @@ require_once 'inc/global.php';
     <?php
     //Si utilisateur connecté en tant qu'admin ou redac,
     // Ajout du script d'administration, permet à certains logo d'administration de fonctionner
-    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
-        isset($_SESSION['role']) &&
-        ($_SESSION['role'] == 'administrator' ||
-        $_SESSION['role'] == 'redactor')){
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
+        && ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+
         echo ADMINISTRATION_SCRIPT;
     }
     ?>

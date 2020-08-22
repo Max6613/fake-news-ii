@@ -53,11 +53,11 @@ else {
 
         </header>
 
-        <main>
+        <main class="container">
 
             <?php
             if (get_class($art) == 'Article'){
-                $art->ToStrFullArt();
+                echo $art->ToStrFullArt();
             }
             ?>
 

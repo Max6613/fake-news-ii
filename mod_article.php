@@ -54,7 +54,7 @@ elseif (!empty($_GET['id'])){
 
         <?php
         if (get_class($art) == 'Article'){
-            $art->ToModifForm();
+            echo $art->ToModifForm();
         }
         ?>
 

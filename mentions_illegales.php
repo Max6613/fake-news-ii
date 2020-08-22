@@ -27,25 +27,7 @@ require_once 'inc/global.php';
                     //Récuperation et affichage du sous titre
                     $pdo_sett = new PDOSetting();
                     $setting = $pdo_sett->GetSetting(MENTION_PHRASE_ID);
-
-
-                    //TODO code dupliquer !!
-                    if (get_class($setting) == 'Setting'){
-                        echo $setting->getValue();
-
-                        //Si utilisateur connecté en tant qu'admin ou redac,
-                        // affichage du logo de modification
-                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
-                            && ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
-
-                            echo MOD_LOGO;
-                        }
-                    }
-
-                    //Si erreur lors de la récuperation du sous-titre, affichage phrase par defaut
-                    else {
-                        echo DEFAULT_SUBTITLE;
-                    }
+                    require_once 'inc/subtitle.php';
                     ?>
                 </div>
 
@@ -262,6 +244,15 @@ require_once 'inc/global.php';
 
     </div>
     <script type="application/javascript" src="scripts/js/menu_deployment.js"></script>
-    <script type="application/javascript" src="scripts/js/article_link.js"></script>
+
+    <?php
+    //Si utilisateur connecté en tant qu'admin ou redac,
+    // Ajout du script d'administration, permet à certains logo d'administration de fonctionner
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
+        && ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+
+        echo ADMINISTRATION_SCRIPT;
+    }
+    ?>
 </body>
 </html>
