@@ -9,9 +9,10 @@ require_once 'Article.php';
 class PDOArticle
 {
     /**
-     * @return PDO
+     * Connexion à la base de données
+     * @return PDO|false
      */
-    private function GetConnection() : PDO
+    private function GetConnection()
     {
         $db = new Database();
         return $db->getConnection();
@@ -35,8 +36,6 @@ class PDOArticle
             }
             $cnt++;
         }
-
-
 
         return $columns;
     }
@@ -74,7 +73,7 @@ class PDOArticle
      * @param int|null $nb
      * @return array|false
      */
-    public function GetArticles(int $nb = null) : array
+    public function GetArticles(int $nb = null)
     {
         $connection = $this->GetConnection();
         if (!$connection){

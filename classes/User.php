@@ -7,6 +7,12 @@ class User
     private $_login;
     private $_role;
 
+    /**
+     * User constructor.
+     * @param $id
+     * @param $login
+     * @param $role
+     */
     public function __construct($id, $login, $role)
     {
         $this->_id = $id;
@@ -15,6 +21,9 @@ class User
     }
 
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         $admin_attrs = ['value'=>'administrator'];
@@ -22,7 +31,7 @@ class User
         $redac_attrs = ['value'=>'redactor'];
 
         //Ajout de l'attribut "selected" à l'option correspondante au role de l'utilisateur actuel
-        switch ($this->GetRole()){
+        switch ($this->_role){
             case 'administrator':
                 $admin_attrs['selected'] = null;
                 break;
@@ -45,7 +54,7 @@ class User
         $select = new Html('select', ['name'=>'role'], null, [$admin_opt, $read_opt, $redac_opt]);
 
         //Création d'input caché contenant l'id
-        $hidden_inp = new Html('input', ['type'=>'hidden', 'name'=>'id', 'value'=>$this->GetId()]);
+        $hidden_inp = new Html('input', ['type'=>'hidden', 'name'=>'id', 'value'=>$this->_id]);
 
         //Création du bouton de validation du formulaire
         $btn = new Html('button', ['type'=>'submit', 'disabled'=>null], 'Appliquer');
@@ -54,16 +63,16 @@ class User
         $form = new Html('form', ['action'=>'scripts/php/modif_role_user.php', 'method'=>'POST', 'class'=>'user-role'], null, [$hidden_inp, $select, $btn]);
 
         //Création du span pour l'id
-        $id_span = new Html('span', ['class'=>'user-id'], $this->GetId());
+        $id_span = new Html('span', ['class'=>'user-id'], $this->_id);
 
         //Création du span pour le login
-        $login_span = new Html('span', ['class'=>'user-login'], $this->GetLogin());
+        $login_span = new Html('span', ['class'=>'user-login'], $this->_login);
 
         //Création du bouton de suppression
         $del_span = null;
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
-            && $_SESSION['role'] == 'administrator' && $_SESSION['id'] != $this->GetId()){
-            $del_span = new Html('span', ['class'=>'user-del ' . $this->GetId()], null, [new Html('i', ['class'=>'fas fa-trash-alt ico mod-icon'])]);
+            && $_SESSION['role'] == 'administrator' && $_SESSION['id'] != $this->_id){
+            $del_span = new Html('span', ['class'=>'user-del ' . $this->_id], null, [new Html('i', ['class'=>'fas fa-trash-alt ico mod-icon'])]);
         }
 
         //Création de la div pour les données de l'utilisateur

@@ -26,7 +26,7 @@ class Database
     /**
      * @return PDO|false
      */
-    public function getConnection() : PDO
+    public function getConnection()
     {
         $dsn = 'mysql:host=' . $this->_host . ';dbname=' . $this->_db_name;
         $options = [PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'];

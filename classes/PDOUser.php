@@ -10,17 +10,13 @@ require_once 'Html.php';
 class PDOUser
 {
     /**
-     * @return false|PDO
+     * Connexion à la base de données
+     * @return PDO|false
      */
     private function GetConnection()
     {
         $db = new Database();
-        //objet pdo
-        $connection = $db->getConnection();
-        if (!$connection){
-            return false;
-        }
-        return $connection;
+        return $db->getConnection();
     }
 
 
@@ -68,6 +64,11 @@ class PDOUser
     }
 
 
+    /**
+     * @param int $user_id
+     * @param string $role
+     * @return bool
+     */
     public function ModRole(int $user_id, string $role) : bool
     {
         $connection = $this->GetConnection();
@@ -87,6 +88,10 @@ class PDOUser
     }
 
 
+    /**
+     * @param int $user_id
+     * @return bool
+     */
     public function DelUser(int $user_id) : bool
     {
         $connection = $this->GetConnection();
@@ -105,6 +110,12 @@ class PDOUser
     }
 
 
+    /**
+     * @param string $login
+     * @param string $psswd
+     * @param string $role
+     * @return bool
+     */
     public function SetUser(string $login, string $psswd, string $role) : bool
     {
         $connection = $this->GetConnection();

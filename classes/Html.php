@@ -31,8 +31,11 @@ class Html
     //@Override
     public function __toString() : string
     {
+        //ouverture de la balise
         $html = '<' . $this->_tag;
+
         if (!empty($this->_attributes)){
+            //Ajout des attributs
             foreach ($this->_attributes as $attr => $val){
                 $html .= ' ' . $attr;
                 if (!empty($val)){
@@ -42,14 +45,17 @@ class Html
         }
         $html .= '>';
 
+        //Si balise orpheline, renvoi du texte
         if ($this->_orphan){
             return $html;
         }
 
+        //Ajout de texte dans la balise
         if (!empty($this->_value)){
             $html .= $this->_value;
         }
 
+        //Ajout de balise enfant par récursivité
         if (!empty($this->_child)){
             foreach ($this->_child as $child){
                 if (!empty($child) && get_class($child) == 'Html'){

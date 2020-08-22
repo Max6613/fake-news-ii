@@ -14,9 +14,7 @@ class Setting
      * @param $name
      * @param $value
      */
-    public function __construct(int $id,
-                                string $name,
-                                string $value)
+    public function __construct(int $id, string $name, string $value)
     {
         $this->_id = $id;
         $this->_name = $name;

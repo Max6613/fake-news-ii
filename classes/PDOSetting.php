@@ -9,7 +9,8 @@ require_once 'Database.php';
 class PDOSetting
 {
     /**
-     * @return PDO
+     * Connexion à la base de données
+     * @return PDO|false
      */
     private function GetConnection() : PDO
     {
