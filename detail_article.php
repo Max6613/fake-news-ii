@@ -56,6 +56,27 @@ else {
         <main class="container">
 
             <?php
+            //Gestion des erreurs
+            if (isset($_GET['err']) && !empty($_GET['err'])){
+                require_once 'classes/Html.php';
+
+                switch (($_GET['err'])){
+
+                    case 1:
+                        $mess = 'Erreur lors du chargement de l\'article';
+                        break;
+
+                    case 25:
+                        $mess = 'Erreur lors de la suppression de l\'article';
+                        break;
+
+                    default:
+                        $mess = 'Une erreur est survenue, veuillez réessayer !';
+                }
+                $html = new Html('div', ['class'=>'error'], $mess);
+            }
+
+            //Affichage de l'article
             if (get_class($art) == 'Article'){
                 echo $art->ToStrFullArt();
             }

@@ -46,59 +46,64 @@ require_once 'inc/global.php';
                 <?php
                 //Gestion des erreurs
                 if (isset($_GET['err']) && !empty($_GET['err'])){
-                    switch ($_GET['err']){
-                        case 1:
-                            $mess = 'Veuillez remplir le formulaire !';
-                            break;
+                    $errs = explode('/', $_GET['err']);
 
-                        case 2:
-                            $mess = 'L\'extension du fichier est incorrecte !';
+                    foreach ($errs as $err){
 
-                            break;
+                        switch ($err){
+                            case 1:
+                                $mess = 'Veuillez remplir le formulaire !';
+                                break;
 
-                        case 3:
-                            $mess = 'Le fichier n\'est pas une image !';
-                            break;
+                            case 2:
+                                $mess = 'L\'extension du fichier est incorrecte !';
 
-                        case 4:
-                            $mess = 'Erreur, image trop grande !';
-                            break;
+                                break;
 
-                        case 5:
-                            $mess = 'Une erreur interne a empêché l\'uplaod de l\'image';
-                            break;
+                            case 3:
+                                $mess = 'Le fichier n\'est pas une image !';
+                                break;
 
-                        case 6:
-                            $mess = 'Problème lors de l\'upload !';
-                            break;
+                            case 4:
+                                $mess = 'Erreur, image trop grande !';
+                                break;
 
-                        case 7:
-                            $mess = 'Titre trop long';
-                            break;
+                            case 5:
+                                $mess = 'Une erreur interne a empêché l\'uplaod de l\'image';
+                                break;
 
-                        case 8:
-                            $mess = 'Chapo trop long';
-                            break;
+                            case 6:
+                                $mess = 'Problème lors de l\'upload !';
+                                break;
 
-                        case 9:
-                            $mess = 'Contenu trop long';
-                            break;
+                            case 7:
+                                $mess = 'Titre trop long';
+                                break;
 
-                        case 10:
-                            $mess = 'Fichier corrompu, veuillez utilisé une autre image !';
-                            break;
+                            case 8:
+                                $mess = 'Chapo trop long';
+                                break;
 
-                        case 11:
-                            $mess = 'Une erreur est subvenue lors de l\'ajout de l\'article en base de données';
-                            break;
+                            case 9:
+                                $mess = 'Contenu trop long';
+                                break;
 
-                    }
+                            case 10:
+                                $mess = 'Fichier corrompu, veuillez utilisé une autre image !';
+                                break;
 
-                    if (isset($mess) && !empty($mess)){
-                        require_once 'classes/Html.php';
+                            case 11:
+                                $mess = 'Une erreur est subvenue lors de l\'ajout de l\'article en base de données';
+                                break;
 
-                        $html = new Html('div', ['class'=>'error'], $mess);
-                        echo $html->__toString();
+                        }
+
+                        if (isset($mess) && !empty($mess)){
+                            require_once 'classes/Html.php';
+
+                            $html = new Html('div', ['class'=>'error'], $mess);
+                            echo $html->__toString();
+                        }
                     }
                 }
                 ?>

@@ -41,6 +41,25 @@ require_once 'inc/global.php';
         </header>
         <main>
             <section class="latest-news container">
+
+                <?php
+                //Gestion des erreurs
+                if (isset($_GET['err']) && !empty($_GET['err'])){
+                    require_once 'classes/Html.php';
+
+                    switch (($_GET['err'])){
+
+                        case 25:
+                            $mess = 'Erreur lors de la suppression de l\'article';
+                            break;
+
+                        default:
+                            $mess = 'Une erreur est survenue, veuillez réessayer !';
+                    }
+                    $html = new Html('div', ['class'=>'error'], $mess);
+                }
+                ?>
+
                 <div>
                     <?php echo ADD_LOGO ?>
                 </div>

@@ -49,6 +49,10 @@ require_once 'inc/global.php';
                             $mess = 'Erreur lors du chargement de l\'article';
                             break;
 
+                        case 25:
+                            $mess = 'Erreur lors de la suppression de l\'article';
+                            break;
+
                         default:
                             $mess = 'Une erreur est survenue, veuillez réessayer !';
                     }

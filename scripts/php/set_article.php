@@ -19,7 +19,6 @@ if (isset($_POST['title']) && !empty($_POST['title'])
     //Si upload d'une image pour l'article
     if (isset($_FILES['img']) && !empty($_FILES['img']['tmp_name'])) {
 
-
         //Upload de l'image dans le dossier images du site
 
         // Tableaux de donnees
@@ -83,8 +82,6 @@ if (isset($_POST['title']) && !empty($_POST['title'])
         else{
             $err_nb = 10;
         }
-        
-
 
         //SI erreur d'upload, redirection vers la page nouvel article, avec message d'erreur
         if (!$upload){
@@ -92,7 +89,6 @@ if (isset($_POST['title']) && !empty($_POST['title'])
         }
 
         $image = 'imgs/' . $_FILES['img']['name'];
-
     }
 
     //Sinon si une image est selectionné dans la liste des images
