@@ -5,17 +5,15 @@ require_once 'inc/html_head.php';
 require_once 'classes/PDOArticle.php';
 require_once 'classes/Html.php';
 
+//Récupération de l'article
 if (isset($_GET['id']) && !empty($_GET['id'])){
     $pdoArticle = new PDOArticle();
     $art = $pdoArticle->GetArticleById($_GET['id']);
-
-    if (!$art){
-        header('Location: /?err=');
-    }
 }
+
+//Si l'id n'est pas spécifié, retour a l'accueil
 else {
-    $html = new Html('div', ['class'=>'error'], 'Cet article n\'existe pas, ou a été supprimé.');
-    echo $html->ToStr();
+    header('Location: /');
 }
 ?>
 
@@ -26,7 +24,15 @@ else {
 
         <header class="container">
 
-            <?php require_once 'inc/nav.php'; ?>
+            <?php
+            require_once 'inc/nav.php';
+
+            //Si aucun article n'a été récupéré, message d'erreur
+            if (!$art){
+                $html = new Html('div', ['class'=>'error'], 'Cet article n\'existe pas, ou a été supprimé.');
+                echo $html->__toString();
+            }
+            ?>
 
             <div class="title">
 
@@ -34,7 +40,13 @@ else {
                     <a href="/">Fake News II</a>
                 </div>
 
-                <h1><?php echo $art->getTitle() ?></h1>
+                <h1>
+                    <?php
+                    if (get_class($art) == 'Article'){
+                        echo $art->getTitle();
+                    }
+                    ?>
+                </h1>
             </div>
 
             <?php require_once 'inc/double_sep.php' ?>

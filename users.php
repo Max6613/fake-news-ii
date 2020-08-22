@@ -4,9 +4,13 @@
 require_once 'inc/global.php';
 require_once 'inc/html_head.php';
 
-if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
-    isset($_SESSION['role']) && $_SESSION['role'] == 'administrator')){
-        header('Location: /');
+//TODO ajouter update de l'utilisateur enregistré en SESSION
+
+//Si aucun utilisateur connecté ou non administrateur, redirection vers la page d'accueil
+if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin']
+    && isset($_SESSION['role']) && $_SESSION['role'] == 'administrator')){
+
+    header('Location: /');
 }
 ?>
 
@@ -31,17 +35,34 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
                     <?php
                     require_once 'classes/PDOSetting.php';
 
-                    //Récuperation et affichage du sous titre
+                    //Récupération et affichage du sous titre
                     $pdo_sett = new PDOSetting();
-                    $setting = $pdo_sett->GetSetting(INDEX_PHRASE_ID);
-                    echo $setting->getValue();
+                    $setting = $pdo_sett->GetSetting(ADMIN_PHRASE_ID);
+
+                    //TODO code dupliquer
+                    if (get_class($setting) == 'Setting'){
+                        echo $setting->getValue();
+
+                        //Si utilisateur connecté en tant qu'admin ou redac,
+                        // affichage du logo de modification
+                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
+                            && ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+
+                            echo MOD_LOGO;
+                        }
+                    }
+
+                    //Si erreur lors de la récuperation du sous-titre, affichage phrase par defaut
+                    else {
+                        echo DEFAULT_SUBTITLE;
+                    }
                     ?>
 
                 </div>
 
             </div>
 
-            <?php require_once 'inc/double_sep.php' ?>
+            <?php include 'inc/double_sep.php' ?>
 
         </header>
         <main>
@@ -56,14 +77,14 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
                 </div>
 
                 <div class="user user-add">
-                    <span>Ajouter un nouvel utilisateur: <i class="fas fa-plus-circle ico mod-icon"></i></span>
+                    <span><em>Ajouter un nouvel utilisateur: </em><i class="fas fa-plus-circle ico mod-icon"></i></span>
 
                     <?php
                     if (isset($_GET['err']) && !empty($_GET['err'])){
                         require_once 'classes/Html.php';
 
                         $html = new Html('div', ['class'=>'error'], 'Erreur lors de l\'ajout du nouvel utilisateur');
-                        echo $html->ToStr();
+                        echo $html->__toString();
                     }
                     ?>
 
@@ -74,8 +95,12 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
 
                 $pdo_user = new PDOUser();
                 $users = $pdo_user->GetAllUsers();
-                $pdo_user->UsersToHTML($users);
 
+                foreach ($users as $user){
+                    if (get_class($user) == 'User'){
+                        echo $user->__toString();
+                    }
+                }
                 ?>
 
             </section>

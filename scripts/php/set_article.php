@@ -2,18 +2,15 @@
 require_once '../../classes/PDOArticle.php';
 
 //Définition des tailles de champs a respécter
-define('TITLE_MAX_LEN', 100);   //Longueur max du titre
-define('CHAPO_MAX_LEN', 300);   //Longueur max du champo
+define('TITLE_MAX_LEN', 100);       //Longueur max du titre
+define('CHAPO_MAX_LEN', 300);       //Longueur max du champo
 define('CONTENT_MAX_LEN', 65536);   //Lonueur max du contenu
 
 define('TARGET', '../../imgs/');    // Repertoire cible
-define('MAX_SIZE', 100000);    // Taille max en octets du fichier
-define('WIDTH_MAX', 800);    // Largeur max de l'image en pixels
-define('HEIGHT_MAX', 800);    // Hauteur max de l'image en pixels
+define('MAX_SIZE', 100000);         // Taille max en octets du fichier
+define('WIDTH_MAX', 800);           // Largeur max de l'image en pixels
+define('HEIGHT_MAX', 800);          // Hauteur max de l'image en pixels
 
-
-var_dump($_POST);
-var_dump($_FILES);
 
 if (isset($_POST['title']) && !empty($_POST['title'])
     && isset($_POST['chapo']) && !empty($_POST['chapo'])
@@ -100,7 +97,6 @@ if (isset($_POST['title']) && !empty($_POST['title'])
 
     //Sinon si une image est selectionné dans la liste des images
     elseif (isset($_POST['img-select']) && !empty($_POST['img-select'])) {
-        var_dump($_POST);
         $image = 'imgs/' . $_POST['img-select'];
     }
 

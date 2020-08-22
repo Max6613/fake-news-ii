@@ -22,7 +22,7 @@ class PDOSetting
      * @param int $id
      * @return Setting|false
      */
-    public function GetSetting(int $id) : Setting
+    public function GetSetting(int $id)
     {
         $connection = $this->GetConnection();
         if (!$connection){

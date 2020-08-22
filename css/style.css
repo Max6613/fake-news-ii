@@ -55,13 +55,23 @@ button {
   cursor: pointer;
   font-weight: 600;
   margin-bottom: 30px;
-  padding: 10px 30px;
   width: 100%;
+}
+
+button.no-link {
+  padding: 10px 30px;
 }
 
 button:active,
 button:hover {
   background: var(--hover-orange);
+}
+
+button > a {
+  display: block;
+  height: 100%;
+  padding: 10px 30px;
+  width: 100%;
 }
 
 button > a:hover,

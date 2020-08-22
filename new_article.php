@@ -22,28 +22,38 @@ require_once 'inc/global.php';
                 </div>
 
                 <div id="truc-phrase" class="phrase">
+
                     <?php
                     require_once 'classes/PDOSetting.php';
 
 
                     //Récupération et affichage du sous titre
                     $pdo_sett = new PDOSetting();
-                    //TODO ajouter ADMINISTRATION_PHRASE_ID
-                    $setting = $pdo_sett->GetSetting(INDEX_PHRASE_ID);
-                    echo $setting->getValue();
+                    $setting = $pdo_sett->GetSetting(ADMIN_PHRASE_ID);
 
-                    //Si utilisateur connecté en tant qu'admin ou redac,
-                    // affichage du logo de modification
-                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
-                        isset($_SESSION['role']) &&
-                        ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
-                        echo MOD_LOGO;
+                    //TODO code dupliquer
+                    if (get_class($setting) == 'Setting'){
+                        echo $setting->getValue();
+
+                        //Si utilisateur connecté en tant qu'admin ou redac,
+                        // affichage du logo de modification
+                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
+                            && ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+
+                            echo MOD_LOGO;
+                        }
+                    }
+
+                    //Si erreur lors de la récuperation du sous-titre, affichage phrase par defaut
+                    else {
+                        echo DEFAULT_SUBTITLE;
                     }
                     ?>
+
                 </div>
             </div>
 
-            <?php require_once 'inc/double_sep.php' ?>
+            <?php include 'inc/double_sep.php' ?>
 
         </header>
         <main>
@@ -105,7 +115,7 @@ require_once 'inc/global.php';
                         require_once 'classes/Html.php';
 
                         $html = new Html('div', ['class'=>'error'], $mess);
-                        echo $html->ToStr();
+                        echo $html->__toString();
                     }
                 }
                 ?>
@@ -113,28 +123,38 @@ require_once 'inc/global.php';
                 <form action="/scripts/php/set_article.php" method="post" enctype="multipart/form-data">
                     <div class="art-title">
                         <label for="title">Titre: </label>
-                        <input type="text" name="title" id="title" maxlength="100"
-                            <?php
-                            echo (isset($_GET['title']) && !empty($_GET['title'])) ? 'value="' . $_GET['title'] . '"' : '';
-                            ?>
+                        <input type="text"
+                               name="title"
+                               id="title"
+                               maxlength="100"
+                               <?php
+                               //Si le champ est spécifié en get (erreur lors du script d'ajout), récupération de la valeur
+                               echo (isset($_GET['title']) && !empty($_GET['title'])) ? 'value="' . $_GET['title'] . '"' : '';
+                               ?>
                         >
                     </div>
 
                     <div class="art-chapo">
                         <label for="chapo">Chapo: </label>
-                        <textarea name="chapo" id="chapo" maxlength="300" >
+                        <textarea name="chapo" id="chapo" maxlength="300">
+
                             <?php
+                            //Si le champ est spécifié en get (erreur lors du script d'ajout), récupération de la valeur
                             echo (isset($_GET['chapo']) && !empty($_GET['chapo'])) ? $_GET['chapo'] : '';
                             ?>
+
                         </textarea>
                     </div>
 
                     <div class="art-content">
                         <label for="content">Contenu: </label>
                         <textarea name="content" id="content" maxlength="65535">
+
                             <?php
+                            //Si le champ est spécifié en get (erreur lors du script d'ajout), récupération de la valeur
                             echo (isset($_GET['content']) && !empty($_GET['content'])) ? $_GET['content'] : '';
                             ?>
+
                         </textarea>
                     </div>
 
@@ -147,39 +167,35 @@ require_once 'inc/global.php';
                             require_once 'classes/PDOArticle.php';
                             require_once 'classes/Html.php';
 
-                             var_dump(scandir('imgs'));
-
                              $excluded = ['.', '..', 'banner.jpg'];
-
                              $imgs_list = scandir('imgs');
+
                              foreach ($imgs_list as $img){
                                  if (!in_array($img, $excluded)){
                                      $html = new Html('option', ['value'=>$img], str_replace('/', '', $img));
-                                     echo $html->ToStr();
+                                     echo $html->__toString();
                                  }
                              }
                             ?>
+
                         </select>
 
                         <label for="img">Ou uploader une image: </label>
                         <input type="hidden" name="MAX_FILE_SIZE" value="30000">
                         <input type="file" name="img" id="image">
 
-                        <!-- Apercu de l'image sélectionné -->
+                        <!-- Apercu de l'image sélectionné (JS) -->
                         <img src="#" alt="" id="img-prev">
                     </div>
 
                     <div class="btns">
-                        <button type="submit">Ajouter l'article</button>
-                        <button type="reset">Réinitialiser</button>
+                        <button type="submit" class="no-link">Ajouter l'article</button>
+                        <button type="reset" class="no-link">Réinitialiser</button>
                     </div>
 
                 </form>
             </section>
         </main>
-
-        <!-- TODO garder/supprimer? -->
-        <?php require_once 'inc/footer.php'; ?>
 
     </div>
     <script type="application/javascript" src="scripts/js/menu_deployment.js"></script>

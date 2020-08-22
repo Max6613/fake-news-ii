@@ -2,7 +2,6 @@
 <html lang="fr">
 <?php
 require_once 'classes/User.php';
-
 require_once 'inc/html_head.php';
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
@@ -26,9 +25,13 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
 
             <?php
             if (isset($_GET['err'])){
+                require_once 'classes/Html.php';
+
                 switch ($_GET['err']){
                     case 1:
-                        echo '<div class="error"><i class="fas fa-exclamation-triangle"></i> Erreur d\'identification</div>';
+                        $icon = new Html('i', ['class'=>'fas fa-exclamation-triangle']);
+                        $html = new Html('div', ['class'=>'error'], $icon->__toString() . 'Erreur d\'identification');
+                        echo $html->__toString();
                 }
             }
             ?>

@@ -31,43 +31,52 @@ require_once 'inc/global.php';
                     //Récupération et affichage du sous titre
                     $pdo_sett = new PDOSetting();
                     $setting = $pdo_sett->GetSetting(TRUC_PHRASE_ID);
-                    echo $setting->getValue();
 
-                    //Si utilisateur connecté en tant qu'admin ou redac,
-                    // affichage du logo de modification
-                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
+                    //TODO code dupliquer
+                    if (get_class($setting) == 'Setting') {
+                        echo $setting->getValue();
+
+                        //Si utilisateur connecté en tant qu'admin ou redac,
+                        // affichage du logo de modification
+                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
                             isset($_SESSION['role']) &&
                             ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
-                        echo MOD_LOGO;
+                            echo MOD_LOGO;
+                        }
+                    }
+
+                    //Si erreur de recuperation du sous titre, affichage sous titre par defaut
+                    else {
+                        echo DEFAULT_SUBTITLE;
                     }
                     ?>
                 </div>
             </div>
-            <?php require_once 'inc/double_sep.php' ?>
+
+            <?php include 'inc/double_sep.php' ?>
+
         </header>
         <main>
             <section class="latest-news container">
                 <div>
                     <?php echo ADD_LOGO ?>
                 </div>
+
                 <?php
                 require_once 'classes/PDOArticle.php';
 
                 //Recuperation de tous les articles
                 $pdoArticle = new PDOArticle();
-                $res = $pdoArticle->GetArticles();
+                $articles = $pdoArticle->GetArticles();
 
-                if (get_class($res[0]) == 'Article'){
+                if (get_class($articles[0]) == 'Article'){
 
-                    foreach ($res as $index => $article){
+                    foreach ($articles as $index => $article){
                         $article->ToStrTrucsPreview();
 
-                        //Ajout d'un trait de séparation après tous
-                        // les articles sauf le dernier
-                        if ($index < count($res) - 1){
-                            echo '<div>';
+                        //Ajout d'un trait de séparation après tous les articles sauf le dernier
+                        if ($index < count($articles) - 1){
                             include 'inc/simple_sep.php';
-                            echo '</div>';
                         }
                     }
                 }
@@ -75,11 +84,12 @@ require_once 'inc/global.php';
                 //  ou bouton afficher la suite (JS+AJAX)
 
                 //Si aucun article ou erreur de connexion ou de requete
-                if (!$res): ?>
+                if (!$articles): ?>
                     <div class="error">
                         Impossible d'afficher les articles, veuillez réessayer ulterieurement.
                     </div>
                 <?php endif; ?>
+
             </section>
         </main>
 
@@ -87,15 +97,16 @@ require_once 'inc/global.php';
 
     </div>
     <script type="application/javascript" src="scripts/js/menu_deployment.js"></script>
+
     <?php
     //Si utilisateur connecté en tant qu'admin ou redac,
     // ajout du script permettant la modification d'éléments
-    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
-        isset($_SESSION['role']) &&
-        ($_SESSION['role'] == 'administrator' ||
-        $_SESSION['role'] == 'redactor')){
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
+        && ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+
         echo ADMINISTRATION_SCRIPT;
     }
     ?>
+
 </body>
 </html>

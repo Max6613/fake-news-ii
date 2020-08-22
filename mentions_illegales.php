@@ -26,24 +26,32 @@ require_once 'inc/global.php';
 
                     //Récuperation et affichage du sous titre
                     $pdo_sett = new PDOSetting();
-                    //TODO modifier phrase
-                    $setting = $pdo_sett->GetSetting(INDEX_PHRASE_ID);
-                    echo $setting->getValue();
+                    $setting = $pdo_sett->GetSetting(MENTION_PHRASE_ID);
 
-                    //Si utilisateur connecté en tant qu'admin ou redac,
-                    // affichage du logo de modification
-                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
-        isset($_SESSION['role']) &&
-        ($_SESSION['role'] == 'administrator' ||
-        $_SESSION['role'] == 'redactor')){
-                        echo MOD_LOGO;
+
+                    //TODO code dupliquer !!
+                    if (get_class($setting) == 'Setting'){
+                        echo $setting->getValue();
+
+                        //Si utilisateur connecté en tant qu'admin ou redac,
+                        // affichage du logo de modification
+                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
+                            && ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+
+                            echo MOD_LOGO;
+                        }
+                    }
+
+                    //Si erreur lors de la récuperation du sous-titre, affichage phrase par defaut
+                    else {
+                        echo DEFAULT_SUBTITLE;
                     }
                     ?>
                 </div>
 
             </div>
 
-            <?php require 'inc/double_sep.php' ?>
+            <?php include 'inc/double_sep.php' ?>
 
         </header>
 
@@ -60,7 +68,7 @@ require_once 'inc/global.php';
                 </p>
             </div>
 
-            <?php require 'inc/simple_sep.php' ?>
+            <?php include 'inc/simple_sep.php' ?>
 
             <div>
                 <h2>Editeur du Site : </h2>
@@ -73,7 +81,7 @@ require_once 'inc/global.php';
                 <p>Site Web : <a href="/" class="a-underline">www.fakenewsii.fr</a></p>
             </div>
 
-            <?php require 'inc/simple_sep.php' ?>
+            <?php include 'inc/simple_sep.php' ?>
 
             <div>
                 <h2>Hébergement : </h2>
@@ -85,7 +93,7 @@ require_once 'inc/global.php';
                 </p>
             </div>
 
-            <?php require 'inc/simple_sep.php' ?>
+            <?php include 'inc/simple_sep.php' ?>
 
             <div>
                 <h2>Développement : </h2>
@@ -94,7 +102,7 @@ require_once 'inc/global.php';
                 <p>Site Web : <a href="http://www.maximefontana.fr" class="a-underline">www.maximefontana.fr</a></p>
             </div>
 
-            <?php require 'inc/simple_sep.php' ?>
+            <?php include 'inc/simple_sep.php' ?>
 
             <div>
                 <h2>Conditions d’utilisation : </h2>
@@ -139,7 +147,7 @@ require_once 'inc/global.php';
                 </p>
             </div>
 
-            <?php require 'inc/simple_sep.php' ?>
+            <?php include 'inc/simple_sep.php' ?>
 
             <div>
                 <h2>Services fournis : </h2>
@@ -158,7 +166,7 @@ require_once 'inc/global.php';
                 </p>
             </div>
 
-            <?php require 'inc/simple_sep.php' ?>
+            <?php include 'inc/simple_sep.php' ?>
 
             <div>
                 <h2>Limitation contractuelles sur les données : </h2>
@@ -178,7 +186,7 @@ require_once 'inc/global.php';
                 </p>
             </div>
 
-            <?php require 'inc/simple_sep.php' ?>
+            <?php include 'inc/simple_sep.php' ?>
 
             <div>
                 <h2>Propriété intellectuelle :</h2>
@@ -197,7 +205,7 @@ require_once 'inc/global.php';
                 </p>
             </div>
 
-            <?php require 'inc/simple_sep.php' ?>
+            <?php include 'inc/simple_sep.php' ?>
 
             <div>
                 <h2>Déclaration à la CNIL : </h2>
@@ -210,7 +218,7 @@ require_once 'inc/global.php';
                 </p>
             </div>
 
-            <?php require 'inc/simple_sep.php' ?>
+            <?php include 'inc/simple_sep.php' ?>
 
             <div>
                 <h2>Litiges : </h2>
@@ -224,7 +232,7 @@ require_once 'inc/global.php';
 
             </div>
 
-            <?php require 'inc/simple_sep.php' ?>
+            <?php include 'inc/simple_sep.php' ?>
 
             <div>
                 <h2>Données personnelles :</h2>
@@ -248,11 +256,9 @@ require_once 'inc/global.php';
                 </p>
             </div>
 
-            <?php require 'inc/double_sep.php' ?>
+            <?php include 'inc/double_sep.php' ?>
 
         </main>
-
-        <?php require_once 'inc/footer.php'; ?>
 
     </div>
     <script type="application/javascript" src="scripts/js/menu_deployment.js"></script>

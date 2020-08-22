@@ -56,14 +56,18 @@
 
             //"BIENVENUE (user)"
             $icon = new Html('i', ['class'=>'fas fa-cog ico menu-icon']);
-            $link = new Html('a', ['href'=>$link], $icon->ToStr() . $text);
-            echo $link->ToStr();
+            $link = new Html('a', ['href'=>$link], $icon->__toString() . $text);
+            echo $link->__toString();
 
             //Sous-menu
             $sub_ul_li = [];
 
-            $logout = new Html('a', ['href'=>'scripts/php/logout.php'], 'Se déconnecter');
-            $sub_ul_li[] = new Html('li', [], null, [$logout]);
+            //Si connecté, lien de deconnexion
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
+                $logout = new Html('a', ['href'=>'scripts/php/logout.php'], 'Se déconnecter');
+                $sub_ul_li[] = new Html('li', [], null, [$logout]);
+            }
+
             //Si admin acces page de gestion des utilisateurs
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
                 isset($_SESSION['role']) && $_SESSION['role'] == 'administrator'){
@@ -73,7 +77,7 @@
 
             $sub_ul = new Html('ul', [], null, $sub_ul_li);
 
-            echo $sub_ul->ToStr();
+            echo $sub_ul->__toString();
             ?>
 
         </li>

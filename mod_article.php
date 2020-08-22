@@ -9,7 +9,7 @@ if (!isset($_GET['id'])) {
     header('Location: /');
 }
 
-if (!empty($_GET['id'])){
+elseif (!empty($_GET['id'])){
     $pdoArticle = new PDOArticle();
     $art = $pdoArticle->GetArticleById($_GET['id']);
 }
@@ -22,16 +22,32 @@ if (!empty($_GET['id'])){
 
         <header class="container">
 
-            <?php require_once 'inc/nav.php'; ?>
+            <?php
+            require_once 'inc/nav.php';
+
+            //Si aucun article n'a été récupéré, message d'erreur
+            if (!$art){
+                $html = new Html('div', ['class'=>'error'], 'Cet article n\'existe pas, ou a été supprimé.');
+                echo $html->__toString();
+            }
+            ?>
 
             <div class="title">
                 <div class="fake-logo">
                     <a href="index.php">Fake News II</a>
                 </div>
-                <h1><?php echo $art->getTitle() ?></h1>
+                <h1>
+
+                    <?php
+                    if (get_class($art) == 'Article'){
+                        echo $art->getTitle();
+                    }
+                    ?>
+
+                </h1>
             </div>
 
-            <?php require_once 'inc/double_sep.php' ?>
+            <?php include 'inc/double_sep.php' ?>
 
         </header>
         <main>

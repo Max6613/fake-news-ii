@@ -25,17 +25,24 @@ require_once 'inc/global.php';
                     //Récuperation et affichage du sous titre
                     $pdo_sett = new PDOSetting();
                     $setting = $pdo_sett->GetSetting(INDEX_PHRASE_ID);
-                    echo $setting->getValue();
 
-                    //Si utilisateur connecté en tant qu'admin ou redac,
-                    // affichage du logo de modification
-                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
-        isset($_SESSION['role']) &&
-        ($_SESSION['role'] == 'administrator' ||
-        $_SESSION['role'] == 'redactor')){
-                        echo MOD_LOGO;
+                    if (get_class($setting) == 'Setting') {
+                        echo $setting->getValue();
+
+                        //Si utilisateur connecté en tant qu'admin ou redac,
+                        // affichage du logo de modification
+                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
+                            && ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+
+                            echo MOD_LOGO;
+                        }
+                    }
+                    //Si la récuperation du sous titre a echoué, affichage du sous-titre par defaut
+                    else {
+                        echo DEFAULT_SUBTITLE;
                     }
                     ?>
+
                 </div>
 
             </div>
@@ -47,9 +54,9 @@ require_once 'inc/global.php';
             <section class="latest-new container">
 
                 <?php
+                //Gestion des erreurs
                 if (isset($_GET['err']) && !empty($_GET['err'])){
                     require_once 'classes/Html.php';
-
 
                     switch (($_GET['err'])){
 
@@ -65,21 +72,23 @@ require_once 'inc/global.php';
                 ?>
 
                 <h2>LES DERNIÈRES <strong>FAKE NEWS</strong>!</h2>
+
                 <div class="flex-article">
                     <?php
                     require_once 'classes/PDOArticle.php';
 
                     //Recuperation des 3 derniers articles
                     $pdoArticle = new PDOArticle();
-                    $res = $pdoArticle->GetArticles(3);
-                    if (get_class($res[0]) == 'Article'){
-                        foreach ($res as $article){
-                            $article->ToStrHomePreview();
+                    $articles = $pdoArticle->GetArticles(3);
+
+                    foreach ($articles as $article){
+                        if (get_class($article) == 'Article'){
+                                $article->ToStrHomePreview();
                         }
                     }
 
                     //Si aucun article ou erreur de connexion ou de requete
-                    if (!$res): ?>
+                    if (!$articles): ?>
                         <div class="error">
                             Impossible d'afficher les derniers articles, veuillez réessayer ulterieurement.
                         </div>
@@ -93,18 +102,16 @@ require_once 'inc/global.php';
             </section>
 
             <aside class="citation">
-                <div class="separator">
-                    <span></span>
-                </div>
+
+                <?php include 'inc/simple_sep.php' ?>
+
                 <IMG src="imgs/banner.jpg" alt="banniere">
                 <div class="center container">
                     "ON PEUT TROMPER UNE FOIS MILLE PERSONNES, MAIS ON NE PEUT PAS TROMPER MILLE FOIS UNE PERSONNE."
                     - ÉMILE
                 </div>
 
-                <div class="separator">
-                    <span></span>
-                </div>
+                <?php include 'inc/simple_sep.php' ?>
 
             </aside>
         </main>
@@ -117,7 +124,7 @@ require_once 'inc/global.php';
 
     <?php
     //Si utilisateur connecté en tant qu'admin ou redac,
-    // affichage du logo de modification
+    // Ajout du script d'administration, permet à certains logo d'administration de fonctionner
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
         isset($_SESSION['role']) &&
         ($_SESSION['role'] == 'administrator' ||

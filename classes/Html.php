@@ -24,13 +24,9 @@ class Html
         $this->_child = $children;
     }
 
-    public function __toString()
-    {
-        // TODO: Implement __toString() method.
-    }
 
-
-    public function ToStr() : string
+    //@Override
+    public function __toString() : string
     {
         $html = '<' . $this->_tag;
         if (!empty($this->_attributes)){
@@ -50,7 +46,7 @@ class Html
         if (!empty($this->_child)){
             foreach ($this->_child as $child){
                 if (!empty($child) && get_class($child) == 'Html'){
-                    $html .= $child->ToStr();
+                    $html .= $child->__toString();
                 }
             }
         }
