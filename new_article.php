@@ -21,15 +21,14 @@ require_once 'inc/global.php';
                     <a href="/">Fake News II</a>
                 </div>
 
-                <div id="truc-phrase" class="phrase">
+                <div id="redac-phrase" class="phrase">
 
                     <?php
                     require_once 'classes/PDOSetting.php';
 
-
                     //Récupération et affichage du sous titre
                     $pdo_sett = new PDOSetting();
-                    $setting = $pdo_sett->GetSetting(ADMIN_PHRASE_ID);
+                    $setting = $pdo_sett->GetSetting(REDAC_PHRASE_ID);
                     require_once 'inc/subtitle.php';
                     ?>
 

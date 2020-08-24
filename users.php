@@ -30,7 +30,7 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin']
                     <a href="/">Fake News II</a>
                 </div>
 
-                <div id="index-phrase" class="phrase">
+                <div id="admin-phrase" class="phrase">
 
                     <?php
                     require_once 'classes/PDOSetting.php';
@@ -100,6 +100,7 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin']
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
         isset($_SESSION['role']) && $_SESSION['role'] == 'administrator'){
         echo USER_ADMINISTRATION_SCRIPT;
+        echo ADMINISTRATION_SCRIPT;
     }
     ?>
 </body>

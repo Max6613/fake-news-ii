@@ -29,10 +29,13 @@ function buildModal(id, content) {
     "Etes-vous sur de vouloir supprimer cet " + content + " ?"
   );
 
-  let valid_btn = createHtmlElmnt("button", { type: "submit" }, "Supprimer");
+  let valid_btn = createHtmlElmnt(
+      "button",
+      { type: "submit", class: "no-link" },
+      "Supprimer");
   let cancel_btn = createHtmlElmnt(
     "button",
-    { onclick: "closeModal()" },
+    { onclick: "closeModal()", class: "no-link" },
     "Annuler"
   );
   let btn_div = createHtmlElmnt("div", { class: "btns" });

@@ -20,7 +20,7 @@ require_once 'inc/global.php';
                 <div class="fake-logo">
                     <a href="/">Fake News II</a>
                 </div>
-                <div id="index-phrase" class="phrase">
+                <div id="mention-phrase" class="phrase">
                     <?php
                     require_once 'classes/PDOSetting.php';
 

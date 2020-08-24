@@ -1,12 +1,12 @@
 //TODO convertir en jquery
 
 //Tableau associatif des ID(html):ID(sql) des sous titres modifiables
-const settings = { "index-phrase": 1, "truc-phrase": 2 };
+const settings = { "index-phrase": 11,
+                   "truc-phrase": 12,
+                   "redac-phrase": 13,
+                   "admin-phrase": 14,
+                   "mention-phrase": 15};
 
-/**
- * Annule la modification et rajoute le texte d'origine
- */
-function cancelMod() {}
 
 /**
  * Ajoute un formulaire de modification a la place du contenu
@@ -55,37 +55,27 @@ function addModElmnt(element, value, id) {
   element.appendChild(form);
 }
 
-//__________LISTENERS__________
-const mod_logo = document.querySelector(".mod-logo");
 
-mod_logo.addEventListener("click", function () {
+//__________LISTENERS__________
+$(".mod-logo").on("click", function () {
+  console.log("jquery");
+
   let parent = this.parentNode;
+
   //Récupere le texte à modifier, supprime la balise <span> et les espaces autour du texte
   let prt_value = parent.innerHTML
-    .replace(
-      '<span class="mod-logo"><i class="fas fa-edit mod-icon" aria-hidden="true"></i></span>',
-      ""
-    )
-    .trimLeft()
-    .trimRight();
-
-  let id = null;
-  switch (parent.id) {
-    case "index-phrase":
-      id = 1;
-      break;
-    case "truc-phrase":
-      id = 2;
-      break;
-  }
+      .replace(
+          '<span class="mod-logo"><i class="fas fa-edit ico mod-icon" aria-hidden="true"></i></span>',
+          ""
+      )
+      .trimLeft()
+      .trimRight();
 
   addModElmnt(parent, prt_value, settings[parent.id]);
-});
+})
 
-const del_logo = document.querySelector(".del-logo");
-
-del_logo.addEventListener("click", function () {
-  let article = this.parentNode.nextElementSibling;
+$(".del-logo").on("click", function () {
+  let article = this.parentNode.previousSibling;
 
   buildModal(article.classList[1], "article");
-});
+})
