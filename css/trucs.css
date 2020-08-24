@@ -1,5 +1,5 @@
 .article > button {
-  margin-bottom: 0;
+  margin-bottom: 15px;
 }
 
 .art-desc {
@@ -22,8 +22,7 @@
 }
 
 .mod-btns {
-  left: -77px;
-  top: 41px;
+  margin-bottom: 0;
 }
 
 @media (min-width: 768px) {

@@ -1,5 +1,3 @@
-//TODO convertir en jquery
-
 //Tableau associatif des ID(html):ID(sql) des sous titres modifiables
 const settings = { "index-phrase": 11,
                    "truc-phrase": 12,
@@ -45,14 +43,15 @@ function addModElmnt(element, value, id) {
     "Annuler"
   );
 
-  form.appendChild(input);
-  form.appendChild(hide_input);
-  button_div.appendChild(validate);
-  button_div.appendChild(cancel);
-  form.appendChild(button_div);
+
+  form.append(input);
+  form.append(hide_input);
+  button_div.append(validate);
+  button_div.append(cancel);
+  form.append(button_div);
 
   element.innerHTML = "";
-  element.appendChild(form);
+  element.append(form);
 }
 
 
