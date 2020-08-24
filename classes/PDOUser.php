@@ -137,4 +137,21 @@ class PDOUser
         }
         return true;
     }
+
+
+    public function UpdateSession(int $id)
+    {
+        $connection = $this->GetConnection();
+
+        $sql = 'SELECT `role` FROM users WHERE `id` = ?';
+        $stmt = $connection->prepare($sql);
+        $stmt->execute([$id]);
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!empty($res) && $res != false){
+            return $res['role'];
+        }
+
+        return false;
+    }
 }

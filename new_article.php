@@ -3,6 +3,13 @@
 <?php
 require_once 'inc/html_head.php';
 require_once 'inc/global.php';
+
+//Si aucun utilisateur connecté ou non administrateur, redirection vers la page d'accueil
+if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin']
+    && isset($_SESSION['role']) && $_SESSION['role'] == 'administrator')){
+
+    header('Location: /');
+}
 ?>
 
 <body>
