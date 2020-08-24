@@ -211,4 +211,6 @@ CREATE TABLE IF NOT EXISTS `settings`
 
 INSERT INTO `settings` (`name`, `value`)
 VALUES ('#index-phrase', 'IL REVIENT ET IL EST PAS CONTENT ! MYTHONÉ EN PHP ET MYSQL.'),
-       ('#truc-phrase', 'MAIS PUISQU''ON VOUS DIT QUE C''EST VRAI !');
+       ('#truc-phrase', 'MAIS PUISQU''ON VOUS DIT QUE C''EST VRAI !'),
+       ('#redac-phrase', 'LES REDACTEURS SONT LES MEILLEURS'),
+       ('#admin-phrase', 'L''ADMINISTRATION ...');

@@ -1,0 +1,9 @@
+/*********************
+*    Utilisateurs    *
+*********************/
+
+login: admin
+mdp : admin
+
+login: max
+mdp: azerty

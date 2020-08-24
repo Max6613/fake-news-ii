@@ -62,11 +62,6 @@
             //Sous-menu
             $sub_ul_li = [];
 
-            //Si connecté, lien de deconnexion
-            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
-                $logout = new Html('a', ['href'=>'scripts/php/logout.php'], 'Se déconnecter');
-                $sub_ul_li[] = new Html('li', [], null, [$logout]);
-            }
 
             //Si admin acces page de gestion des utilisateurs
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
@@ -75,9 +70,18 @@
                 $sub_ul_li[] = new Html('li', [], null, [$users_admin]);
             }
 
-            $sub_ul = new Html('ul', [], null, $sub_ul_li);
+            //Si connecté, lien de deconnexion
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
+                $logout = new Html('a', ['href'=>'scripts/php/logout.php'], 'Se déconnecter');
+                $sub_ul_li[] = new Html('li', [], null, [$logout]);
 
-            echo $sub_ul->__toString();
+
+                $sub_ul = new Html('ul', [], null, $sub_ul_li);
+                echo $sub_ul->__toString();
+            }
+
+
+
             ?>
 
         </li>

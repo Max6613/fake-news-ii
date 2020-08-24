@@ -12,9 +12,11 @@ define('MOD_LOGO', '<span class="mod-logo"><i class="fas fa-edit ico mod-icon"><
 define('ADD_LOGO', '<a href="new_article.php" class="add-logo"><i class="fas fa-plus-circle ico mod-icon"></i> Nouvel article</a>');
 define('DEL_LOGO', '<span class="del-logo"><i class="fas fa-trash ico mod-icon"></i></span>');
 
+
 //INFOS par defaut
 define('DEFAULT_SUBTITLE', 'IL REVIENT ET IL EST PAS CONTENT ! MYTHONÉ EN PHP ET MYSQL');
 define('DEFAULT_TITLE', 'Fake News II'); //TODO garder si utilisé
+
 
 //Scripts
 define('ADMINISTRATION_SCRIPT', '<script type="application/javascript" src="scripts/js/administration.js"></script>
@@ -23,6 +25,7 @@ define('ADMINISTRATION_SCRIPT', '<script type="application/javascript" src="scri
 define('USER_ADMINISTRATION_SCRIPT', '<script type="application/javascript" src="scripts/js/user_administration.js"></script>
                                       <script type="application/javascript" src="scripts/js/modal.js"></script>
                                       <script type="application/javascript" src="scripts/js/create_html.js"></script>');
+
 
 //Conditions
 // utilisateur connecté en tant qu'administrateur ou rédacteur

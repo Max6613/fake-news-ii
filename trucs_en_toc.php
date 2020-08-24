@@ -61,7 +61,12 @@ require_once 'inc/global.php';
                 ?>
 
                 <div>
-                    <?php echo ADD_LOGO ?>
+                    <?php
+                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
+                    && ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
+                        echo ADD_LOGO;
+                    }
+                    ?>
                 </div>
 
                 <?php
