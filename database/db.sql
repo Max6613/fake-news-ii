@@ -214,4 +214,4 @@ VALUES ('#index-phrase', 'IL REVIENT ET IL EST PAS CONTENT ! MYTHONÉ EN PHP ET 
        ('#truc-phrase', 'MAIS PUISQU''ON VOUS DIT QUE C''EST VRAI !'),
        ('#redac-phrase', 'LES REDACTEURS SONT LES MEILLEURS'),
        ('#admin-phrase', 'L''ADMINISTRATION ...'),
-       ('#admin-phrase', 'LES MENTIONS ILLEGALES C''EST PAS TRES LEGAL !');
+       ('#mention-phrase', 'LES MENTIONS ILLEGALES C''EST PAS TRES LEGAL !');
