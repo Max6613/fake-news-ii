@@ -1,0 +1,65 @@
+/*----*----*/
+
+/*----Article----*/
+.article {
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.article:hover,
+.article:active {
+  box-shadow: var(--dark-bckgnd) 0 0 12px -6px;
+}
+
+.mod-btns:hover ~ .article,
+.mod-btns:active ~ .article {
+  box-shadow: var(--dark-bckgnd) 0 0 12px -6px;
+}
+
+/*----Citations----*/
+.citation {
+  position: relative;
+  text-align: center;
+}
+
+.citation .center {
+  color: var(--light-bckgnd);
+  font-size: 20px;
+  left: 50%; /* positionnement au centre horizontal */
+  letter-spacing: 4px;
+  margin-bottom: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 50%; /* positionnement au centre vertical */
+  transform: translate(-50%, -50%); /* origine de la div au centre */
+  width: 100%;
+  z-index: 10;
+}
+
+.citation img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .flex-article {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .article-mod {
+    flex-basis: 49%;
+  }
+
+  .article img {
+    width: 100%; /* adapte l'img à la taille du conteneur */
+  }
+}
+
+@media (min-width: 992px) {
+  .article-mod {
+    flex-basis: 33%;
+  }
+}

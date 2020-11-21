@@ -1,7 +1,7 @@
 <?php
 require_once 'Database.php';
-require_once 'User.php';
 require_once 'Html.php';
+require_once 'User.php';
 
 
 /**
@@ -10,7 +10,7 @@ require_once 'Html.php';
 class PDOUser
 {
     /**
-     * Connexion à la base de données
+     * Database connection
      * @return PDO|false
      */
     private function GetConnection()
@@ -21,6 +21,7 @@ class PDOUser
 
 
     /**
+     * User authentication
      * @param $login
      * @param $passwd
      * @return User|false
@@ -28,6 +29,9 @@ class PDOUser
     public function Authenticate(string $login, string $passwd)
     {
         $connection = $this->GetConnection();
+        if (!$connection){
+            return false;
+        }
 
         $sql = 'SELECT * FROM users WHERE login = ? and password = ?';
         $stmt = $connection->prepare($sql);
@@ -43,11 +47,15 @@ class PDOUser
 
 
     /**
+     * Get all users in an array
      * @return array|false
      */
     public function GetAllUsers()
     {
         $connection = $this->GetConnection();
+        if (!$connection){
+            return false;
+        }
 
         $sql = 'SELECT `id`, `login`, `role` FROM `users`';
         $res = $connection->query($sql);
@@ -65,6 +73,7 @@ class PDOUser
 
 
     /**
+     * User role modification
      * @param int $user_id
      * @param string $role
      * @return bool
@@ -72,7 +81,6 @@ class PDOUser
     public function ModRole(int $user_id, string $role) : bool
     {
         $connection = $this->GetConnection();
-
         if (!$connection){
             return false;
         }
@@ -89,6 +97,7 @@ class PDOUser
 
 
     /**
+     * Deleting a user
      * @param int $user_id
      * @return bool
      */
@@ -111,6 +120,7 @@ class PDOUser
 
 
     /**
+     * Creating a new user
      * @param string $login
      * @param string $psswd
      * @param string $role
@@ -128,7 +138,7 @@ class PDOUser
         $stmt = $connection->prepare($sql);
         $res = $stmt->execute([
             ':login' => $login,
-            ':psswd' => hash('SHA512', $psswd),
+            ':psswd' => $psswd,
             ':user_role' => $role
         ]);
 
@@ -139,9 +149,17 @@ class PDOUser
     }
 
 
+    /**
+     * Update user stored in session
+     * @param int $id
+     * @return false|mixed
+     */
     public function UpdateSession(int $id)
     {
         $connection = $this->GetConnection();
+        if (!$connection){
+            return false;
+        }
 
         $sql = 'SELECT `role` FROM users WHERE `id` = ?';
         $stmt = $connection->prepare($sql);

@@ -59,7 +59,7 @@ class PDOArticle
 
         if (!empty($res) && $res != false){
             return new Article($res['id'],
-                $res['date_creation'],
+                $res['creation'],
                 $res['title'],
                 $res['chapo'],
                 $res['content'],
@@ -80,7 +80,7 @@ class PDOArticle
             return false;
         }
 
-        $sql = 'SELECT * FROM `posts` ORDER BY `date_creation` DESC';
+        $sql = 'SELECT * FROM `posts` ORDER BY `creation` DESC';
         if ($nb > 0 && $nb != null){
             $sql.= ' LIMIT ' . $nb;
         }
@@ -90,8 +90,9 @@ class PDOArticle
         if (!empty($res) && $res != false){
             $articles = [];
             while ($row = $res->fetch(PDO::FETCH_ASSOC)){
-                $articles[] = new Article($row['id'],
-                    $row['date_creation'],
+                $articles[] = new Article(
+                    $row['id'],
+                    $row['creation'],
                     $row['title'],
                     $row['chapo'],
                     $row['content'],
@@ -117,7 +118,7 @@ class PDOArticle
             return false;
         }
 
-        $sql = 'INSERT INTO posts(`date_creation`, `title`, `chapo`, `content`, `image`)
+        $sql = 'INSERT INTO posts(`creation`, `title`, `chapo`, `content`, `image`)
                 VALUES (:date_crea, :title, :chapo, :content, :image)';
         $stmt = $connection->prepare($sql);
         $res = $stmt->execute([':date_crea'=>date('Y-m-d H:i:s'),
@@ -145,15 +146,6 @@ class PDOArticle
         if (!$connection){
             return false;
         }
-
-        //mods = { 'column' => 'value' }
-        //TODO requete via prepare
-        // actuellement retourne une erreur sql
-        //$sql = 'UPDATE `posts` SET ? WHERE `id` = ?';
-        //$stmt = $connection->prepare($sql);
-        //$res = $stmt->execute([$this->ModList($mods), $article_id]);
-
-
 
         $sql = 'UPDATE `posts` SET ' . $this->ModList($mods) . ' WHERE `id` = ' . $article_id;
         $res = $connection->query($sql);

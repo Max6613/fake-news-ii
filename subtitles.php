@@ -7,7 +7,7 @@ require_once 'assets/inc/html_head.php';
 
 //Si aucun utilisateur connecté ou non administrateur, redirection vers la page d'accueil
 if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin']
-    && isset($_SESSION['role']) && $_SESSION['role'] == ADMIN)){
+    && isset($_SESSION['role']) && ($_SESSION['role'] == ADMIN || $_SESSION['role'] == REDAC))){
 
     header('Location: /');
 }
@@ -49,27 +49,22 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin']
         </header>
         <main>
             <section class="container">
-                <h1>Gestion des utilisateurs</h1>
+                <h1>Gestion des sous-titres des pages</h1>
 
-                <a href="user_new.php" class="a-underline"><i class="fas fa-plus-circle ico mod-icon"></i> Ajouter un nouvel utilisateur</a>
-
-
-                <div class="user user-header">
-                    <span class="user-id">Numéro</span>
-                    <span class="user-login">Identifiant</span>
-                    <span class="user-role">Privilège</span>
-                    <span class="user-del">Suppression</span>
+                <div class="subtitle subtitle-header">
+                    <span class="subtitle-name">Page</span>
+                    <span class="subtitle-value">Phrase</span>
                 </div>
 
                 <?php
-                require_once 'classes/PDOUser.php';
+                require_once 'classes/PDOSetting.php';
 
-                $pdo_user = new PDOUser();
-                $users = $pdo_user->GetAllUsers();
+                $pdo_set = new PDOSetting();
+                $settings = $pdo_set->GetAllSettings();
 
-                foreach ($users as $user){
-                    if ($user && get_class($user) == 'User'){
-                        echo $user->__toString();
+                foreach ($settings as $setting){
+                    if ($setting && get_class($setting) == 'Setting'){
+                        echo $setting->__toString();
                     }
                 }
                 ?>
@@ -82,14 +77,5 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin']
     </div>
     <script type="application/javascript" src="assets/scripts/js/menu_deployment.js"></script>
 
-    <?php
-    //Si utilisateur connecté en tant qu'admin ou redac,
-    // ajout du script permettant la modification d'éléments
-    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] &&
-        isset($_SESSION['role']) && $_SESSION['role'] == ADMIN){
-
-        echo USER_ADMINISTRATION_SCRIPT;
-    }
-    ?>
 </body>
 </html>

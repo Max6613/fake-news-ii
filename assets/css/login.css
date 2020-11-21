@@ -1,0 +1,121 @@
+header {
+  margin-top: 40px;
+}
+
+body {
+  flex-direction: column;
+  align-content: center;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+#login-form {
+  background: var(--light-grey);
+  border-radius: 4px;
+  color: var(--light-bckgnd);
+  padding: 60px 30px;
+  width: 40%;
+}
+
+#login-form button {
+  margin-bottom: 0;
+}
+
+#login-form .input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+#login-form .input > * {
+  border: none;
+}
+
+#login-form .input > input {
+  background: var(--light-bckgnd);
+  border-radius: 4px;
+  flex-basis: 30px;
+  margin-top: 0;
+  padding: 5px;
+  transition: ease 200ms;
+}
+
+#login-form .floating-label {
+  color: var(--mid-grey);
+  padding: 0 5px;
+  pointer-events: none;
+  position: relative;
+  text-align: left;
+  top: -26px;
+  transition: 200ms ease;
+}
+
+#login-form input:focus ~ .floating-label,
+#login-form input:valid ~ .floating-label {
+  background: var(--hover-orange);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  color: var(--light-bckgnd);
+  top: -51px;
+}
+
+#login-form input:valid:not(:focus) ~ .floating-label {
+  background: var(--orange);
+}
+
+#login-form input:focus,
+#login-form input:valid {
+  border: 1px solid var(--hover-orange);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin-top: 22px;
+}
+
+#login-form input:valid:not(:focus) {
+  border-color: var(--orange);
+}
+
+
+/* Credential pannel */
+.credentials {
+  margin-bottom: 0;
+}
+
+.credentials > ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.credentials > ul > li {
+  flex-basis: 48%;
+}
+
+.credentials > ul > li > p:first-child {
+  text-decoration: underline;
+}
+
+.credentials > ul > li,
+#credPannel {
+  margin-bottom: 0.5rem;
+}
+
+.credentials > ul #credential_admin {
+  flex-basis: 100%;
+}
+
+.credentials label {
+  cursor: pointer;
+}
+
+#credPannel,
+.credentials > ul {
+  display: none;
+}
+
+#credPannel:checked ~ ul {
+  display: flex;
+}

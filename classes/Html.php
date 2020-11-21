@@ -58,7 +58,7 @@ class Html
         //Ajout de balise enfant par récursivité
         if (!empty($this->_child)){
             foreach ($this->_child as $child){
-                if (!empty($child) && get_class($child) == 'Html'){
+                if ($child && get_class($child) == 'Html'){
                     $html .= $child->__toString();
                 }
             }

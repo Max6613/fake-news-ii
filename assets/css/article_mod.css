@@ -1,0 +1,40 @@
+main {
+  text-align: left;
+}
+
+textarea {
+  resize: vertical;
+}
+
+label {
+  font-size: 18px;
+  font-weight: 400;
+  margin-right: 10px;
+}
+
+input,
+textarea {
+  border: var(--lighter-grey) 1px solid;
+  border-radius: 4px;
+  color: var(--mid-grey);
+}
+
+.content > textarea,
+.chapo > textarea {
+  width: 100%;
+  height: 150px;
+}
+
+.content > textarea {
+  height: 300px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons > button {
+  display: inline;
+  flex-basis: 48%;
+}

@@ -1,0 +1,22 @@
+/*#form-mod input {*/
+/*  margin-bottom: 15px;*/
+/*  width: 100%;*/
+/*}*/
+
+/*#form-mod button {*/
+/*  display: inline;*/
+/*  flex-basis: 48%;*/
+/*}*/
+
+/*#form-mod .button-div {*/
+/*  display: flex;*/
+/*  justify-content: space-between;*/
+/*}*/
+
+/*.mod-logo,*/
+/*.add-logo,*/
+/*.del-logo {*/
+/*  cursor: pointer;*/
+/*  padding: 10px;*/
+/*}*/
+/*TODO suppprimer si inutilisé*/

@@ -1,0 +1,8 @@
+.article p {
+  text-align: justify;
+  margin-bottom: 15px;
+}
+
+.article .chapo {
+  font-weight: 400;
+}

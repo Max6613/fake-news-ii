@@ -52,7 +52,7 @@ class PDOSetting
      * @param string $val
      * @return bool
      */
-    public function SetSetting(int $id, string $val) : bool
+    public function UpdateSetting(int $id, string $val) : bool
     {
         $connection = $this->GetConnection();
         if (!$connection){
@@ -70,5 +70,27 @@ class PDOSetting
             return false;
         }
         return true;
+    }
+
+
+    public function GetAllSettings()
+    {
+        $connection = $this->GetConnection();
+        if (!$connection){
+            return false;
+        }
+
+        $sql = 'SELECT * FROM `settings`';
+        $res = $connection->query($sql);
+
+        if (!empty($res) && $res != false){
+            $settings = [];
+            while ($row = $res->fetch(PDO::FETCH_ASSOC)){
+                $settings[] = new Setting($row['id'], $row['name'], $row['value']);
+            }
+            return $settings;
+        }
+
+        return false;
     }
 }

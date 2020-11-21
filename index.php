@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
 <?php
-require_once 'inc/html_head.php';
-require_once 'inc/global.php';
+require_once 'assets/inc/html_head.php';
+require_once 'assets/inc/global.php';
 ?>
 
 <body>
     <div class="wrapper">
 
         <!-- Bouton de déploiement du menu -->
-        <?php require_once 'inc/burger_btn.php'; ?>
+        <?php require_once 'assets/inc/burger_btn.php'; ?>
 
         <header class="container">
 
             <!-- Menu de navigation -->
-            <?php require_once 'inc/nav.php'; ?>
+            <?php require_once 'assets/inc/nav.php'; ?>
 
             <div class="title">
                 <h1 class="fake-logo"><a href="/">FAKE NEWS II</a></h1>
@@ -25,14 +25,14 @@ require_once 'inc/global.php';
                     //Récuperation et affichage du sous titre
                     $pdo_sett = new PDOSetting();
                     $setting = $pdo_sett->GetSetting(INDEX_PHRASE_ID);
-                    require_once 'inc/subtitle.php';
+                    require_once 'assets/inc/subtitle.php';
                     ?>
 
                 </div>
 
             </div>
 
-            <?php require_once 'inc/double_sep.php' ?>
+            <?php require_once 'assets/inc/separator_double.php' ?>
 
         </header>
         <main>
@@ -71,7 +71,7 @@ require_once 'inc/global.php';
                     $articles = $pdoArticle->GetArticles(3);
 
                     foreach ($articles as $article){
-                        if (get_class($article) == 'Article'){
+                        if ($article && get_class($article) == 'Article'){
                                 echo $article->ToStrHomePreview();
                         }
                     }
@@ -86,30 +86,30 @@ require_once 'inc/global.php';
                 </div>
 
                 <button>
-                    <a href="/trucs_en_toc.php"><i class="far fa-file"></i> J'EN VEUX ENCORE !</a>
+                    <a href="/article_list.php"><i class="far fa-file"></i> J'EN VEUX ENCORE !</a>
                 </button>
             </section>
 
             <aside class="citation">
 
-                <?php include 'inc/simple_sep.php' ?>
+                <?php include 'assets/inc/separator_simple.php' ?>
 
-                <IMG src="imgs/banner.jpg" alt="banniere">
+                <IMG src="assets/imgs/banner.jpg" alt="banniere">
                 <div class="center container">
                     "ON PEUT TROMPER UNE FOIS MILLE PERSONNES, MAIS ON NE PEUT PAS TROMPER MILLE FOIS UNE PERSONNE."
                     - ÉMILE
                 </div>
 
-                <?php include 'inc/simple_sep.php' ?>
+                <?php include 'assets/inc/separator_simple.php' ?>
 
             </aside>
         </main>
 
-        <?php require_once 'inc/footer.php'; ?>
+        <?php require_once 'assets/inc/footer.php'; ?>
 
     </div>
-    <script type="application/javascript" src="scripts/js/menu_deployment.js"></script>
-    <script type="application/javascript" src="scripts/js/article_link.js"></script>
+    <script type="application/javascript" src="assets/scripts/js/menu_deployment.js"></script>
+    <script type="application/javascript" src="assets/scripts/js/article_link.js"></script>
 
     <?php
     //Si utilisateur connecté en tant qu'admin ou redac,

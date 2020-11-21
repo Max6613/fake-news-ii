@@ -26,7 +26,7 @@ VALUES ('admin',
 CREATE TABLE IF NOT EXISTS `posts`
 (
     `id`            int(10) unsigned NOT NULL AUTO_INCREMENT,
-    `date_creation` DATETIME         NOT NULL,
+    `creation` DATETIME         NOT NULL,
     `title`         varchar(100)     NOT NULL,
     `chapo`         varchar(300)     NOT NULL,
     `content`       text             NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `posts`
   CHARACTER SET utf8
   COLLATE utf8_bin;
 
-INSERT INTO `posts` (date_creation, title, chapo, content, image)
+INSERT INTO `posts` (creation, title, chapo, content, image)
 VALUES ('2020-07-14 17:18:18', 'CERISIER ALIEN',
         '<strong>EXCLUSIF!</strong> Les aliens sont parmis nous! Ils se cachent dans
         les cerisiers déguisés en fleurs. L''interview exclusive de <a href="#"

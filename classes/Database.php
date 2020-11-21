@@ -34,7 +34,6 @@ class Database
         try{
             return new PDO($dsn, $this->_user, $this->_password, $options);
         }catch (PDOException $ex){
-            //var_dump($ex);
             //TODO gérer erreur
         }
         return false;

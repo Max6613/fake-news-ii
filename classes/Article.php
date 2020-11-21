@@ -50,7 +50,7 @@ class Article
     public function GetAdminIcons() : Html
     {
         $mod_icon = new Html('i', ['class' => 'fas fa-edit ico mod-icon']);
-        $link = new Html('a', ['href' => 'mod_article.php?id=' . $this->_id, 'class' => 'mod-logo'], null, [$mod_icon]);
+        $link = new Html('a', ['href' => 'article_mods.php?id=' . $this->_id, 'class' => 'mod-logo'], null, [$mod_icon]);
 
         $del_icon = new Html('i', ['class' => 'fas fa-trash-alt ico mod-icon']);
         $del_span = new Html('span', ['class' => 'del-logo'], null, [$del_icon]);
@@ -65,7 +65,7 @@ class Article
     public function ToStrHomePreview() : string
     {
         //image
-        $img = new Html('img', ['src' => $this->_img, 'alt' => ''], null, null, true);
+        $img = new Html('img', ['src' => 'assets/imgs/' . $this->_img, 'alt' => ''], null, null, true);
         $img_div = new Html('div', null, null, [$img]);
 
         //date
@@ -80,13 +80,6 @@ class Article
 
         //contenu de la div article-mod
         $art_mod_div_cont = [new Html('div', ['class' => 'article ' . $this->_id], null, [$img_div, $date_div, $title, $chapo])];
-
-        //Si utilisateur admin ou redac, ajout des icones de modification/suppression
-        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
-            && ($_SESSION['role'] == 'administrator' || $_SESSION['role'] == 'redactor')){
-
-            $art_mod_div_cont[] = $this->GetAdminIcons();
-        }
 
         $art_mod_div = new Html('div', ['class' => 'article-mod'], null, $art_mod_div_cont);
 
@@ -107,7 +100,7 @@ class Article
         $art_div_cont[] = new Html('h3', null, $this->_title);
 
         //image
-        $img = new Html('img', ['src' => $this->_img, 'alt' => ''], null, null, true);
+        $img = new Html('img', ['src' => 'assets/imgs/' . $this->_img, 'alt' => ''], null, null, true);
         //chapo
         $chapo = new Html('p', null, $this->_chapo);
 
@@ -116,7 +109,7 @@ class Article
 
         //Bouton acces a l'article
         $btn_icon = new Html('i', ['class' => 'far fa-file']);
-        $art_link = new Html('a', ['href' => 'detail_article.php?id=' . $this->_id], $btn_icon->__toString() . ' JE VEUX LA SUITE !');
+        $art_link = new Html('a', ['href' => 'article_details.php?id=' . $this->_id], $btn_icon->__toString() . ' JE VEUX LA SUITE !');
         $art_div_cont[] = new Html('button', null, null, [$art_link]);
 
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_SESSION['role'])
@@ -148,7 +141,7 @@ class Article
         }
 
         //image
-        $img = new Html('img', ['src' => $this->_img, 'alt' => ''], null, null, true);
+        $img = new Html('img', ['src' => 'assets/imgs/' . $this->_img, 'alt' => ''], null, null, true);
         $art_cont[] = new Html('div', null, null, [$img]);
 
         //chapo
@@ -160,7 +153,7 @@ class Article
 
 
         //article
-        $art = new Html('div', ['class' => 'article'], null, $art_cont);
+        $art = new Html('div', ['class' => 'article ' . $this->_id], null, $art_cont);
 
         return $art->__toString();
     }
@@ -190,7 +183,7 @@ class Article
         //image
         $img_label = new Html('label', ['for' => 'image'], 'Image: ');
         $img_inp = new Html('input', ['type' => 'file', 'name' => 'image', 'id' => 'image', 'accept' => 'image/jpeg'], null, null, true);
-        $img = new Html('img', ['src' => $this->_img, 'id' => 'img-prev', 'alt' => ''], null, null, true);
+        $img = new Html('img', ['src' => 'assets/imgs/' . $this->_img, 'id' => 'img-prev', 'alt' => ''], null, null, true);
         $form_cont[] = new Html('div', ['class' => ''], null, [$img_label, $img_inp, $img]);
 
         //chapo
@@ -209,7 +202,7 @@ class Article
         $form_cont[] = new Html('div', ['class' => ''], null, [$submit, $cancel]);
 
         //Formulaire
-        $form = new Html('form', ['action' => 'scripts/php/mod_article.php', 'method' => 'POST'], null, $form_cont);
+        $form = new Html('form', ['action' => 'assets/scripts/php/article_mod.php', 'method' => 'POST'], null, $form_cont);
 
         //article
         $art = new Html('div', ['class' => 'article container'], null, [$form]);
@@ -221,19 +214,19 @@ class Article
     /**
      * @return int
      */
-    public function getId(): int
-    {
-        return $this->_id;
-    }
+//    public function getId(): int
+//    {
+//        return $this->_id;
+//    }
 
 
     /**
      * @return string
      */
-    public function getDate(): string
-    {
-        return $this->_date;
-    }
+//    public function getDate(): string
+//    {
+//        return $this->_date;
+//    }
 
 
     /**
@@ -248,26 +241,26 @@ class Article
     /**
      * @return string
      */
-    public function getChapo(): string
-    {
-        return $this->_chapo;
-    }
+//    public function getChapo(): string
+//    {
+//        return $this->_chapo;
+//    }
 
 
     /**
      * @return string
      */
-    public function getContent(): string
-    {
-        return $this->_content;
-    }
+//    public function getContent(): string
+//    {
+//        return $this->_content;
+//    }
 
 
     /**
      * @return string
      */
-    public function getImg(): string
-    {
-        return $this->_img;
-    }
+//    public function getImg(): string
+//    {
+//        return $this->_img;
+//    }
 }

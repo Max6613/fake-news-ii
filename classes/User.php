@@ -60,7 +60,7 @@ class User
         $btn = new Html('button', ['type'=>'submit', 'disabled'=>null], 'Appliquer');
 
         //Création du formulaire
-        $form = new Html('form', ['action'=>'scripts/php/modif_role_user.php', 'method'=>'POST', 'class'=>'user-role'], null, [$hidden_inp, $select, $btn]);
+        $form = new Html('form', ['action'=>'assets/scripts/php/user_role_mod.php', 'method'=>'POST', 'class'=>'user-role'], null, [$hidden_inp, $select, $btn]);
 
         //Création du span pour l'id
         $id_span = new Html('span', ['class'=>'user-id'], $this->_id);

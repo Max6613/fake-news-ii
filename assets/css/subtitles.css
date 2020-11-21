@@ -1,0 +1,45 @@
+main {
+  margin-bottom: 150px;
+}
+
+.subtitle {
+  display: flex;
+  height: 2rem;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.subtitle .subtitle-name {
+  flex-basis: 20%;
+}
+
+.subtitle .subtitle-value {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.subtitle-header {
+  font-weight: 400;
+}
+
+
+.subtitle .subtitle-value > input {
+  border: var(--lighter-grey) 1px solid;
+  border-radius: 4px;
+  color: var(--mid-grey);
+  padding: 10px 5px;
+}
+
+.subtitle .subtitle-value > input[name="value"] {
+  flex-basis: 79%;
+}
+
+.subtitle .subtitle-value > button {
+  flex-basis: 19%;
+  margin-bottom: 0;
+}
+
+.mod-icon {
+  cursor: pointer;
+}
